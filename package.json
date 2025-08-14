@@ -1,0 +1,45 @@
+{
+  "name": "next-15",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.0.7",
+    "@react-three/fiber": "^9.1.2",
+    "@splinetool/react-spline": "^4.0.0",
+    "clsx": "^2.1.1",
+    "formik": "^2.4.6",
+    "gsap": "npm:@gsap/shockingly@^3.12.7",
+    "lenis": "^1.1.20",
+    "motion": "^12.12.1",
+    "next": "^15.1.7",
+    "next-view-transitions": "^0.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-fast-marquee": "^1.6.5",
+    "reset-css": "^5.0.2",
+    "split-type": "^0.3.4",
+    "swiper": "^11.2.5",
+    "tailwind-merge": "^3.3.0",
+    "three": "^0.174.0",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.174.0",
+    "eslint": "^9",
+    "eslint-config-next": "^15.2.1",
+    "sass": "^1.85.0",
+    "typescript": "^5"
+  }
+}

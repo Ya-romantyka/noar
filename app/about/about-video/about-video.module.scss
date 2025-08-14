@@ -1,0 +1,13 @@
+.video {
+    position: relative;
+    aspect-ratio: 39.3 / 85.2;
+    display: block;
+    width: 100%;
+    background-color: #E0E0E0;
+}
+
+@media (min-width: 768px) {
+    .video {
+        aspect-ratio: 192 / 108;
+    }
+}

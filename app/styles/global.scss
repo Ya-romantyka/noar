@@ -1,0 +1,150 @@
+@use "reset-css";
+@use './utils.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+html {
+    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100vw;
+}
+
+body {
+    font-family: var(--font-satoshi), sans-serif;
+    font-weight: 700;
+    background: #fff;
+    color: #101010;
+
+    // &::-webkit-scrollbar {
+    //     width: 0;
+    // }
+}
+
+.h1 {
+    font-size: 4.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -0.144rem;
+    text-transform: uppercase;
+}
+
+.h2 {
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+    letter-spacing: -0.108rem;
+
+    .line-wrap {
+        margin-bottom: -0.4rem;
+    }
+}
+
+p {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.section-label {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    display: inline-flex;
+    height: max-content;
+    align-items: center;
+    gap: 0.8rem;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+        border: 0.4rem solid #101010;
+        background-color: #101010;
+        border-radius: 50%;
+    }
+
+    &--white {
+        color: #fff;
+
+        &::before {
+            background-color: #fff;
+            border-color: #fff;
+        }
+    }
+}
+
+.line-wrap {
+    overflow: hidden;
+}
+
+.line {
+    transform: translateY(100%);
+    white-space: nowrap;
+}
+
+.rfm-marquee-container {
+    overflow: hidden;
+}
+
+
+@media (min-width: 768px) {
+    .h1 {
+        font-size: 12.4rem;
+        letter-spacing: -0.62rem;
+    }
+
+    .h2 {
+        font-size: 7rem;
+        letter-spacing: -0.35rem;
+    }
+
+    p {
+        font-size: 1.8rem;
+        letter-spacing: -0.054rem;
+    }
+
+    .section-label {
+        font-size: 1.6rem;
+        letter-spacing: -0.048rem;
+
+    }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none !important;
+}
+
+::view-transition-group(root) {
+    z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+    isolation: isolate;
+    will-change: transform, opacity, clip-path;
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 10000;
+    animation: none !important;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
+    animation: none !important;
+}
+

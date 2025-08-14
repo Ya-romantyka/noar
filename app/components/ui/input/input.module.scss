@@ -1,0 +1,39 @@
+.label {
+    color: var(--black-color, #101010);
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin-bottom: 1.6rem;
+}
+
+.input {
+    padding: 1.2rem 2rem;
+    border-radius: 0.8rem;
+    border: 1px solid var(--tech-grey, #E0E0E0);
+    color: #101010;
+    font-family: var(--font-satoshi);
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    width: 100%;
+
+    &::placeholder {
+        color: var(--tech-grey, #E0E0E0);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .label {
+        font-size: 1.8rem;
+    }
+
+    .input {
+        font-size: 1.8rem;
+    }
+}

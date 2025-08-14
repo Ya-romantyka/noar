@@ -1,0 +1,51 @@
+.button {
+    padding: 1.2rem 3.2rem;
+    border-radius: 25rem;
+    display: flex;
+    gap: 1.2rem;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.048rem;
+    background: transparent;
+    width: max-content;
+
+    svg {
+        width: 1.2rem;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    &.white {
+        background-color: #fff;
+        border: 1px solid var(--tech-grey, #E0E0E0);
+        color: #000;
+    }
+
+    &.black {
+        background-color: #000;
+        color: #fff;
+    }
+
+    &.outline-white {
+        background-color: transparent;
+        border: 0.1rem solid #FFF;
+        color: #fff;
+    }
+
+
+}
+
+button.button {
+    cursor: pointer;
+    border: none;
+}
+
+
+@media (min-width: 768px) {
+    .button {
+        padding: 1.6rem 4rem;
+        font-size: 1.8rem;
+    }
+}

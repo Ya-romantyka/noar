@@ -1,0 +1,67 @@
+.container {
+    padding: 4rem 1.6rem;
+    background-color: #101010;
+    --circle-width: 6.8057rem;
+    --circle-margin: 2rem;
+
+    &.white {
+        background-color: #fff;
+
+        .circle {
+            border-color: #fff;
+            background-color: #101010;
+        }
+    }
+}
+
+.circles {
+    height: var(--circle-width);
+    position: relative;
+}
+
+.circle {
+    background-color: #fff;
+    border: 4.344px solid #101010;
+    border-radius: 50%;
+    width: var(--circle-width);
+    height: var(--circle-width);
+    position: absolute;
+    top: 0;
+
+    &:nth-child(1) {
+        left: 0;
+        z-index: 1;
+    }
+
+    &:nth-child(2) {
+        right: calc(var(--circle-width) * 3 - calc(var(--circle-margin) * 3));
+        z-index: 2;
+    }
+
+    &:nth-child(3) {
+        right: calc(var(--circle-width) * 2 - calc(var(--circle-margin) * 2));
+        z-index: 3;
+    }
+
+    &:nth-child(4) {
+        right: calc(var(--circle-width) - var(--circle-margin));
+        z-index: 4;
+    }
+
+    &:nth-child(5) {
+        right: 0;
+        z-index: 5;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 11.2rem 4rem;
+        --circle-width: 29.5563rem;
+        --circle-margin: 7.2rem;
+    }
+
+    .circle {
+        border-width: 18.88px;
+    }
+}

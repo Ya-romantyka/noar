@@ -1,0 +1,149 @@
+.section {
+  background: var(--black-color, #101010);
+  padding: 11.2rem 0;
+  border-top: 1px solid var(--white-stroke, rgba(237, 237, 237, 0.12));
+  position: relative;
+  z-index: 3;
+}
+
+.label {
+  margin-bottom: 3.2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4.8rem;
+  margin-bottom: 2.4rem;
+}
+
+.itemLabel {
+  display: block;
+  color: var(--tech-grey, #E0E0E0);
+  text-align: right;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  /* 1.96rem */
+  margin-bottom: 1.6rem;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
+
+  li {
+    color: var(--white-color, #FFF);
+    text-align: right;
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 112%;
+    /* 4.032rem */
+    letter-spacing: -0.108rem;
+  }
+}
+
+.button {
+  display: flex;
+  margin: 0 auto;
+  height: 4.8rem;
+
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.pinBlock {
+  position: absolute;
+  z-index: -1;
+  top: 10rem;
+  left: 0;
+  width: 29rem;
+  height: 29rem;
+  flex-shrink: 0;
+
+  video {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 15.6rem 0;
+    position: relative;
+  }
+
+  .label {
+    position: absolute;
+    left: 4rem;
+    top: 15.6rem;
+  }
+
+  .list {
+    margin-left: 81rem;
+    align-items: flex-start;
+    gap: 6.4rem;
+    margin-bottom: 0;
+  }
+
+  .itemLabel {
+    text-align: left;
+    font-size: 1.8rem;
+    letter-spacing: -0.054rem;
+    margin-bottom: 4rem;
+  }
+
+  .itemList {
+    align-items: flex-start;
+    gap: 1.6rem;
+
+    li {
+      text-align: left;
+      font-size: 7rem;
+      letter-spacing: -0.35rem;
+    }
+  }
+
+  .buttonWrapper {
+    position: absolute;
+    top: 15rem;
+    right: 4rem;
+    bottom: 15.6rem;
+  }
+
+  .button {
+    position: sticky;
+    top: calc(100% - 5.6rem - 4.2rem);
+    display: flex;
+    height: 5.6rem;
+    padding: 1.6rem 4rem;
+  }
+
+  .pinBlock {
+    position: absolute;
+    left: 25rem;
+    top: 15.6rem;
+    height: calc(100% - 21rem);
+  }
+
+  .videoWrap {
+    height: max-content;
+    position: sticky;
+    top: 5%;
+  }
+
+  .video {
+    margin-top: -5.6rem;
+    width: 50rem;
+    height: 50rem;
+    flex-shrink: 0;
+  }
+}
+

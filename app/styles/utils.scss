@@ -1,0 +1,11 @@
+@function toIndex($value) {
+    @return calc((1vw + 1vh) * ($value / 30));
+}
+
+:root {
+    font-size: calc(10 / 3.93 * 1vw);
+
+    @media (min-width: 768px) {
+        font-size: calc(10 / 19.2 * 1vw);
+    }
+}

@@ -1,0 +1,10 @@
+.link {
+    display: flex;
+    overflow: hidden;
+}
+
+.text {
+    overflow: hidden;
+    text-shadow: 0 1.2em 0 currentColor;
+    white-space: nowrap;
+}

@@ -1,0 +1,36 @@
+.label {
+    color: #101010;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+        border: 0.4rem solid #101010;
+        background-color: #101010;
+        border-radius: 50%;
+    }
+
+    &.white {
+        color: #fff;
+
+        &::before {
+            background-color: #fff;
+            border-color: #fff;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .label {
+        font-size: 1.6rem;
+        letter-spacing: -0.048rem;
+    }
+}

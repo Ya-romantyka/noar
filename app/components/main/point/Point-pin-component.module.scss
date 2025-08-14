@@ -1,0 +1,48 @@
+.pinWrapper {
+  width: 100%;
+  height: calc(var(--locked-vh ) * 1);
+  margin-top: calc(var(--locked-vh ) * -0.3);
+  margin-bottom: calc(var(--locked-vh ) * -0.4);
+  overflow: hidden;
+}
+.pin {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -102.5%) scaleY(0);
+  height: 100rem;
+  width: 0.1rem;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.text {
+  color:  #101010;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+@media (min-width: 768px) {
+  .pinWrapper {
+    margin-top: calc(var(--locked-vh ) * -0.3);
+    margin-bottom: calc(var(--locked-vh ) * -0.4);
+  }
+
+
+  .text {
+    font-size: 1.8rem;
+    letter-spacing: -0.054rem;
+  }
+}

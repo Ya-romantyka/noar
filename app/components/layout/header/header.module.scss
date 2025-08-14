@@ -1,0 +1,242 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 1.6rem 0 2rem;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.3);
+    transition: transform 0.8s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 1.6rem;
+        width: calc(100% - 3.2rem);
+        border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+    }
+
+    &.hide {
+        pointer-events: none;
+        transform: translateY(-100%);
+    }
+
+    &.white {
+        background: rgba(16, 16, 16, 0.30);
+        .logo {
+            color: #fff;
+        }
+
+        .menuButton {
+            background-color: #fff;
+            color: #101010;
+        }
+
+        &::after {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+    }
+}
+
+
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 6rem;
+    display: block;
+    color: #101010;
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.menuButton {
+    padding: 1.2rem 3.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    color: #fff;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.048rem;
+    text-transform: lowercase;
+    border-radius: 25rem;
+    background-color: #101010;
+    border: none;
+    cursor: pointer;
+    width: 14.1rem;
+
+    svg {
+        width: 2.4rem;
+    }
+}
+
+.menu {
+    position: fixed;
+    top: 10.4rem;
+    right: 1.6rem;
+    width: 30.5rem;
+    border-radius: 1.6rem;
+    background: var(--black-color, #101010);
+    padding: 2.4rem;
+    z-index: 2;
+    display: grid;
+    gap: 1.6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+
+    &.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    &.white {
+        background-color: #fff;
+
+        .menuItem {
+            color: #101010;
+
+            &::before {
+                background-color: #101010;
+            }
+        }
+    }
+}
+
+.menuItem {
+    color: #fff;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -0.06rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    &::before {
+        content: '';
+        width: 0.4rem;
+        height: 0.4rem;
+        border: 0.4rem solid #fff;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .socials {
+        display: none;
+    }
+
+    .button {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .header{
+        &.white {
+            .socials a {
+                color: #fff;
+            }
+
+            .button {
+                color: #fff;
+                border-color: #fff;
+            }
+        }
+
+
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 82rem 1fr 1fr;
+    }
+
+    .socials {
+        display: flex;
+        align-items: center;
+        gap: 2.4rem;
+        margin-right: 25rem;
+
+        a {
+            color: #101010;
+            font-size: 1.8rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 120%;
+            letter-spacing: -0.054rem;
+        }
+    }
+
+    .group {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+    }
+
+    .button {
+        padding: 1.6rem 4rem;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        color: #101010;
+        font-size: 1.8rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+        letter-spacing: -0.054rem;
+        text-transform: lowercase;
+        border: 1px solid #101010;
+        border-radius: 25rem;
+
+        svg {
+            width: 2rem;
+            height: auto;
+        }
+    }
+
+    .menuButton {
+        padding: 1.6rem 4rem;
+        gap: 1.2rem;
+        font-size: 1.8rem;
+        width: 16.2rem;
+
+        svg {
+            width: 2.4rem;
+        }
+    }
+
+    .menu {
+        right: 4rem;
+        width: 39rem;
+        border-radius: 2.8rem;
+        padding: 3.2rem;
+    }
+
+    .menuItem {
+        font-size: 2.4rem;
+        letter-spacing: -0.12rem;
+        gap: 1.2rem;
+
+        &::before {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+    }
+}

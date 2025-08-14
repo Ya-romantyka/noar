@@ -1,0 +1,81 @@
+.section {
+    padding: 11.2rem 0;
+    background-color: #101010;
+}
+
+.label {
+    margin-bottom: 2rem;
+}
+
+.list {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 4.8rem;
+}
+
+.item {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.position {
+    color: #E0E0E0;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.name {
+    color: #fff;
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 112%;
+    letter-spacing: -0.108rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 15.6rem 0;
+    }
+
+    .container {
+        position: relative;
+        padding-left: 82rem;
+    }
+
+    .label {
+        position: absolute;
+        top: 0;
+        left: 4rem;
+    }
+
+    .list {
+        gap: 4.8rem;
+        margin-bottom: 7.2rem;
+    }
+
+    .item {
+        gap: 1.2rem;
+    }
+
+    .position {
+        font-size: 1.8rem;
+        letter-spacing: -0.054rem;
+    }
+
+    .name {
+        font-size: 7rem;
+        letter-spacing: -0.35rem;
+    }
+
+    .buttons {
+        gap: 2.4rem;
+    }
+}

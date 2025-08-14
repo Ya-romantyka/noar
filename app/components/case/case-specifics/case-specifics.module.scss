@@ -1,0 +1,196 @@
+.section {
+    padding: 11.2rem 0 0;
+    background-color: #101010;
+    color: #fff;
+}
+
+.header {
+    display: grid;
+    gap: 3.2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(237, 237, 237, 0.12);
+}
+
+.headerTop {
+    display: grid;
+    gap: 2rem;
+}
+
+.title {
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 112%;
+    letter-spacing: -0.108rem;
+}
+
+.subtitle {
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 112%;
+    letter-spacing: -0.072rem;
+    margin-bottom: 0.4rem;
+}
+
+.headerBottom {
+    display: grid;
+    gap: 3.2rem;
+}
+
+.titleCol {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.fonts {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    color: #E0E0E0;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin-top: 1.6rem;
+}
+
+.text {
+    color: #E0E0E0;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.innerRow {
+    display: grid;
+    grid-template-columns: 22.5rem 1fr;
+    align-items: flex-end;
+    gap: 3.65rem;
+}
+
+.innerCol {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.colors {
+    display: grid;
+    gap: 0.8rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid rgba(237, 237, 237, 0.12);
+}
+
+.colorItem {
+    padding: 1.6rem;
+    height: 12.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.colorItemTitle {
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 112%;
+    letter-spacing: -0.072rem;
+}
+
+.colorItemValue {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 15.6rem 0 0;
+    }
+
+    .header {
+        gap: 6.4rem;
+        padding-bottom: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .headerTop {
+        grid-template-columns: 81.8rem 1fr;
+    }
+
+    .title {
+        font-size: 7rem;
+        letter-spacing: -0.35rem;
+    }
+
+    .subtitle {
+        font-size: 4rem;
+        letter-spacing: -0.2rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .headerBottom {
+        display: grid;
+        grid-template-columns: 66.8rem 43rem 1fr;
+        gap: 17.8rem;
+    }
+
+    .titleCol {
+        font-size:2.4rem;
+        line-height: 112%;
+        letter-spacing: -0.12rem;
+    }
+
+    .fonts {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        font-size: 1.6rem;
+        margin-top: 2.4rem;
+    }
+
+    .text {
+        color: #E0E0E0;
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+    }
+
+    .innerRow {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.6rem
+    }
+
+    .innerCol {
+        display: grid;
+        gap: 1.6rem;
+    }
+
+    .colors {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.6rem;
+        padding-bottom: 4rem;
+    }
+
+    .colorItem {
+        padding: 2.4rem;
+        height: 36.3rem;
+    }
+
+
+    .colorItemValue {
+        gap: 6.1rem;
+        font-size: 1.8rem;
+        font-style: normal;
+        letter-spacing: -0.054rem;
+    }
+}

@@ -1,0 +1,75 @@
+.section {
+    padding-top: 11.2rem;
+    background: #101010;
+    overflow: hidden;
+}
+
+.header {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3.2rem;
+}
+
+.title {
+    color: #fff;
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 112%;
+    letter-spacing: -0.108rem;
+}
+
+.imageList {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.imageWrapper {
+    aspect-ratio: 300/200;
+    display: block;
+    position: relative;
+}
+
+.image {
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding-top: 15.6rem;
+    }
+
+    .header {
+        position: relative;
+        margin-bottom: 6.4rem;
+        padding-left: 82rem;
+    }
+
+    .label {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .title {
+        font-size: 7rem;
+        letter-spacing: -0.35rem;
+        max-width: 95rem;
+    }
+
+    .swiper {
+        overflow: unset !important;
+    }
+
+
+
+    .image {
+        aspect-ratio: 18 / 12;
+        display: block;
+        position: relative;
+
+        img {
+            object-fit: cover;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+.section {
+  padding-top: 19.1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  position: relative;
+  padding-bottom: 20.9rem;
+  border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+}
+
+
+.circleAnimation {
+  position: absolute;
+  left: -11rem;
+  top: 0;
+  width: 40rem;
+  transform: scale(0.5);
+  z-index: -1;
+}
+
+
+@media (max-width: 767px) {
+  .videoWrap {
+    display: none;
+  }
+
+  .titleTwo {
+
+    display: block;
+    margin-left: auto;
+    width: max-content;
+
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 24rem;
+  }
+
+  .header {
+    padding-bottom: 16.4rem;
+  }
+
+  .title {
+    position: relative;
+    z-index: 1;
+    max-width: 130rem;
+  }
+
+  .titleOne {
+    display: block;
+    margin-left: 26.4rem;
+  }
+
+  .titleFour {
+    display: block;
+    margin-left: 67.5rem;
+  }
+
+
+  .circleAnimation {
+    left: -60rem;
+    top: 5.5rem;
+    width: 187rem;
+    transform: scale(0.37);
+  }
+
+  .videoWrap {
+    position: absolute;
+    right: 4rem;
+    top: -15rem;
+    width: 60rem;
+    height: 60rem;
+  }
+
+  .video {
+    width: 100%;
+    height: auto;
+  }
+}

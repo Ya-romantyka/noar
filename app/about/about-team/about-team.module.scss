@@ -1,0 +1,93 @@
+.section {
+    background: #101010;
+    padding: 11.2rem 0;
+    overflow: hidden;
+}
+
+.header {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3.2rem;
+}
+
+.title {
+    color: #fff;
+}
+
+.teamSwiper {
+    overflow: visible !important;
+}
+
+.teamSlide {
+    width: 34rem;
+}
+
+@media (max-width: 767px) {
+    .cursor {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: 15.6rem 0;
+    }
+
+    .header {
+        position: relative;
+        padding-left: 82rem;
+        margin-bottom: 4.8rem;
+    }
+
+    .label {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .title {
+        max-width: 74.5rem;
+    }
+
+    .body {
+        position: relative;
+    }
+
+    .cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0);
+        width: 16.4rem;
+        height: 16.4rem;
+        pointer-events: none;
+        border-radius: 50%;
+        background-color: #fff;
+        color: var(--black-color, #101010);
+        font-size: 1.8rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+        letter-spacing: -0.054rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+
+
+        &.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+    }
+
+    .teamSlide {
+        width: 100%;
+    }
+}
