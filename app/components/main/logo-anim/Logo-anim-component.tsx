@@ -25,8 +25,8 @@ export default function LogoAnimComponent({className}:IProps) {
                  style={{position: 'absolute', inset: 0, zIndex: 2}}>
                 <defs>
                     <linearGradient id="blackGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#101010" stopOpacity="0.95"/>
-                        <stop offset="100%" stopColor="#101010" stopOpacity="0.95" />
+                        <stop offset="0%" stopColor="#101010" stopOpacity="0.7"/>
+                        <stop offset="100%" stopColor="#101010" stopOpacity="0.7" />
                     </linearGradient>
 
                     <mask id="letterMask" maskUnits="userSpaceOnUse">
@@ -60,12 +60,12 @@ export default function LogoAnimComponent({className}:IProps) {
             >
                 <defs>
                     <linearGradient id="strokeGradient" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="white" stopOpacity="0"/>
-                        <stop offset="10%" stopColor="white" stopOpacity="0.03"/>
-                        <stop offset="20%" stopColor="white" stopOpacity="0.03"/>
-                        <stop offset="80%" stopColor="white" stopOpacity="0.03"/>
-                        <stop offset="90%" stopColor="white" stopOpacity="0.03"/>
-                        <stop offset="100%" stopColor="white" stopOpacity="0"/>
+                        <stop offset="0%" stopColor="white" stopOpacity="0.015"/>
+                        <stop offset="10%" stopColor="white" stopOpacity="0.025"/>
+                        <stop offset="20%" stopColor="white" stopOpacity="0.035"/>
+                        <stop offset="80%" stopColor="white" stopOpacity="0.035"/>
+                        <stop offset="90%" stopColor="white" stopOpacity="0.025"/>
+                        <stop offset="100%" stopColor="white" stopOpacity="0.015"/>
                         <animateTransform
                             attributeName="gradientTransform"
                             type="translate"

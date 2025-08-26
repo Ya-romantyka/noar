@@ -35,29 +35,37 @@ export default function Header() {
     const router = useTransitionRouter();
 
     useEffect(() => {
-        let scroll = false;
+        let ticking = false;
 
         function onScroll() {
-            if (!scroll) {
-                window.requestAnimationFrame(() => {
-                    const currentScroll = window.scrollY
+            if (ticking) return;
+            ticking = true;
 
-                    if (currentScroll > lastScroll.current && currentScroll > 50) {
-                        setHideHeader(true);
-                    } else {
-                        setHideHeader(false);
-                    }
+            window.requestAnimationFrame(() => {
+                if (isMenuOpen) {
+                    setHideHeader(false);
+                    lastScroll.current = window.scrollY;
+                    ticking = false;
+                    return;
+                }
 
-                    lastScroll.current = currentScroll;
-                    scroll = false;
-                })
-                scroll = true;
-            }
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > lastScroll.current && currentScroll > 50) {
+                    setHideHeader(true);
+                } else {
+                    setHideHeader(false);
+                }
+
+                lastScroll.current = currentScroll;
+                ticking = false;
+            });
         }
 
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
-    }, [])
+    }, [isMenuOpen]);
+
 
     useEffect(() => {
         const sections = document.querySelectorAll('[data-header-white]');

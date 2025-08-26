@@ -85,7 +85,7 @@ const BennettCliveScrollAnimation = () => {
         <section ref={sectionRef} className={styles.section} data-header-white>
             <Container>
                 <div className={styles.pinWrapper} ref={pinRef}>
-                    <Button href={""} className={styles.button} variant={"outline-white"}>
+                    <Button href={"/about"} className={styles.button} variant={"outline-white"}>
                         <ButtonIcon className={styles.icon}/>
                         about us
                     </Button>

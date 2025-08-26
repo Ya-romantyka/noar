@@ -4,8 +4,7 @@ import clsx from "clsx";
 import React, { useRef } from "react";
 import styles from "./service-hero.module.scss";
 import Container from "@/app/components/layout/container/container";
-// import Spline from "@splinetool/react-spline";
-// import Magnetic from "@/app/components/ui/magnetic/magnetic";
+
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -18,14 +17,6 @@ type ServiceHeroProps = {
 
 const ServiceHero = ({ device }: ServiceHeroProps) => {
   const container = useRef<HTMLDivElement | null>(null);
-  // const cube = useRef<HTMLDivElement | null>(null);
-
-  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // function onLoad(spline: any) {
-  //   const obj = spline.findObjectByName("Cube");
-  //   cube.current = obj;
-  //   spline.setZoom(2);
-  // }
 
   useGSAP(
       () => {
@@ -82,16 +73,6 @@ const ServiceHero = ({ device }: ServiceHeroProps) => {
             Services & Approach
           </span>
 
-          {/* {device.isDesktop && (
-            <Magnetic strength={40} className={styles.spline}>
-              <Spline
-                className={styles.splineElement}
-                ref={cube}
-                onLoad={onLoad}
-                scene="https://prod.spline.design/IYqbG0zcyS4sYTVf/scene.splinecode"
-              />
-            </Magnetic>
-          )} */}
 
           {device.isDesktop ? (
             <h1 ref={container} className={clsx(styles.title, "title, h1")}>

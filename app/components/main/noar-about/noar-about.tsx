@@ -59,8 +59,8 @@ const NoarAbout = () => {
                 ease: "none",
                 scrollTrigger: {
                     trigger: pinRef.current,
-                    start: "top+=10% top",
-                    end: "top+=20% top",
+                    start: "top+=35% top",
+                    end: "top+=40% top",
                     scrub: true,
                 },
             }
@@ -102,7 +102,7 @@ const NoarAbout = () => {
                                     clarity
                                     and
                                     impact.</p>
-                                <Button href={""} className={styles.button} variant={'outline-white'}>
+                                <Button href={"/contact"} className={styles.button} variant={'outline-white'}>
                                     <ButtonIcon className={styles.icon}/>
                                     Let’s Connect
                                 </Button>

@@ -9,6 +9,7 @@ import styles from "./about-services.module.scss";
 import AnimatedText from "@/app/components/ui/animated-text/animated-text";
 
 import Image from "next/image";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,11 +56,13 @@ const AboutServices: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
+  useAutoPlayVideo(videoRef)
+
   useEffect(() => {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
-      if (!statsRef.current || !videoRef.current || !bodyRef.current) return;
+      if (!statsRef.current || !bodyRef.current) return;
 
       gsap.fromTo(
         statsRef.current,
@@ -77,16 +80,6 @@ const AboutServices: React.FC = () => {
           },
         }
       );
-
-      const bodyHeight = bodyRef.current.clientHeight;
-
-      ScrollTrigger.create({
-        trigger: videoRef.current,
-        start: "top top",
-        end: `+=${bodyHeight}`,
-        pin: true,
-        scrub: true,
-      });
     });
 
     return () => mm.revert();
@@ -105,24 +98,25 @@ const AboutServices: React.FC = () => {
           </h2>
         </div>
 
-        <video
-          ref={videoRef}
-          className={styles.video}
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/videos/Logo_RENDER.mp4" type="video/mp4" />
-          <source src="/videos/Logo.webm" type="video/webm" />
-        </video>
+        <div className={styles.videoWrapper}>
+          <video
+              ref={videoRef}
+              className={styles.video}
+              loop
+              muted
+              playsInline
+          >
+            <source src="/videos/Logo_RENDER.mp4" type="video/mp4; codecs=hvc1"/>
+            <source src="/videos/Logo.webm" type="video/webm"/>
+          </video>
+        </div>
 
         <div ref={bodyRef} className={styles.body}>
           <ul className={styles.list}>
             {services.map((service, index) => (
-              <li key={index} className={styles.item}>
-                <h3 className={styles.itemTitle}>{service.title}</h3>
-                <ul className={styles.itemList}>
+                <li key={index} className={styles.item}>
+                  <h3 className={styles.itemTitle}>{service.title}</h3>
+                  <ul className={styles.itemList}>
                   {service.items.map((item, idx) => (
                     <li key={idx}>
                       <Image
