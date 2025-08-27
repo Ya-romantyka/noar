@@ -42,10 +42,9 @@ const ProjectsSection = () => {
 
     const [headerHeight, setHeaderHeight] = useState<number>(0)
     const listRef = useRef<HTMLUListElement | null>(null);
-    const pinWrapperRef = useRef<HTMLDivElement | null>(null);
     const headerRef = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLDivElement | null>(null);
-    const isMobile=useIsMobile();
+    const isMobile = useIsMobile();
 
     useLayoutEffect(() => {
         if (!headerRef.current) return;
@@ -56,95 +55,137 @@ const ProjectsSection = () => {
 
 
     useEffect(() => {
-        if (!listRef.current || !pinWrapperRef.current || headerHeight === 0 || !sectionRef.current) return;
+        if (!listRef.current || headerHeight === 0) return;
 
-        const pinTrigger = ScrollTrigger.create({
-            trigger: pinWrapperRef.current,
-            start: 'top top',
-            end: 'bottom bottom',
-            pin: listRef.current,
-            invalidateOnRefresh: true,
-        });
-
-        const itemList = Array.from(listRef.current.children);
-        const vh = window.innerHeight;
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: pinWrapperRef.current,
-                start: 'top top',
-                end: 'bottom bottom',
-                invalidateOnRefresh: true,
-                scrub: true,
-            }
-        });
-
-        const stepTime = 1.2;
-
-        itemList.forEach((item, i) => {
-            const picture = item.querySelector('picture');
-            if (!picture) return;
-
-            const targetHeight = vh - headerHeight * (i + 1);
-            const topHeight = headerHeight * i;
-            const heightOne = targetHeight - headerHeight;
-
-            const pos = i * stepTime;
-
-            tl.fromTo(item,
-                { y: headerHeight },
-                { y: 0, duration: 0.2 },
-                pos
-            );
-
-            tl.fromTo(picture,
-                isMobile
-                    ? { height: 0 }
-                    : { height: 0, width: "0%" },
-                { height: targetHeight, width: "100%", duration: 1 },
-                pos + 0.2
-            );
-
-            tl.fromTo(item,
-                { top: "auto", bottom: 0 },
-                { top: topHeight, bottom: "auto", duration: 0.00001 },
-                pos + 1.2
-            );
-
-            if (!isMobile) {
-                tl.fromTo(picture,
-                    { marginLeft: "auto" },
-                    { marginLeft: 0, duration: 0.00001 },
-                    pos + 1.2
-                );
-            }
-
-            tl.to(picture,
-                { height: heightOne, duration: 0.2 },
-                pos + 1.21
-            );
-
-            tl.to(picture,
-                isMobile
-                    ? { height: 0, duration: 1 }
-                    : { height: 0, width: "0%", duration: 1 },
-                pos + 1.4
-            );
-        });
-        ScrollTrigger.refresh();
-        return () => {
-            pinTrigger.kill();
-            tl.scrollTrigger?.kill();
-            tl.kill();
+        type TweenVarsWithSize = gsap.TweenVars & {
+            width?: string | number;
+            height?: string | number;
         };
-    }, [headerHeight, isMobile]);
 
+        const ctx = gsap.context((self) => {
+            const list  = listRef.current!;
+            const items = Array.from(list.children) as HTMLElement[];
+            const vh    = window.innerHeight;
+            const isDesk = !isMobile;
+
+            items.forEach((item, i) => {
+                const targetH = vh - headerHeight * Math.min(i, 2);
+                gsap.set(item, { position: 'relative', height: targetH, overflow: 'hidden', zIndex: i });
+            });
+
+            items.forEach((item, i) => {
+                const picture = item.querySelector<HTMLElement>('picture');
+                if (!picture) return;
+
+                const isLast   = i === items.length - 1;
+                const nextItem = !isLast ? items[i + 1] : null;
+
+                const targetH   = vh - headerHeight * Math.min(i, 2);
+                const pinStart  = `top top+=${headerHeight * i}`;
+
+                const globalEnd = `bottom top+=${headerHeight * 3}`;
+
+                ScrollTrigger.create({
+                    trigger: item,
+                    start: pinStart,
+                    endTrigger: list,
+                    end: globalEnd,
+                    pin: item,
+                    pinType: 'transform',
+                });
+
+                const baseSet: TweenVarsWithSize = { display: 'block', height: 0, marginLeft: 'auto' };
+                if (isDesk) baseSet.width = '0%';
+                gsap.set(picture, baseSet);
+
+                const growFrom: TweenVarsWithSize = { height: 0 };
+                const growTo:   TweenVarsWithSize = {
+                    height: targetH,
+                    ease: 'none',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top bottom',
+                        end: pinStart,
+                        scrub: true,
+                    },
+                };
+                if (isDesk) {
+                    growFrom.width = '0%';
+                    growTo.width   = '100%';
+                }
+                gsap.fromTo(picture, growFrom, growTo);
+
+                const shrinkEndTrigger = isLast ? list : (nextItem as Element);
+                const shrinkEnd        = isLast ? globalEnd
+                    : `top top+=${headerHeight * (i + 1)}`;
+
+                if (isDesk) {
+                    const crossTL = gsap.timeline({
+                        defaults: { ease: 'none' },
+                        scrollTrigger: {
+                            trigger: item,
+                            start: pinStart,
+                            endTrigger: shrinkEndTrigger,
+                            end: shrinkEnd,
+                            scrub: true,
+                            onEnter:     () => gsap.set(picture, { marginLeft: 0 }),
+                            onEnterBack: () => gsap.set(picture, { marginLeft: 0 }),
+                            onLeaveBack: () => gsap.set(picture, { marginLeft: 'auto' }),
+                        },
+                    });
+
+                    crossTL.fromTo(
+                        picture,
+                        { width: '100%', height: targetH },
+                        { width: '0%',   height: 0 },
+                        0
+                    );
+                } else {
+                    gsap.fromTo(
+                        picture,
+                        { height: targetH },
+                        {
+                            height: 0,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: item,
+                                start: pinStart,
+                                endTrigger: shrinkEndTrigger,
+                                end: shrinkEnd,
+                                scrub: true,
+                            },
+                        }
+                    );
+                }
+            });
+
+            const recalcHeights = () => {
+                const curVh = window.innerHeight;
+                items.forEach((item, i) => {
+                    const h = curVh - headerHeight * Math.min(i, 2);
+                    gsap.set(item, { height: h });
+                });
+            };
+            const onResize = () => { recalcHeights(); ScrollTrigger.refresh(); };
+
+            window.addEventListener('resize', onResize);
+            ScrollTrigger.addEventListener('refreshInit', recalcHeights);
+
+            self.add(() => {
+                window.removeEventListener('resize', onResize);
+                ScrollTrigger.removeEventListener('refreshInit', recalcHeights);
+            });
+        }, listRef);
+
+        return () => ctx.revert();
+    }, [headerHeight, isMobile]);
 
 
 
     return (
         <section className={styles.section} ref={sectionRef}>
-            <Container>
+            <Container >
         <span
             className={clsx(styles.label, "section-label section-label--black")}
         >
@@ -160,22 +201,20 @@ const ProjectsSection = () => {
                     or full digital ecosystem, we’ve got you covered.
                 </p>
 
-                <div className={styles.listWrapper} ref={pinWrapperRef}>
-                    <ul className={styles.list} ref={listRef}>
-                        {projects.map((project, i) => (
-                            <li key={i} className={clsx(styles.item)}>
-                                <ProjectStickyCard
-                                    name={project.name}
-                                    year={project.year}
-                                    frameworks={project.frameworks}
-                                    img={project.img}
-                                    url={project.url}
-                                    headerRef={headerRef}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <ul className={styles.list} ref={listRef}>
+                    {projects.map((project, i) => (
+                        <li key={i} className={clsx(styles.item)}>
+                            <ProjectStickyCard
+                                name={project.name}
+                                year={project.year}
+                                frameworks={project.frameworks}
+                                img={project.img}
+                                url={project.url}
+                                headerRef={headerRef}
+                            />
+                        </li>
+                    ))}
+                </ul>
             </Container>
         </section>
     );

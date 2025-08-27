@@ -9,9 +9,9 @@ export default function AboutPage() {
   return (
     <div className={styles.page}>
       <AboutHero />
-      <AboutPrinciples />
-      <AboutVideo />
-      <AboutServices />
+      <AboutPrinciples/>
+      <AboutVideo/>
+      <AboutServices/>
       <AboutTeam />
     </div>
   );

@@ -20,14 +20,14 @@ const NoarAbout = () => {
         if (!pinRef.current || !circleRef.current) return;
 
         const circleBlock = circleRef.current.querySelector(`.${styles.circleBlock}`) as HTMLDivElement;
-        const text = circleRef.current.querySelector(`.${styles.text}`) as HTMLParagraphElement;
-        const button = circleRef.current.querySelector(`.${styles.button}`) as HTMLAnchorElement;
-
+        const text        = circleRef.current.querySelector(`.${styles.text}`) as HTMLParagraphElement;
+        const button      = circleRef.current.querySelector(`.${styles.button}`) as HTMLAnchorElement;
         if (!circleBlock || !text || !button) return;
 
         const targetWidth = window.innerWidth < 768 ? "300%" : "150%";
+        const markerEl    = pinRef.current;
 
-        ScrollTrigger.create({
+        const pinST = ScrollTrigger.create({
             id: "aboutPin",
             trigger: pinRef.current,
             start: "top top",
@@ -36,9 +36,9 @@ const NoarAbout = () => {
             scrub: true,
         });
 
-        gsap.fromTo(
+        const growTween = gsap.fromTo(
             circleBlock,
-            {width: "5%"},
+            { width: "5%" },
             {
                 width: targetWidth,
                 ease: "none",
@@ -47,13 +47,26 @@ const NoarAbout = () => {
                     start: "top top",
                     end: "top+=50% top",
                     scrub: true,
+                    onUpdate(self) {
+                        if (self.progress >= 0.7) {
+                            markerEl.setAttribute('data-header-white', '');
+                        } else {
+                            markerEl.removeAttribute('data-header-white');
+                        }
+                    },
+                    onLeave() {
+                        markerEl.setAttribute('data-header-white', '');
+                    },
+                    onLeaveBack() {
+                        markerEl.removeAttribute('data-header-white');
+                    },
                 },
             }
         );
 
-        gsap.fromTo(
+        const fadeTween = gsap.fromTo(
             [text, button],
-            {opacity: 0},
+            { opacity: 0 },
             {
                 opacity: 1,
                 ease: "none",
@@ -68,6 +81,11 @@ const NoarAbout = () => {
 
         return () => {
             ScrollTrigger.getById("aboutPin")?.kill();
+            pinST.kill();
+            growTween.scrollTrigger?.kill();
+            growTween.kill();
+            fadeTween.scrollTrigger?.kill();
+            fadeTween.kill();
         };
     }, []);
 
@@ -75,7 +93,6 @@ const NoarAbout = () => {
     return (
         <div className={styles.pinWrapper}
              ref={pinRef}
-             data-header-white
         >
             <div className={styles.circleWrapper}
                  ref={circleRef}>

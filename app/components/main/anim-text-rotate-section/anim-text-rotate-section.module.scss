@@ -4,7 +4,7 @@
   height: calc(var(--locked-vh) * 2);
   gap: 2rem;
   text-wrap: nowrap;
-  margin-top: 25rem;
+  margin-top: calc(var(--locked-vh) * -0.1);
 }
 .pinnedContent {
   position: relative;
