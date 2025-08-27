@@ -10,6 +10,8 @@ import NoarAbout from "@/app/components/main/noar-about/noar-about";
 import PointPinComponent from "@/app/components/main/point/Point-pin-component";
 
 export default function Home() {
+
+
     return (
         <div>
             <HeroSection/>

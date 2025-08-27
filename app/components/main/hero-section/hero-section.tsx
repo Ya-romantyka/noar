@@ -6,12 +6,14 @@ import Container from "@/app/components/layout/container/container";
 import CirclesAnimation from "@/app/components/elements/circles-animation/circles-animation";
 import Magnetic from "../../ui/magnetic/magnetic";
 import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
+import {useScrollToTopOnReload} from "@/app/hooks/useScrollToTopOnReload";
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useAutoPlayVideo(videoRef);
+  useScrollToTopOnReload();
 
   return (
     <section className={styles.section}>
