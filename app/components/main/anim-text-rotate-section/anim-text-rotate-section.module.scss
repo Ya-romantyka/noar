@@ -1,4 +1,6 @@
 .textWrapper {
+  position: relative;
+  z-index: 10;
   width: 100%;
   overflow: hidden;
   height: calc(var(--locked-vh) * 2);

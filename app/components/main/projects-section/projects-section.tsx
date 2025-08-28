@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./projects-section.module.scss";
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {useEffect,  useRef} from "react";
 import Container from "@/app/components/layout/container/container";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -40,37 +40,29 @@ const projects = [
 
 const ProjectsSection = () => {
 
-    const [headerHeight, setHeaderHeight] = useState<number>(0)
     const listRef = useRef<HTMLUListElement | null>(null);
     const headerRef = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const isMobile = useIsMobile();
 
-    useLayoutEffect(() => {
-        if (!headerRef.current) return;
 
-        const rect = headerRef.current.getBoundingClientRect();
-        setHeaderHeight(rect.height);
-    }, []);
 
 
     useEffect(() => {
-        if (!listRef.current || headerHeight === 0) return;
+        if (!listRef.current || !headerRef.current) return;
 
         const ctx = gsap.context((self) => {
-            const list   = listRef.current!;
-            const items  = Array.from(list.children) as HTMLElement[];
-            const vh     = window.innerHeight;
+            const list  = listRef.current!;
+            const items = Array.from(list.children) as HTMLElement[];
+            const vh    = window.innerHeight;
             const isDesk = !isMobile;
 
+            const getHeaderH = () => headerRef.current?.getBoundingClientRect().height ?? 0;
+            const headerH = getHeaderH();
+
             items.forEach((item, i) => {
-                const targetH = vh - headerHeight * Math.min(i, 2);
-                gsap.set(item, {
-                    position: 'relative',
-                    height: targetH,
-                    overflow: 'hidden',
-                    zIndex: i,
-                });
+                const targetH = vh - headerH * Math.min(i, 2);
+                gsap.set(item, { position: 'relative', height: targetH, overflow: 'hidden', zIndex: i });
             });
 
             items.forEach((item, i) => {
@@ -80,9 +72,9 @@ const ProjectsSection = () => {
                 const isLast   = i === items.length - 1;
                 const nextItem = !isLast ? items[i + 1] : null;
 
-                const targetH   = vh - headerHeight * Math.min(i, 2);
-                const pinStart  = `top top+=${headerHeight * i}`;
-                const globalEnd = `bottom top+=${headerHeight * 3}`;
+                const targetH   = vh - headerH * Math.min(i, 2);
+                const pinStart  = `top top+=${headerH * i}`;
+                const globalEnd = `bottom top+=${headerH * 3}`;
 
                 ScrollTrigger.create({
                     trigger: item,
@@ -90,9 +82,7 @@ const ProjectsSection = () => {
                     endTrigger: list,
                     end: globalEnd,
                     pin: item,
-                    pinType: 'transform',
                 });
-
 
                 gsap.set(picture, {
                     display: 'block',
@@ -118,7 +108,7 @@ const ProjectsSection = () => {
                 });
 
                 const shrinkEndTrigger = isLast ? list : (nextItem as Element);
-                const shrinkEnd = isLast ? globalEnd : `top top+=${headerHeight * (i + 1)}`;
+                const shrinkEnd        = isLast ? globalEnd : `top top+=${headerH * (i + 1)}`;
 
                 const tl = gsap.timeline({
                     defaults: { ease: 'none' },
@@ -134,18 +124,14 @@ const ProjectsSection = () => {
                     },
                 });
 
-                tl.fromTo(
-                    picture,
-                    { scaleX: 1, scaleY: 1 },
-                    { scaleX: 0, scaleY: 0 },
-                    0
-                );
+                tl.fromTo(picture, { scaleX: 1, scaleY: 1 }, { scaleX: 0, scaleY: 0 }, 0);
             });
 
             const recalcHeights = () => {
-                const curVh = window.innerHeight;
+                const curVh  = window.innerHeight;
+                const hH = getHeaderH();
                 items.forEach((item, i) => {
-                    const h = curVh - headerHeight * Math.min(i, 2);
+                    const h = curVh - hH * Math.min(i, 2);
                     gsap.set(item, { height: h });
                     const picture = item.querySelector<HTMLElement>('picture');
                     if (picture) gsap.set(picture, { height: h });
@@ -163,7 +149,8 @@ const ProjectsSection = () => {
         }, listRef);
 
         return () => ctx.revert();
-    }, [headerHeight, isMobile]);
+    }, [isMobile]);
+
 
 
 
