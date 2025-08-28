@@ -21,7 +21,6 @@ const categories = [
   "Photo Production",
   "Video Production",
   "Development",
-  "Post-production",
 ];
 
 const cases = [
