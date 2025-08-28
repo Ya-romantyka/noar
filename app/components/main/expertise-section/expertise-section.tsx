@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import styles from "./expertise-section.module.scss";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -10,13 +10,41 @@ import Button from "@/app/components/ui/button/button";
 
 import ButtonIcon from "@/public/images/button_icon.svg";
 import Magnetic from "../../ui/magnetic/magnetic";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ExpertiseSection = () => {
 
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const parallaxRef = useRef<HTMLDivElement>(null);
+   const sectionRef = useRef<HTMLElement>(null);
+    useAutoPlayVideo(videoRef)
+
+    useEffect(() => {
+        if (!parallaxRef.current || !sectionRef.current) return;
+
+        gsap.set(parallaxRef.current, { top: '80vh' });
+
+        const tween = gsap.to(parallaxRef.current, {
+            top: '5vh',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom center',
+                scrub: true,
+            },
+        });
+
+        return () => {
+            tween.scrollTrigger?.kill();
+            tween.kill();
+        };
+    }, []);
+
     return (
-        <section className={styles.section} data-header-white>
+        <section className={styles.section} data-header-white ref={sectionRef}>
             <Container>
         <span
             className={clsx(styles.label, "section-label section-label--white")}
@@ -58,14 +86,16 @@ const ExpertiseSection = () => {
                     </li>
                 </ul>
                 <div className={styles.pinBlock}>
+                   <div className={styles.videoParallax} ref={parallaxRef}>
                        <Magnetic strength={40} className={styles.videoWrap}>
-                           <video className={styles.video} autoPlay muted playsInline loop>
+                           <video className={styles.video} ref={videoRef} muted playsInline loop>
+                               <source src="/videos/Paral.mp4" type="video/mp4; codecs=hvc1"/>
                                <source src="/videos/Paral.webm" type="video/webm"/>
-                               <source src="/videos/Paral.mp4" type="video/mp4"/>
                            </video>
                        </Magnetic>
+                   </div>
                 </div>
-                <div className={styles.buttonWrapper} >
+                <div className={styles.buttonWrapper}>
                     <Button href={""} className={styles.button} variant={"outline-white"}>
                         <ButtonIcon className={styles.icon}/>
                         Services

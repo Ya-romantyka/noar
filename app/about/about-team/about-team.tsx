@@ -87,8 +87,6 @@ const AboutTeam: React.FC = () => {
        container: bodyRef,
         cursor: cursorRef,
         visibleClass: styles.visible,
-
-
     })
 
     return (

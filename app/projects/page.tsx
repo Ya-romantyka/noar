@@ -9,6 +9,7 @@ import Container from "../components/layout/container/container";
 import Button from "../components/ui/button/button";
 import ProjectCard from "../components/cards/project-card/project-card";
 import Magnetic from "../components/ui/magnetic/magnetic";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 const categories = [
   "All",
@@ -20,7 +21,6 @@ const categories = [
   "Photo Production",
   "Video Production",
   "Development",
-  "Post-production",
 ];
 
 const cases = [
@@ -94,6 +94,10 @@ export default function Cases() {
   const container = useRef<HTMLDivElement | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
 
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useAutoPlayVideo(videoRef)
+
   const filteredCases =
     activeCategory === "All"
       ? cases
@@ -148,8 +152,9 @@ export default function Cases() {
               loop
               muted
               playsInline
+              ref={videoRef}
             >
-              <source src="/videos/Cube.mp4" type="video/mp4" />
+              <source src="/videos/Cube.mp4" type="video/mp4; codecs=hvc1" />
               <source src="/videos/Cube.webm" type="video/webm" />
             </video>
           </Magnetic>

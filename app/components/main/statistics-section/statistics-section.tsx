@@ -97,7 +97,7 @@ const StatisticsSection = () => {
                 <p className={styles.text}>
                     Let&apos;s make<br />great things happen
                 </p>
-                <Button href={""} className={styles.button} variant={'white'}>
+                <Button href={"/contact"} className={styles.button} variant={'white'}>
                     <ButtonIcon className={styles.icon} />
                     Let’s Connect
                 </Button>

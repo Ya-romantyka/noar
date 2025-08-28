@@ -9,10 +9,10 @@ export default function AboutPage() {
   return (
     <div className={styles.page}>
       <AboutHero />
-      <AboutPrinciples />
-      <AboutVideo />
-      <AboutServices />
-      <AboutTeam />
+      <AboutPrinciples/>
+      <AboutVideo/>
+      <AboutServices/>
+      <AboutTeam/>
     </div>
   );
 }

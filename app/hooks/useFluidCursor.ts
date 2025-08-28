@@ -1089,15 +1089,15 @@ const fluidCursor = () => {
         splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
     }
 
-    function clickSplat(pointer) {
-        const color = generateColor();
-        color.r *= 10.0;
-        color.g *= 10.0;
-        color.b *= 10.0;
-        let dx = 10 * (Math.random() - 0.5);
-        let dy = 30 * (Math.random() - 0.5);
-        splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
-    }
+    // function clickSplat(pointer) {
+    //     const color = generateColor();
+    //     color.r *= 10.0;
+    //     color.g *= 10.0;
+    //     color.b *= 10.0;
+    //     let dx = 10 * (Math.random() - 0.5);
+    //     let dy = 30 * (Math.random() - 0.5);
+    //     splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
+    // }
 
     function splat(x, y, dx, dy, color) {
         splatProgram.bind();
@@ -1142,7 +1142,7 @@ const fluidCursor = () => {
         const p = pointers[0];
         const { x, y } = getCanvasPos(e.clientX, e.clientY);
         updatePointerDownData(p, -1, x, y);
-        clickSplat(p);
+        // clickSplat(p);
     });
 
     canvas.addEventListener('mousemove', e => {

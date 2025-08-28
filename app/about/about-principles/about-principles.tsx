@@ -46,9 +46,9 @@ const AboutPrinciples: React.FC = () => {
             ease: "power3.out",
             scrollTrigger: {
                 trigger: circlesRef.current,
-                start: "top 50%",
-                end: "center center",
-                scrub: 2,
+                start: "top 80%",
+                end: "center 40%",
+                scrub: 3,
             },
         });
         const circlesST = circlesTween.scrollTrigger!;

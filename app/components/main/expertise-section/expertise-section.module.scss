@@ -120,7 +120,7 @@
 
   .button {
     position: sticky;
-    top: calc(100% - 5.6rem - 4.2rem);
+    top: calc(50% - 2.8rem);
     display: flex;
     height: 5.6rem;
     padding: 1.6rem 4rem;
@@ -133,10 +133,10 @@
     height: calc(100% - 21rem);
   }
 
-  .videoWrap {
+  .videoParallax {
     height: max-content;
     position: sticky;
-    top: 5%;
+    top: 100vh;
   }
 
   .video {

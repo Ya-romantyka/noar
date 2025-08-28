@@ -26,7 +26,7 @@ const FoundSection = () => {
                     </div>
 
                     <div className={styles.bottom}>
-                        <a href={''} className={styles.scroll}>Scroll down</a>
+                        <div  className={styles.scroll}>Scroll down</div>
                         <Button href={""} className={styles.button} variant={'white'}>
                             <ButtonIcon className={styles.icon}/>
                             Let’s Connect

@@ -18,6 +18,7 @@
 
   &:last-child {
     display: flex;
+    gap: 1.5rem;
   }
 }
 
@@ -78,7 +79,5 @@
     width: 100%;
   }
 
-  .spacer {
-    width: 0.5rem;
-  }
+
 }
