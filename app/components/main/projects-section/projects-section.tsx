@@ -57,20 +57,20 @@ const ProjectsSection = () => {
     useEffect(() => {
         if (!listRef.current || headerHeight === 0) return;
 
-        type TweenVarsWithSize = gsap.TweenVars & {
-            width?: string | number;
-            height?: string | number;
-        };
-
         const ctx = gsap.context((self) => {
-            const list  = listRef.current!;
-            const items = Array.from(list.children) as HTMLElement[];
-            const vh    = window.innerHeight;
+            const list   = listRef.current!;
+            const items  = Array.from(list.children) as HTMLElement[];
+            const vh     = window.innerHeight;
             const isDesk = !isMobile;
 
             items.forEach((item, i) => {
                 const targetH = vh - headerHeight * Math.min(i, 2);
-                gsap.set(item, { position: 'relative', height: targetH, overflow: 'hidden', zIndex: i });
+                gsap.set(item, {
+                    position: 'relative',
+                    height: targetH,
+                    overflow: 'hidden',
+                    zIndex: i,
+                });
             });
 
             items.forEach((item, i) => {
@@ -82,7 +82,6 @@ const ProjectsSection = () => {
 
                 const targetH   = vh - headerHeight * Math.min(i, 2);
                 const pinStart  = `top top+=${headerHeight * i}`;
-
                 const globalEnd = `bottom top+=${headerHeight * 3}`;
 
                 ScrollTrigger.create({
@@ -94,13 +93,20 @@ const ProjectsSection = () => {
                     pinType: 'transform',
                 });
 
-                const baseSet: TweenVarsWithSize = { display: 'block', height: 0, marginLeft: 'auto' };
-                if (isDesk) baseSet.width = '0%';
-                gsap.set(picture, baseSet);
 
-                const growFrom: TweenVarsWithSize = { height: 0 };
-                const growTo:   TweenVarsWithSize = {
+                gsap.set(picture, {
+                    display: 'block',
+                    width: '100%',
                     height: targetH,
+                    transformOrigin: isDesk ? 'right top' : '50% 0%',
+                    scaleX: 0,
+                    scaleY: 0,
+                    willChange: 'transform',
+                });
+
+                gsap.to(picture, {
+                    scaleX: 1,
+                    scaleY: 1,
                     ease: 'none',
                     immediateRender: false,
                     scrollTrigger: {
@@ -109,55 +115,31 @@ const ProjectsSection = () => {
                         end: pinStart,
                         scrub: true,
                     },
-                };
-                if (isDesk) {
-                    growFrom.width = '0%';
-                    growTo.width   = '100%';
-                }
-                gsap.fromTo(picture, growFrom, growTo);
+                });
 
                 const shrinkEndTrigger = isLast ? list : (nextItem as Element);
-                const shrinkEnd        = isLast ? globalEnd
-                    : `top top+=${headerHeight * (i + 1)}`;
+                const shrinkEnd = isLast ? globalEnd : `top top+=${headerHeight * (i + 1)}`;
 
-                if (isDesk) {
-                    const crossTL = gsap.timeline({
-                        defaults: { ease: 'none' },
-                        scrollTrigger: {
-                            trigger: item,
-                            start: pinStart,
-                            endTrigger: shrinkEndTrigger,
-                            end: shrinkEnd,
-                            scrub: true,
-                            onEnter:     () => gsap.set(picture, { marginLeft: 0 }),
-                            onEnterBack: () => gsap.set(picture, { marginLeft: 0 }),
-                            onLeaveBack: () => gsap.set(picture, { marginLeft: 'auto' }),
-                        },
-                    });
+                const tl = gsap.timeline({
+                    defaults: { ease: 'none' },
+                    scrollTrigger: {
+                        trigger: item,
+                        start: pinStart,
+                        endTrigger: shrinkEndTrigger,
+                        end: shrinkEnd,
+                        scrub: true,
+                        onEnter:     () => gsap.set(picture, { transformOrigin: 'left top' }),
+                        onEnterBack: () => gsap.set(picture, { transformOrigin: 'left top' }),
+                        onLeaveBack: () => gsap.set(picture, { transformOrigin: isDesk ? 'right top' : '50% 0%' }),
+                    },
+                });
 
-                    crossTL.fromTo(
-                        picture,
-                        { width: '100%', height: targetH },
-                        { width: '0%',   height: 0 },
-                        0
-                    );
-                } else {
-                    gsap.fromTo(
-                        picture,
-                        { height: targetH },
-                        {
-                            height: 0,
-                            ease: 'none',
-                            scrollTrigger: {
-                                trigger: item,
-                                start: pinStart,
-                                endTrigger: shrinkEndTrigger,
-                                end: shrinkEnd,
-                                scrub: true,
-                            },
-                        }
-                    );
-                }
+                tl.fromTo(
+                    picture,
+                    { scaleX: 1, scaleY: 1 },
+                    { scaleX: 0, scaleY: 0 },
+                    0
+                );
             });
 
             const recalcHeights = () => {
@@ -165,6 +147,8 @@ const ProjectsSection = () => {
                 items.forEach((item, i) => {
                     const h = curVh - headerHeight * Math.min(i, 2);
                     gsap.set(item, { height: h });
+                    const picture = item.querySelector<HTMLElement>('picture');
+                    if (picture) gsap.set(picture, { height: h });
                 });
             };
             const onResize = () => { recalcHeights(); ScrollTrigger.refresh(); };

@@ -1,41 +1,80 @@
 .marquee {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .marqueeText {
-    font-size: 11.2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 100%;
-    letter-spacing: -0.336rem;
-    text-transform: uppercase;
-    white-space: nowrap;
-    height: 11.2rem;
+  font-size: 11.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.336rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  height: 11.2rem;
 }
 
 .marqueeCircle {
-    width: 11.2rem;
-    height: 11.2rem;
-    background-color: currentColor;
-    border-radius: 50%;
-    display: inline-block;
-    flex-shrink: 0;
-    margin: 0 2.4rem;
+  width: 11.2rem;
+  height: 11.2rem;
+  background-color: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  margin: 0 2.4rem;
+}
+
+@media (max-width: 767px) {
+  .marquee {
+    .buttonWrapper {
+      display: none;
+    }
+  }
 }
 
 @media (min-width: 768px) {
-    .marquee {
-        height: 24.8rem;
-    }
+  .marquee {
+    height: 24.8rem;
+    position: relative;
 
-    .marqueeText {
-        font-size: 24.8rem;
-        letter-spacing: -1.24rem;
-    }
+    .button {
+      width: 17.7rem;
+      height: 5.6rem;
 
-    .marqueeCircle {
-        width: 17.8rem;
-        height: 17.8rem;
-        margin: 0 6.4rem;
+      svg {
+        width: 1.6rem;
+        flex-shrink: 0;
+
+      }
     }
+  }
+
+  .marqueeText {
+    font-size: 24.8rem;
+    letter-spacing: -1.24rem;
+  }
+
+  .marqueeCircle {
+    width: 17.8rem;
+    height: 17.8rem;
+    margin: 0 6.4rem;
+  }
+
+  .buttonWrapper {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
 }

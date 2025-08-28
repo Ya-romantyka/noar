@@ -12,7 +12,7 @@ export default function AboutPage() {
       <AboutPrinciples/>
       <AboutVideo/>
       <AboutServices/>
-      <AboutTeam />
+      <AboutTeam/>
     </div>
   );
 }
