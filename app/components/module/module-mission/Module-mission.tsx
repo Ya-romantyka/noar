@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './Module-mission.module.scss'
 import clsx from "clsx";
 import Button from "@/app/components/ui/button/button";
@@ -11,11 +11,61 @@ interface Props {
 }
 
 const ModuleMission: React.FC<Props> = ({className, onClose, open = false}) => {
+    const topRef = useRef<HTMLDivElement | null>(null);
+    const middleRef = useRef<HTMLDivElement | null>(null);
+    const rafRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        const top = topRef.current;
+        const middle = middleRef.current;
+        if (!top || !middle) return;
+
+        const setProgress = (val: number) => {
+            const clamped = Math.max(0, Math.min(1, val));
+            top.style.setProperty('--progress', `${(clamped * 100).toFixed(2)}%`);
+        };
+
+        const apply = () => {
+            const { scrollTop, clientHeight, scrollHeight } = middle;
+            if (scrollHeight <= clientHeight) {
+                setProgress(1);
+            } else {
+                const seen = (scrollTop + clientHeight) / scrollHeight;
+                setProgress(seen);
+            }
+            rafRef.current = null;
+        };
+
+        const onScroll = () => {
+            if (rafRef.current != null) return;
+            rafRef.current = requestAnimationFrame(apply);
+        };
+
+        requestAnimationFrame(apply);
+        const t = setTimeout(apply, 0);
+
+        middle.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+
+        const ro = new ResizeObserver(onScroll);
+        ro.observe(middle);
+
+        return () => {
+            middle.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+            ro.disconnect();
+            clearTimeout(t);
+            if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+        };
+    }, [open]);
+
+
+
     return (
         <div className={clsx(styles.module, className, { [styles.active]: open })}  >
             <div className={styles.inner}>
-                <div className={styles.top}></div>
-                <div className={styles.middle}  data-lenis-prevent>
+                <div className={styles.top} ref={topRef}></div>
+                <div className={styles.middle} ref={middleRef} data-lenis-prevent>
                     <span className={styles.label}>Mission</span>
                     <h3 className={styles.title}>The noar philosophy stems from the principles of system sciences.</h3>
                     <p className={styles.text}>We offer more than just design or development, we provide a product based

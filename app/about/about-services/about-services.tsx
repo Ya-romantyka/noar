@@ -66,7 +66,7 @@ const AboutServices: React.FC = () => {
 
       gsap.fromTo(
         statsRef.current,
-        { x: "100%", filter: "blur(50px)" },
+        { x: "110%", filter: "blur(30px)" },
         {
           x: "0%",
           filter: "blur(0px)",
@@ -135,14 +135,16 @@ const AboutServices: React.FC = () => {
           </ul>
         </div>
 
-        <ul className={styles.stats} ref={statsRef}>
-          {stats.map((stat, index) => (
-            <li key={index} className={styles.statsItem}>
-              <div className={styles.statsValue}>{stat.value}</div>
-              <p className={styles.statsText}>{stat.label}</p>
-            </li>
-          ))}
-        </ul>
+        <div className={styles.statsWrapper}>
+          <ul className={styles.stats} ref={statsRef}>
+            {stats.map((stat, index) => (
+                <li key={index} className={styles.statsItem}>
+                  <div className={styles.statsValue}>{stat.value}</div>
+                  <p className={styles.statsText}>{stat.label}</p>
+                </li>
+            ))}
+          </ul>
+        </div>
       </Container>
     </section>
   );

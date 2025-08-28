@@ -63,7 +63,12 @@
     }
 }
 
+.statsWrapper {
+    overflow: hidden;
+    width: 100%;
+}
 .stats {
+    width: 100%;
     display: grid;
     gap: 3.2rem;
 }
@@ -205,6 +210,13 @@
 
 
         }
+    }
+
+    .statsWrapper {
+        overflow: hidden;
+        width: calc(100% + 8rem);
+        margin: -10rem -4rem ;
+        padding: 10rem 4rem;
     }
 
     .stats {
