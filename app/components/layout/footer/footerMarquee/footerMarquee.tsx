@@ -30,7 +30,7 @@ const MarqueeComponent = () => {
                 <div className={styles.buttonWrapper} ref={buttonAnimRef}>
                     <Button href={"/contact"} className={styles.button} variant={"black"}>
                         <ButtonIcon className={styles.icon}/>
-                        Services
+                        email us
                     </Button>
                 </div>
             )}
