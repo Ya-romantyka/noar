@@ -66,7 +66,6 @@ const AboutTeam: React.FC = () => {
         ref: bodyRef,
         style: "drag",
         text: "drag",
-
     });
 
 

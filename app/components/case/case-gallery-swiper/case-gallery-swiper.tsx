@@ -1,6 +1,6 @@
 "use client";
 
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef, FC, ReactNode} from "react";
 import styles from "./case-gallery-swiper.module.scss";
 import Container from "../../layout/container/container";
 import clsx from "clsx";
@@ -8,14 +8,15 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import useSplitTextAnimation from "@/app/hooks/useSplitTextAnimation";
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 interface CaseGallerySwiperProps {
   label: string;
-  title: React.ReactNode;
+  title: ReactNode;
   images: string[];
 }
 
-const CaseGallerySwiper: React.FC<CaseGallerySwiperProps> = ({
+const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
   label,
   title,
   images,
@@ -23,6 +24,13 @@ const CaseGallerySwiper: React.FC<CaseGallerySwiperProps> = ({
 
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const swiperWrapperRef = useRef<HTMLDivElement>(null);
+
+  useCursorStyle({
+    ref: swiperWrapperRef,
+    style: "drag",
+    text: "drag",
+  })
 
   useSplitTextAnimation(titleRef, {triggerOnScroll: true})
 
@@ -50,20 +58,22 @@ const CaseGallerySwiper: React.FC<CaseGallerySwiperProps> = ({
         </div>
 
         {isDesktop ? (
-          <Swiper
-            spaceBetween={20}
-            slidesPerView={1.3}
-            loop={true}
-            className={styles.swiper}
-          >
-            {images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <picture className={styles.image}>
-                  <Image src={image} fill sizes="auto" alt="" />
-                </picture>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <div className={styles.swiperWrapper} ref={swiperWrapperRef}>
+            <Swiper
+                spaceBetween={20}
+                slidesPerView={1.3}
+                loop={true}
+                className={styles.swiper}
+            >
+              {images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <picture className={styles.image}>
+                      <Image src={image} fill sizes="auto" alt="" />
+                    </picture>
+                  </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         ) : (
           <div className={styles.imageList}>
             {images.map((image, index) => (
