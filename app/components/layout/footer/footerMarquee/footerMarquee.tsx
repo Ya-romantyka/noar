@@ -10,10 +10,10 @@ const MarqueeComponent = () => {
 
     useCursorStyle({
         ref: wrapperRef,
-        style: "button",
+        style: "link",
         icon:true,
         href:'/contact',
-        text: " email us",
+        text: "email us",
     });
     return (
         <div className={styles.marquee} ref={wrapperRef}>

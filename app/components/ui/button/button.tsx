@@ -5,6 +5,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import styles from "./button.module.scss";
 import Link from "next/link";
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -28,6 +29,11 @@ export default function Button({
   disabled,
 }: ButtonProps) {
   const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
+
+  useCursorStyle({
+    ref: buttonRef,
+    style: 'button'
+  })
 
   useEffect(() => {
     const button = buttonRef.current;

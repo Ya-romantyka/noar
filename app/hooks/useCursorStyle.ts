@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, RefObject } from "react";
 import { useRouter } from "next/navigation";
 import { CursorVariant, useCursorContext } from "@/app/providers/CursorProvider";
 
-type CursorStyle = "big" | "button" | "drag";
+type CursorStyle = "big" | "button" | "drag" | "link";
 
 type Base = {
     style: CursorStyle;
@@ -97,12 +97,12 @@ export function useCursorStyle(params: Params) {
         el.addEventListener("pointerout", onOut, { capture: true });
 
         const onClick = (e: MouseEvent) => {
-            if (params.style === "button" && params.href) {
+            if (params.style === "link" && params.href) {
                 e.preventDefault();
                 router.push(params.href);
             }
         };
-        if (params.style === "button" && params.href) {
+        if (params.style === "link" && params.href) {
             el.addEventListener("click", onClick);
         }
 
@@ -117,7 +117,7 @@ export function useCursorStyle(params: Params) {
         return () => {
             el.removeEventListener("pointerover", onOver as EventListener, true);
             el.removeEventListener("pointerout", onOut, true);
-            if (params.style === "button" && params.href) {
+            if (params.style === "link" && params.href) {
                 el.removeEventListener("click", onClick);
             }
             mo.disconnect();
