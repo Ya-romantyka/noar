@@ -10,13 +10,13 @@ export const TextArea: React.FC<{
   placeholder: string;
 }> = ({ label, name, placeholder }) => (
   <div className={styles.field}>
-    <div className={styles.label}>{label}</div>
+    <div className={styles.label}>{label} <ErrorMessage name={name} component="div" className={styles.errorMessage} /></div>
     <Field
       as="textarea"
       name={name}
       placeholder={placeholder}
       className={styles.textarea}
     />
-    <ErrorMessage name={name} component="div" className={styles.errorMessage} />
+
   </div>
 );

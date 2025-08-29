@@ -11,7 +11,7 @@ export const RadioGroup: React.FC<{
   options: string[];
 }> = ({ label, name, options }) => (
   <div className={styles.row}>
-    <div className={styles.label}>{label}</div>
+    <div className={styles.label}>{label} <ErrorMessage name={name} component="div" className={styles.errorMessage} /></div>
     <ul className={styles.list}>
       {options.map((option) => (
         <li key={option} className={styles.item}>
@@ -29,6 +29,6 @@ export const RadioGroup: React.FC<{
         </li>
       ))}
     </ul>
-    <ErrorMessage name={name} component="div" className={styles.errorMessage} />
+
   </div>
 );

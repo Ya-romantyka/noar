@@ -9,8 +9,6 @@ import Container from "@/app/components/layout/container/container";
 import styles from "./contact-hero.module.scss";
 import clsx from "clsx";
 import ContactForm from "../form/contact-form";
-// import Spline from "@splinetool/react-spline";
-// import Magnetic from "@/app/components/ui/magnetic/magnetic";
 import ContactInfo from "../contact-info/contact-info";
 
 export default function ContactHero() {

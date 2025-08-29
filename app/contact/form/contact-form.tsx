@@ -36,18 +36,18 @@ const sources = [
 ];
 
 const validationSchema = Yup.object({
-  service: Yup.string().required("Please select a service"),
-  budget: Yup.string().required("Please select a budget"),
-  timeframe: Yup.string().required("Please select a timeframe"),
+  service: Yup.string().required("(Please select a service)"),
+  budget: Yup.string().required("(Please select a budget)"),
+  timeframe: Yup.string().required("(Please select a timeframe)"),
   details: Yup.string()
-    .min(20, "Minimum 20 characters")
-    .required("Project details are required"),
-  name: Yup.string().min(2, "Too short").required("Name is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  type: Yup.string().required("Please select an option"),
+    .min(20, "(Minimum 20 characters)")
+    .required("(Project details are required)"),
+  name: Yup.string().min(2, "(Too short)").required("(Name is required)"),
+  email: Yup.string().email("(Invalid email)").required("(Email is required)"),
+  type: Yup.string().required("(Please select an option)"),
   companyName: Yup.string().notRequired(),
-  projectLink: Yup.string().url("Invalid URL").notRequired(),
-  from: Yup.string().required("Please select where you heard about us"),
+  projectLink: Yup.string().url("(Invalid URL)").notRequired(),
+  from: Yup.string().required("(Please select where you heard about us)"),
 });
 
 const ContactForm: React.FC = () => {

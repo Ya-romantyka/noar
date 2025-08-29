@@ -11,13 +11,13 @@ export const Input: React.FC<{
   type?: string;
 }> = ({ label, name, placeholder, type = "text" }) => (
   <div className={styles.field}>
-    <div className={styles.label}>{label}</div>
+    <div className={styles.label}>{label}     <ErrorMessage name={name} component="div" className={styles.errorMessage} />
+    </div>
     <Field
       type={type}
       name={name}
       placeholder={placeholder}
       className={styles.input}
     />
-    <ErrorMessage name={name} component="div" className={styles.errorMessage} />
   </div>
 );
