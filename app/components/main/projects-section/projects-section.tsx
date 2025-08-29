@@ -47,104 +47,136 @@ const ProjectsSection = () => {
 
 
 
-
     useEffect(() => {
         if (!listRef.current || !headerRef.current) return;
 
         const ctx = gsap.context((self) => {
-            const list  = listRef.current!;
+            const list = listRef.current!;
             const items = Array.from(list.children) as HTMLElement[];
-            const vh    = window.innerHeight;
+            const vh = window.innerHeight;
             const isDesk = !isMobile;
 
-            const getHeaderH = () => headerRef.current?.getBoundingClientRect().height ?? 0;
+            const getHeaderH = () =>
+                headerRef.current?.getBoundingClientRect().height ?? 0;
             const headerH = getHeaderH();
 
             items.forEach((item, i) => {
                 const targetH = vh - headerH * Math.min(i, 2);
-                gsap.set(item, { position: 'relative', height: targetH, overflow: 'hidden', zIndex: i });
+                gsap.set(item, {
+                    position: "relative",
+                    height: targetH,
+                    overflow: "hidden",
+                    zIndex: i,
+                });
             });
 
+            const lastIndex = items.length - 1;
+            const lastItem = items[lastIndex];
+            const lastPinStart = `top top+=${headerH * lastIndex}`;
+            const globalEndDesk = `bottom top+=${headerH * 3}`;
+
             items.forEach((item, i) => {
-                const picture = item.querySelector<HTMLElement>('picture');
+                const picture = item.querySelector<HTMLElement>("picture");
                 if (!picture) return;
 
-                const isLast   = i === items.length - 1;
+                const isLast = i === lastIndex;
                 const nextItem = !isLast ? items[i + 1] : null;
 
-                const targetH   = vh - headerH * Math.min(i, 2);
-                const pinStart  = `top top+=${headerH * i}`;
-                const globalEnd = `bottom top+=${headerH * 3}`;
+                const targetH = vh - headerH * Math.min(i, 2);
+                const pinStart = `top top+=${headerH * i}`;
 
                 ScrollTrigger.create({
                     trigger: item,
                     start: pinStart,
-                    endTrigger: list,
-                    end: globalEnd,
+                    endTrigger: isMobile ? lastItem : list,
+                    end: isMobile ? lastPinStart : globalEndDesk,
                     pin: item,
                 });
 
                 gsap.set(picture, {
-                    display: 'block',
-                    width: '100%',
+                    display: "block",
+                    width: "100%",
                     height: targetH,
-                    transformOrigin: isDesk ? 'right top' : '50% 0%',
-                    scaleX: 0,
-                    scaleY: 0,
-                    willChange: 'transform',
                 });
 
-                gsap.to(picture, {
-                    scaleX: 1,
-                    scaleY: 1,
-                    ease: 'none',
-                    immediateRender: false,
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top bottom',
-                        end: pinStart,
-                        scrub: true,
-                    },
-                });
+                if (isDesk) {
+                    gsap.set(picture, {
+                        transformOrigin: "right top",
+                        willChange: "transform",
+                        scaleX: 0,
+                        scaleY: 0,
+                    });
 
-                const shrinkEndTrigger = isLast ? list : (nextItem as Element);
-                const shrinkEnd        = isLast ? globalEnd : `top top+=${headerH * (i + 1)}`;
+                    gsap.to(picture, {
+                        scaleX: 1,
+                        scaleY: 1,
+                        ease: "none",
+                        immediateRender: false,
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top bottom",
+                            end: pinStart,
+                            scrub: true,
+                        },
+                    });
 
-                const tl = gsap.timeline({
-                    defaults: { ease: 'none' },
-                    scrollTrigger: {
-                        trigger: item,
-                        start: pinStart,
-                        endTrigger: shrinkEndTrigger,
-                        end: shrinkEnd,
-                        scrub: true,
-                        onEnter:     () => gsap.set(picture, { transformOrigin: 'left top' }),
-                        onEnterBack: () => gsap.set(picture, { transformOrigin: 'left top' }),
-                        onLeaveBack: () => gsap.set(picture, { transformOrigin: isDesk ? 'right top' : '50% 0%' }),
-                    },
-                });
+                    const shrinkEndTrigger = isLast ? list : (nextItem as Element);
+                    const shrinkEnd = isLast
+                        ? globalEndDesk
+                        : `top top+=${headerH * (i + 1)}`;
 
-                tl.fromTo(picture, { scaleX: 1, scaleY: 1 }, { scaleX: 0, scaleY: 0 }, 0);
+                    const tl = gsap.timeline({
+                        defaults: { ease: "none" },
+                        scrollTrigger: {
+                            trigger: item,
+                            start: pinStart,
+                            endTrigger: shrinkEndTrigger,
+                            end: shrinkEnd,
+                            scrub: true,
+                            onEnter: () => gsap.set(picture, { transformOrigin: "left top" }),
+                            onEnterBack: () =>
+                                gsap.set(picture, { transformOrigin: "left top" }),
+                            onLeaveBack: () =>
+                                gsap.set(picture, { transformOrigin: "right top" }),
+                        },
+                    });
+
+                    tl.fromTo(
+                        picture,
+                        { scaleX: 1, scaleY: 1 },
+                        { scaleX: 0, scaleY: 0 },
+                        0
+                    );
+                } else {
+                    gsap.set(picture, { clearProps: "transform,willChange" });
+                }
             });
 
             const recalcHeights = () => {
-                const curVh  = window.innerHeight;
+                const curVh = window.innerHeight;
                 const hH = getHeaderH();
                 items.forEach((item, i) => {
                     const h = curVh - hH * Math.min(i, 2);
                     gsap.set(item, { height: h });
-                    const picture = item.querySelector<HTMLElement>('picture');
-                    if (picture) gsap.set(picture, { height: h });
+                    const picture = item.querySelector<HTMLElement>("picture");
+                    if (picture) {
+                        gsap.set(picture, { height: h, width: "100%" });
+                        if (isMobile) gsap.set(picture, { clearProps: "transform,willChange" });
+                    }
                 });
             };
-            const onResize = () => { recalcHeights(); ScrollTrigger.refresh(); };
 
-            window.addEventListener('resize', onResize);
-            ScrollTrigger.addEventListener('refreshInit', recalcHeights);
+            const onResize = () => {
+                recalcHeights();
+                ScrollTrigger.refresh();
+            };
+
+            window.addEventListener("resize", onResize);
+            ScrollTrigger.addEventListener("refreshInit", recalcHeights);
 
             self.add(() => {
-                window.removeEventListener('resize', onResize);
-                ScrollTrigger.removeEventListener('refreshInit', recalcHeights);
+                window.removeEventListener("resize", onResize);
+                ScrollTrigger.removeEventListener("refreshInit", recalcHeights);
             });
         }, listRef);
 
