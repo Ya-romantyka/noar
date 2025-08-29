@@ -6,6 +6,7 @@ import SplitText from "gsap/SplitText";
 import styles from "./stagger-link.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 interface StaggerLinkProps {
   children: string;
@@ -25,6 +26,12 @@ const StaggerLink: React.FC<StaggerLinkProps> = ({
   const linkRef = useRef<HTMLAnchorElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const splitInstance = useRef<SplitText | null>(null);
+
+
+  useCursorStyle({
+    ref: linkRef,
+    style:"button"
+  })
 
   useEffect(() => {
     if (!textRef.current || !linkRef.current) return;

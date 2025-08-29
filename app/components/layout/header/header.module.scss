@@ -128,9 +128,8 @@
 
     &::before {
         content: '';
-        width: 0.4rem;
-        height: 0.4rem;
-        border: 0.4rem solid #fff;
+        width: 0.8rem;
+        height: 0.8rem;
         border-radius: 50%;
         background-color: #fff;
     }
@@ -235,8 +234,8 @@
         gap: 1.2rem;
 
         &::before {
-            width: 0.6rem;
-            height: 0.6rem;
+            width: 1.2rem;
+            height: 1.2rem;
         }
     }
 }

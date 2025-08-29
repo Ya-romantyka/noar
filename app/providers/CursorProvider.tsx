@@ -133,8 +133,8 @@ export function CursorProvider({ children }: PropsWithChildren) {
 
         let raf = 0;
         const loop = () => {
-            const ps = pick(50);
-            const pb = pick(100);
+            const ps = pick(40);
+            const pb = pick(120);
 
             gsap.set(small, { x: ps.x, y: ps.y });
             gsap.set(big, { x: pb.x, y: pb.y });

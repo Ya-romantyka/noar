@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useRef} from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransitionRouter } from "next-view-transitions";
@@ -43,6 +43,8 @@ const footerData = {
 const Footer: React.FC = () => {
   const pathname = usePathname();
   const router = useTransitionRouter();
+
+  const linkRef = useRef<HTMLAnchorElement>(null);
 
   const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -95,7 +97,7 @@ const Footer: React.FC = () => {
       <Container>
         <div className={styles.top}>
           <div className={styles.topGroup}>
-            <Link href="/" className={styles.logo}>
+            <Link href="/" className={styles.logo} ref={linkRef}>
               <Logo />
             </Link>
             <p className={styles.text}>{footerData.description}</p>

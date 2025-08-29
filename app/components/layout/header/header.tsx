@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useTransitionRouter } from 'next-view-transitions';
+import {useEffect, useRef, useState} from 'react';
+import {useTransitionRouter} from 'next-view-transitions';
 
 import clsx from 'clsx';
 import styles from './header.module.scss';
@@ -14,13 +14,14 @@ import MenuIcon from '@/app/assets/icons/menu-icon.svg';
 import CloseIcon from '@/app/assets/icons/close-icon.svg';
 import ButtonIcon from '@/app/assets/icons/button-icon.svg';
 import Magnetic from '../../ui/magnetic/magnetic';
-import { usePathname } from 'next/navigation';
+import {usePathname} from 'next/navigation';
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 const menuItems = [
-    { title: 'About', href: '/about' },
-    { title: 'Projects', href: '/projects' },
-    { title: 'Services & Approach', href: '/services' },
-    { title: 'Contact', href: '/contact' },
+    {title: 'About', href: '/about'},
+    {title: 'Projects', href: '/projects'},
+    {title: 'Services & Approach', href: '/services'},
+    {title: 'Contact', href: '/contact'},
 ];
 
 export default function Header() {
@@ -31,6 +32,28 @@ export default function Header() {
     const pathname = usePathname();
     const lastScroll = useRef(0);
     const router = useTransitionRouter();
+
+    const logoRef = useRef<HTMLAnchorElement>(null);
+    const connectRef = useRef<HTMLAnchorElement>(null);
+    const socialRef = useRef<HTMLUListElement>(null);
+    const menuRef = useRef<HTMLButtonElement>(null);
+
+    useCursorStyle({
+        ref: connectRef,
+        style: 'button',
+    })
+    useCursorStyle({
+        ref: menuRef,
+        style: 'button',
+    })
+    useCursorStyle({
+        ref: logoRef,
+        style: 'button',
+    })
+    useCursorStyle({
+        ref: socialRef,
+        style: 'button',
+    })
 
     useEffect(() => {
         let ticking = false;
@@ -93,7 +116,7 @@ export default function Header() {
 
     function slideInOut() {
         document.documentElement.animate(
-            [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0.2, transform: 'translateY(-35%)' }],
+            [{opacity: 1, transform: 'translateY(0)'}, {opacity: 0.2, transform: 'translateY(-35%)'}],
             {
                 duration: 1500,
                 easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
@@ -104,8 +127,8 @@ export default function Header() {
 
         document.documentElement.animate(
             [
-                { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
-                { clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)' },
+                {clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)'},
+                {clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)'},
             ],
             {
                 duration: 1500,
@@ -131,15 +154,16 @@ export default function Header() {
                     <Link
                         onClick={(e) => {
                             e.preventDefault();
-                            router.push('/', { onTransitionReady: slideInOut });
+                            router.push('/', {onTransitionReady: slideInOut});
                         }}
                         href="/"
                         className={styles.logo}
+                        ref={logoRef}
                     >
-                        <Logo />
+                        <Logo/>
                     </Link>
 
-                    <ul className={styles.socials}>
+                    <ul className={styles.socials} ref={socialRef}>
                         <li>
                             <StaggerLink href="https://www.instagram.com/">Instagram</StaggerLink>
                         </li>
@@ -161,25 +185,26 @@ export default function Header() {
                                 className={styles.button}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    router.push('/contact', { onTransitionReady: slideInOut });
+                                    router.push('/contact', {onTransitionReady: slideInOut});
                                 }}
+                                ref={connectRef}
                             >
-                                <ButtonIcon />
+                                <ButtonIcon/>
                                 <span>Let’s Connect</span>
                             </Link>
                         </Magnetic>
 
                         <Magnetic strength={40}>
-                            <button className={styles.menuButton} onClick={toggleMenu}>
+                            <button className={styles.menuButton} onClick={toggleMenu} ref={menuRef}>
                                 <span>{isMenuOpen ? 'close' : 'menu'}</span>
-                                {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                                {isMenuOpen ? <CloseIcon/> : <MenuIcon/>}
                             </button>
                         </Magnetic>
                     </div>
                 </Container>
             </header>
 
-            <ul className={clsx(clsx(styles.menu, isWhiteHeader && styles.white), { [styles.open]: isMenuOpen })}>
+            <ul className={clsx(clsx(styles.menu, isWhiteHeader && styles.white), {[styles.open]: isMenuOpen})}>
                 {menuItems.map((item) => (
                     <li key={item.href}>
                         <StaggerLink
@@ -188,7 +213,7 @@ export default function Header() {
                             onClick={(e) => {
                                 e.preventDefault();
                                 setIsMenuOpen(false);
-                                router.push(item.href, { onTransitionReady: slideInOut });
+                                router.push(item.href, {onTransitionReady: slideInOut});
                             }}
                         >
                             {item.title}
