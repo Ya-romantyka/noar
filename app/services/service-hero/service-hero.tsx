@@ -43,22 +43,24 @@ const ServiceHero = ({ device }: ServiceHeroProps) => {
             ease: "power4.out",
             stagger: 0.15,
           });
+
+            gsap.fromTo(
+                sel(".spacer"),
+                { width: "0%" },
+                {
+                    width: "40%",
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: container.current!,
+                        start: "bottom center",
+                        end: "bottom top",
+                        scrub: true,
+                    },
+                }
+            );
         }
 
-        gsap.fromTo(
-            sel(".spacer"),
-            { width: "0%" },
-            {
-              width: "40%",
-              ease: "power4.out",
-              scrollTrigger: {
-                trigger: container.current!,
-                start: "bottom center",
-                end: "bottom top",
-                scrub: true,
-              },
-            }
-        );
+
       },
       { scope: container }
   );
