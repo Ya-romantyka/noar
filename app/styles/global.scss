@@ -11,7 +11,12 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+html, body {
+  cursor: none !important;
+}
+* {
+  cursor: none !important;
+}
 html {
   overflow-x: hidden;
   width: 100vw;
@@ -71,9 +76,8 @@ p {
   &::before {
     content: '';
     display: block;
-    width: 0.4rem;
-    height: 0.4rem;
-    border: 0.4rem solid #101010;
+    width: 0.8rem;
+    height: 0.8rem;
     background-color: #101010;
     border-radius: 50%;
   }

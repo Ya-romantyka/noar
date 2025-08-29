@@ -98,39 +98,39 @@ const AboutServices: React.FC = () => {
           </h2>
         </div>
 
-        <div className={styles.videoWrapper}>
-          <video
-              ref={videoRef}
-              className={styles.video}
-              loop
-              muted
-              playsInline
-          >
-            <source src="/videos/Logo_RENDER.mp4" type="video/mp4; codecs=hvc1"/>
-            <source src="/videos/Logo.webm" type="video/webm"/>
-          </video>
-        </div>
 
         <div ref={bodyRef} className={styles.body}>
+          <div className={styles.videoWrapper}>
+            <video
+                ref={videoRef}
+                className={styles.video}
+                loop
+                muted
+                playsInline
+            >
+              <source src="/videos/Logo_RENDER.mp4" type="video/mp4; codecs=hvc1"/>
+              <source src="/videos/Logo.webm" type="video/webm"/>
+            </video>
+          </div>
           <ul className={styles.list}>
             {services.map((service, index) => (
                 <li key={index} className={styles.item}>
                   <h3 className={styles.itemTitle}>{service.title}</h3>
                   <ul className={styles.itemList}>
-                  {service.items.map((item, idx) => (
-                    <li key={idx}>
-                      <Image
-                        src={item.image}
-                        alt="Active Service"
-                        className={styles.image}
-                        width={200}
-                        height={240}
-                      />
-                      {item.name}
-                    </li>
-                  ))}
-                </ul>
-              </li>
+                    {service.items.map((item, idx) => (
+                        <li key={idx}>
+                          <Image
+                              src={item.image}
+                              alt="Active Service"
+                              className={styles.image}
+                              width={200}
+                              height={240}
+                          />
+                          {item.name}
+                        </li>
+                    ))}
+                  </ul>
+                </li>
             ))}
           </ul>
         </div>

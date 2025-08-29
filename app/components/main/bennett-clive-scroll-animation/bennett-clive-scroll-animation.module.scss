@@ -1,14 +1,17 @@
 .section {
   background: var(--black-color, #101010);
-  padding: 11.2rem 0 18.4rem;
+  padding: 11.2rem 0 14rem;
   color: #FFFFFF;
   width: 100%;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 
   .button {
+
+    background: #101010;
     width: max-content;
     display: flex;
-    margin-left: 81rem;
     .icon {
       width: 2rem;
       height: 2rem;
@@ -17,8 +20,19 @@
 }
 
 .pinWrapper {
+  position: relative;
+  z-index: -1;
   width: 100%;
   padding: 2.4rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.point {
+  background: #FFFFFF;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
 }
 
 .textMob {
@@ -49,6 +63,19 @@
 
 .textDeck {
   display: none;
+}
+
+@media (max-width: 767px) {
+  .section {
+    .button {
+      margin: 0 auto;
+      position: absolute;
+      bottom: 4rem;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+  }
 }
 
 @media (min-width: 768px) {

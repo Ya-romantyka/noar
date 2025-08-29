@@ -65,10 +65,14 @@
   z-index: -1;
   top: 10rem;
   left: 0;
+  bottom: 5rem;
+}
+
+.videoParallax {
+  position: sticky;
+  top: 0;
   width: 29rem;
   height: 29rem;
-  flex-shrink: 0;
-
   video {
     width: 100%;
   }

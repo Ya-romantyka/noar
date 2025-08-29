@@ -5,8 +5,9 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  padding-bottom: 20.9rem;
   border-bottom: 1px solid rgba(16, 16, 16, 0.12);
 }
 
@@ -23,7 +24,15 @@
 
 @media (max-width: 767px) {
   .videoWrap {
-    display: none;
+    margin-top: -6rem;
+    margin-bottom: -3rem;
+    display: block;
+    width: 80%;
+    margin-left: auto;
+
+    .video {
+      width: 100%;
+    }
   }
 
   .titleTwo {

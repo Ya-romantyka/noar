@@ -1,6 +1,6 @@
 .section {
     padding: 4.8rem 0;
-    overflow: hidden;
+    position: relative;
 }
 
 .label {
@@ -30,6 +30,22 @@
     margin-bottom: 0.8rem;
     border-bottom: 1px solid var(--black-stroke, rgba(16, 16, 16, 0.12));
 }
+
+.videoWrapper {
+    position: absolute;
+    z-index: 1;
+    top: 5rem;
+    left: 0;
+    bottom: 0;
+
+    .video {
+        position: sticky;
+        top: 12rem;
+        width: 17rem;
+        height: auto;
+    }
+}
+
 
 .itemList {
     max-width: 18.5rem;
@@ -112,10 +128,19 @@
     .imageContainer {
         display: none;
     }
-
-    .videoWrapper {
-        display: none;
+    .body {
+        position: relative;
+        margin-bottom: 4.8rem;
     }
+    .videoWrapper {
+        z-index: -1;
+
+        .video {
+           transform: rotate(-15deg);
+        }
+    }
+
+
 }
 
 @media (min-width: 768px) {
@@ -139,13 +164,13 @@
 
     .videoWrapper {
         position: absolute;
-        top: 0;
+        top: 10rem;
         left: 10rem;
         bottom: 50rem;
 
         .video {
             position: sticky;
-            top: 0;
+            top: 10rem;
             width: 60rem;
             min-width: 60rem;
         }
@@ -153,7 +178,7 @@
 
     .body {
         margin-left: 82rem;
-        position: relative;
+        //position: relative;
         margin-bottom: 11.2rem;
     }
 

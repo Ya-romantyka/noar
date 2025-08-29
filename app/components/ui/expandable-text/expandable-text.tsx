@@ -40,7 +40,7 @@ export default function ExpandableText({children}: ExpandableTextProps) {
             </div>
 
             <div className={styles.footer}>
-                <Button variant="white" onClick={open} className={styles.button}>
+                <Button variant="outline-white" onClick={open} className={styles.button}>
                     <ButtonIcon/>
                     Learn more
                 </Button>
