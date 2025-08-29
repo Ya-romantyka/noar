@@ -7,6 +7,8 @@ import Footer from "./components/layout/footer/footer";
 import {ViewTransitions} from "next-view-transitions";
 import CirclesAnimation from "./components/elements/circles-animation/circles-animation";
 import {LockedVHProvider} from "@/app/components/ui/LockedVHProvider/LockedVHProvider";
+import BounceResizeProvider from "@/app/providers/BounceResizeProvider";
+import {CursorProvider} from "@/app/providers/CursorProvider";
 
 const satoshi = localFont({
     src: [
@@ -44,11 +46,15 @@ export default function RootLayout({
             </head>
             <body className={`${satoshi.variable}`}>
             <LenisProvider>
-                <LockedVHProvider/>
-                <Header/>
-                {children}
-                <Footer/>
-                <CirclesAnimation/>
+                <BounceResizeProvider>
+                    <CursorProvider>
+                        <LockedVHProvider/>
+                        <Header/>
+                        {children}
+                        <Footer/>
+                    </CursorProvider>
+                    <CirclesAnimation/>
+                </BounceResizeProvider>
             </LenisProvider>
             </body>
             </html>

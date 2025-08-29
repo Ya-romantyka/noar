@@ -45,7 +45,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 140%;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 
     &::before {
         content: '';
@@ -81,5 +81,6 @@
     .subtitle {
         transform: translateY(-60rem);
         font-size: 1.6rem;
+        margin-bottom: 4.2rem;
     }
 }

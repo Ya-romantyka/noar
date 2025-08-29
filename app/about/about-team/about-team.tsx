@@ -9,8 +9,7 @@ import TeamCard from "@/app/components/cards/team-card/team-card";
 import styles from "./about-team.module.scss";
 import AnimatedText from "@/app/components/ui/animated-text/animated-text";
 import ModuleTeam from "@/app/components/module/module-team/Module-team";
-
-import {useInteractiveCursor} from "@/app/hooks/useInteractiveCursor";
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 type TeamMember = {
     name: string;
@@ -61,8 +60,14 @@ const AboutTeam: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
-    const bodyRef = useRef<HTMLDivElement | null>(null);
-    const cursorRef = useRef<HTMLDivElement | null>(null);
+    const bodyRef = useRef<HTMLDivElement>(null);
+
+    useCursorStyle({
+        ref: bodyRef,
+        style: "drag",
+        text: "drag",
+
+    });
 
 
     const open = (member: TeamMember) => {
@@ -82,12 +87,6 @@ const AboutTeam: React.FC = () => {
         document.body.style.overflow = '';
     };
 
-
-    useInteractiveCursor({
-       container: bodyRef,
-        cursor: cursorRef,
-        visibleClass: styles.visible,
-    })
 
     return (
         <section className={styles.section} data-header-white>
@@ -135,7 +134,6 @@ const AboutTeam: React.FC = () => {
                         ))}
                     </Swiper>
 
-                    <div className={styles.cursor} ref={cursorRef}>drag</div>
                 </div>
             </Container>
             <ModuleTeam
