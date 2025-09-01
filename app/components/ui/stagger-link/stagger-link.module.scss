@@ -1,10 +1,33 @@
 .link {
-    display: flex;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    @media (hover: hover) {
+        &:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
 }
 
 .text {
     overflow: hidden;
-    text-shadow: 0 1.2em 0 currentColor;
     white-space: nowrap;
 }

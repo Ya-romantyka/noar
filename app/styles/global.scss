@@ -110,10 +110,14 @@ p {
   inset: 0;
   pointer-events: none;
   z-index: 99999;
-  opacity: 1;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   mix-blend-mode: difference;
-
+  transform: scale(0);
+  opacity: 0;
+  &.visible {
+    transform: scale(1);
+    opacity: 1;
+  }
 
   &.drag,
   &.link {
@@ -183,11 +187,13 @@ p {
     &.black {
       background: #101010;
       color: #fff;
+      border: 1px solid #fff;
     }
 
     &.white {
       background: #fff;
       color: #101010;
+      border: 1px solid #101010;
     }
   }
 

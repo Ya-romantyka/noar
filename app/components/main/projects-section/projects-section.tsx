@@ -8,6 +8,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ProjectStickyCard from "../../cards/project-sticky-card/project-sticky-card";
 import {useIsMobile} from "@/app/hooks/useIsMobile";
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,6 +46,13 @@ const ProjectsSection = () => {
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const isMobile = useIsMobile();
 
+
+    useCursorStyle({
+        ref:listRef,
+        style:'drag',
+        text:'dive in'
+
+    })
 
 
     useEffect(() => {

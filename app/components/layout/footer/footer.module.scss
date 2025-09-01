@@ -3,7 +3,6 @@
     overflow: hidden;
     background-color: #fff;
     color: var(--black-color, #101010);
-    overflow: hidden;
 }
 
 .topGroup {
@@ -109,12 +108,10 @@
 .black {
     background: #101010;
     color: #fff;
-
-    .footer {
         .middle {
-            border-color: rgba(237, 237, 237, 0.12);
+            border-top: 1px solid  rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
-    }
 }
 
 @media (max-width: 767px) {

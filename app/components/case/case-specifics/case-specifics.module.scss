@@ -1,5 +1,5 @@
 .section {
-    padding: 11.2rem 0 0;
+    padding: 11.2rem 0 2rem;
     background-color: #101010;
     color: #fff;
 }
@@ -8,8 +8,6 @@
     display: grid;
     gap: 3.2rem;
     padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(237, 237, 237, 0.12);
 }
 
 .headerTop {
@@ -116,13 +114,12 @@
 
 @media (min-width: 768px) {
     .section {
-        padding: 15.6rem 0 0;
+        padding: 15.6rem 0 4rem;
     }
 
     .header {
         gap: 6.4rem;
         padding-bottom: 4rem;
-        margin-bottom: 4rem;
     }
 
     .headerTop {

@@ -71,6 +71,7 @@ export function CursorProvider({ children }: PropsWithChildren) {
     }, []);
 
     useEffect(() => {
+        const root = rootRef.current!;
         const big = bigRef.current!;
         const small = smallRef.current!;
         const canHover = window.matchMedia("(hover: hover)").matches;
@@ -85,15 +86,32 @@ export function CursorProvider({ children }: PropsWithChildren) {
             if (trail.length > 160) trail.shift();
         };
 
+        const inViewport = (x: number, y: number) =>
+            x >= 0 && y >= 0 && x <= window.innerWidth && y <= window.innerHeight;
+
+        const show = () => root.classList.add("visible");
+        const hide = () => root.classList.remove("visible");
+
         const cx = window.innerWidth / 2;
         const cy = window.innerHeight / 2;
         push(cx, cy);
         window.__cursorXY = { x: cx, y: cy };
+        hide();
 
         const onPointerMove = (e: PointerEvent) => {
             if (e.pointerType === "mouse" && !e.isPrimary) return;
             push(e.clientX, e.clientY);
             window.__cursorXY = { x: e.clientX, y: e.clientY };
+            if (inViewport(e.clientX, e.clientY)) show();
+            else hide();
+        };
+
+        const onMouseLeaveDoc = (e: MouseEvent) => {
+            if (!e.relatedTarget) hide();
+        };
+        const onMouseEnterDoc = () => {
+            const p = window.__cursorXY;
+            if (p && inViewport(p.x, p.y)) show();
         };
 
         const pressIn = () => gsap.to(big, { scale: 0.9, duration: 0.1, overwrite: true });
@@ -118,6 +136,8 @@ export function CursorProvider({ children }: PropsWithChildren) {
         document.addEventListener("pointerup", onPointerUp, { capture: true });
         document.addEventListener("pointercancel", onPointerCancel, { capture: true });
         document.addEventListener("lostpointercapture", onPointerCancel, { capture: true });
+        document.addEventListener("mouseleave", onMouseLeaveDoc, true);
+        document.addEventListener("mouseenter", onMouseEnterDoc, true);
 
         let dragging = false;
         const onDragStart = () => {
@@ -128,6 +148,8 @@ export function CursorProvider({ children }: PropsWithChildren) {
             if (!dragging) return;
             push(e.clientX, e.clientY);
             window.__cursorXY = { x: e.clientX, y: e.clientY };
+            if (inViewport(e.clientX, e.clientY)) show();
+            else hide();
         };
         const endDrag = () => {
             dragging = false;
@@ -151,10 +173,11 @@ export function CursorProvider({ children }: PropsWithChildren) {
             const fallback: CursorVariant = { style: "big", tone: fallbackTone };
 
             if (!p) return fallback;
-            if (p.x < 0 || p.y < 0 || p.x > window.innerWidth || p.y > window.innerHeight) return fallback;
+            if (!inViewport(p.x, p.y)) return fallback;
 
-            const stack = (document.elementsFromPoint(p.x, p.y) as HTMLElement[])
-                .filter((el) => !el.closest(".cursor"));
+            const stack = (document.elementsFromPoint(p.x, p.y) as HTMLElement[]).filter(
+                (el) => !el.closest(".cursor")
+            );
 
             for (const el of stack) {
                 let node: HTMLElement | null = el;
@@ -169,13 +192,15 @@ export function CursorProvider({ children }: PropsWithChildren) {
             return fallback;
         };
 
-
         let raf = 0;
         const loop = () => {
             const ps = pick(0);
             const pb = pick(120);
             gsap.set(small, { x: ps.x, y: ps.y });
             gsap.set(big, { x: pb.x, y: pb.y });
+
+            const p = window.__cursorXY;
+            if (!p || !inViewport(p.x, p.y)) hide(); else show();
 
             const next = resolveVariantUnderCursor();
             if (!isSame(variantRef.current, next)) setVariant(next);
@@ -185,6 +210,8 @@ export function CursorProvider({ children }: PropsWithChildren) {
         raf = requestAnimationFrame(loop);
 
         const onScrollOrResize = () => {
+            const p = window.__cursorXY;
+            if (!p || !inViewport(p.x, p.y)) hide(); else show();
             const next = resolveVariantUnderCursor();
             if (!isSame(variantRef.current, next)) setVariant(next);
         };
@@ -197,6 +224,8 @@ export function CursorProvider({ children }: PropsWithChildren) {
             document.removeEventListener("pointerup", onPointerUp, true);
             document.removeEventListener("pointercancel", onPointerCancel, true);
             document.removeEventListener("lostpointercapture", onPointerCancel, true);
+            document.removeEventListener("mouseleave", onMouseLeaveDoc, true);
+            document.removeEventListener("mouseenter", onMouseEnterDoc, true);
             document.removeEventListener("dragstart", onDragStart, true);
             document.removeEventListener("dragover", onDragOver, true);
             document.removeEventListener("dragend", endDrag, true);
