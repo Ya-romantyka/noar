@@ -62,7 +62,7 @@ const tablesData: Record<string, TableData> = {
   table_1: {
     name: 'Landing',
     price: '10k',
-    week: 4,
+    week: 3,
     strategies: [
       {
         title: <span style={{ padding: '0 20px' }}>Briefing</span>,
@@ -82,7 +82,9 @@ const tablesData: Record<string, TableData> = {
         },
       },
       {
-        title: 'Solutions & Requirements',
+        title: (
+          <span style={{ padding: '0 20px' }}>Solutions & Requirements</span>
+        ),
         subtitle:
           'Here we understand what parts and stages the project consists of. And we are ready to turn theory into practice.',
         distance: {
@@ -124,7 +126,7 @@ const tablesData: Record<string, TableData> = {
         title: <span style={{ padding: '0 20px' }}>Frontend</span>,
         subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
-          desktop: 139,
+          desktop: 151,
           mobile: 30,
         },
       },
@@ -156,7 +158,7 @@ const tablesData: Record<string, TableData> = {
     strategies: [
       {
         title: 'Briefing',
-        subtitle: '',
+        subtitle: 'Every big project starts with a well-thought-out task',
         distance: {
           desktop: 6,
           mobile: 1.6,
@@ -164,7 +166,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Pricing',
-        subtitle: '',
+        subtitle:
+          'Time and cost estimates can be calculated in several stages if the project is large.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -181,7 +184,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Solutions & Requirements',
-        subtitle: '',
+        subtitle:
+          'Here we understand what parts and stages the project consists of. And we are ready to turn theory into practice.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -191,9 +195,10 @@ const tablesData: Record<string, TableData> = {
     designs: [
       {
         title: 'Mood board',
-        subtitle: '',
+        subtitle:
+          'It is very useful to ensure that you get exactly what you want.',
         distance: {
-          desktop: 69,
+          desktop: 80,
           mobile: 20,
         },
       },
@@ -208,7 +213,7 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'UX/UI Design',
-        subtitle: '',
+        subtitle: 'We usually agree on two stages: structure and appearance.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -216,7 +221,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Responsive',
-        subtitle: '',
+        subtitle:
+          'The design will be adapted for mobile, desktop, tablet and widescreen devices.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -229,13 +235,13 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'It is important to select additional technologies in advance or avoid unnecessary complications.',
         distance: {
-          desktop: 93,
+          desktop: 115,
           mobile: 15,
         },
       },
       {
         title: 'Frontend ',
-        subtitle: '',
+        subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
           desktop: 12.4,
           mobile: 0.8,
@@ -261,7 +267,7 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Quality Analysis',
-        subtitle: '',
+        subtitle: 'The final stage where your project becomes flawless.',
         distance: {
           desktop: 2.4,
           mobile: 5,
@@ -271,9 +277,10 @@ const tablesData: Record<string, TableData> = {
     additions: [
       {
         title: 'Animations / Graphics',
-        subtitle: '',
+        subtitle:
+          'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
-          desktop: 93,
+          desktop: 120,
           mobile: 40,
         },
       },
@@ -282,7 +289,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
-          desktop: 25,
+          desktop: 28,
           mobile: 5,
         },
       },
@@ -295,7 +302,7 @@ const tablesData: Record<string, TableData> = {
     strategies: [
       {
         title: 'Briefing',
-        subtitle: '',
+        subtitle: 'Every big project starts with a well-thought-out task',
         distance: {
           desktop: 6,
           mobile: 1.6,
@@ -303,7 +310,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Research',
-        subtitle: '',
+        subtitle:
+          'In-depth market research allows you to combine beauty with business goals.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -320,7 +328,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Solutions & Requirements',
-        subtitle: '',
+        subtitle:
+          'Here we understand what parts and stages the project consists of. And we are ready to turn theory into practice.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -328,7 +337,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Pricing',
-        subtitle: '',
+        subtitle:
+          'Time and cost estimates can be calculated in several stages if the project is large.',
         distance: {
           desktop: 30,
           mobile: 0.8,
@@ -338,7 +348,8 @@ const tablesData: Record<string, TableData> = {
     designs: [
       {
         title: 'Mood board',
-        subtitle: '',
+        subtitle:
+          'It is very useful to ensure that you get exactly what you want.',
         distance: {
           desktop: 80,
           mobile: 20,
@@ -346,7 +357,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Identity improvement',
-        subtitle: '',
+        subtitle:
+          'To ensure that the brand works seamlessly across the digital space',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -355,7 +367,7 @@ const tablesData: Record<string, TableData> = {
       {
         title: <span style={{ padding: '0 20px' }}>Prototyping & UX</span>,
         subtitle:
-          'This will highlight all the dark areas and help to avoid mistakes in planning and implementation.',
+          'It will help you imagine what the product will be like and how it will be in use.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -363,7 +375,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'User flow',
-        subtitle: '',
+        subtitle:
+          'This will highlight all the dark areas and help to avoid mistakes in planning and implementation.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -371,7 +384,7 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'UI Design',
-        subtitle: '',
+        subtitle: 'We usually agree on two stages: structure and appearance.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -379,7 +392,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Responsive',
-        subtitle: '',
+        subtitle:
+          'The design will be adapted for mobile, desktop, tablet and widescreen devices.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -389,15 +403,16 @@ const tablesData: Record<string, TableData> = {
     developments: [
       {
         title: 'Technical Requirements',
-        subtitle: '',
+        subtitle:
+          'It is important to select additional technologies in advance or avoid unnecessary complications.',
         distance: {
           desktop: 153,
           mobile: 15,
         },
       },
       {
-        title: 'Frontend ',
-        subtitle: '',
+        title: 'Frontend',
+        subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
           desktop: 2.4,
           mobile: 0.8,
@@ -405,7 +420,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Backend',
-        subtitle: '',
+        subtitle:
+          'Django, Laravel, or custom solutions for optimised and fast product performance.',
         distance: {
           desktop: 2.4,
           mobile: 8,
@@ -413,7 +429,8 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Admin Panel Setup',
-        subtitle: '',
+        subtitle:
+          'Django, Laravel or custom solutions built for seamless product control.',
         distance: {
           desktop: 2.4,
           mobile: 2,
@@ -430,7 +447,7 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Quality Analysis',
-        subtitle: '',
+        subtitle: 'The final stage where your project becomes flawless.',
         distance: {
           desktop: 2.4,
           mobile: 40,
@@ -443,13 +460,14 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'requirements and tasks based on ToV, creative, technical, and business requirements.',
         distance: {
-          desktop: 103,
+          desktop: 93,
           mobile: 40,
         },
       },
       {
         title: 'Animations / Graphics',
-        subtitle: '',
+        subtitle:
+          'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
           desktop: 2.4,
           mobile: 5,
@@ -457,9 +475,10 @@ const tablesData: Record<string, TableData> = {
       },
       {
         title: 'Content Creation',
-        subtitle: '',
+        subtitle:
+          'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
-          desktop: 48,
+          desktop: 41,
           mobile: 5,
         },
       },
