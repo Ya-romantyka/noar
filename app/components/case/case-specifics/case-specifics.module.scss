@@ -28,21 +28,28 @@
 .subtitle {
     font-size: 2.4rem;
     font-style: normal;
-    font-weight: 700;
     line-height: 112%;
-    letter-spacing: -0.072rem;
     margin-bottom: 0.4rem;
 }
 
 .headerBottom {
     display: grid;
     gap: 3.2rem;
+    letter-spacing: normal;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    >li:not(:last-child) {
+        padding-bottom: 2rem;
+        border-bottom: 0.1rem solid rgba(237, 237, 237, 0.12);
+    }
 }
 
 .titleCol {
     font-size: 1.6rem;
     font-style: normal;
-    font-weight: 700;
     line-height: 140%;
 }
 
@@ -53,7 +60,6 @@
     color: #E0E0E0;
     font-size: 1.4rem;
     font-style: normal;
-    font-weight: 700;
     line-height: 140%;
     margin-top: 1.6rem;
 }
@@ -61,8 +67,6 @@
 .text {
     color: #E0E0E0;
     font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 700;
     line-height: 140%;
 }
 
@@ -132,7 +136,6 @@
 
     .subtitle {
         font-size: 4rem;
-        letter-spacing: -0.2rem;
         margin-bottom: 1.6rem;
     }
 
@@ -141,11 +144,15 @@
         grid-template-columns: 66.8rem 43rem 1fr;
         gap: 17.8rem;
     }
-
+    .list {
+        gap:3rem;
+        >li:not(:last-child) {
+            padding-bottom: 3rem;
+        }
+    }
     .titleCol {
         font-size:2.4rem;
         line-height: 112%;
-        letter-spacing: -0.12rem;
     }
 
     .fonts {
@@ -160,7 +167,6 @@
         color: #E0E0E0;
         font-size: 1.4rem;
         font-style: normal;
-        font-weight: 700;
         line-height: 140%;
     }
 
