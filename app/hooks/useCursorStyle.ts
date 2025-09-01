@@ -5,26 +5,27 @@ import { useRouter } from "next/navigation";
 import { CursorVariant, useCursorContext } from "@/app/providers/CursorProvider";
 
 type CursorStyle = "big" | "button" | "drag" | "link";
+type CursorTone = "white" | "black";
 
 type Base = {
     style: CursorStyle;
     text?: string;
     icon?: boolean;
     href?: string;
+    tone?: CursorTone;
 };
 
-type WithRef    = { ref: RefObject<HTMLElement | null>; target?: never };
-type WithTarget = { target: HTMLElement | null;         ref?: never };
-type WithNone   = { ref?: never; target?: never };
+type WithRef = { ref: RefObject<HTMLElement | null>; target?: never };
+type WithTarget = { target: HTMLElement | null; ref?: never };
+type WithNone = { ref?: never; target?: never };
 
 type Params = Base & (WithRef | WithTarget | WithNone);
 
 export function useCursorStyle(params: Params) {
-    const { setVariant, resetVariant } = useCursorContext();
+    const { bind, unbind } = useCursorContext();
     const router = useRouter();
 
     const innerRef = useRef<HTMLElement | null>(null);
-
     const [el, setEl] = useState<HTMLElement | null>(null);
 
     useEffect(() => {
@@ -47,9 +48,7 @@ export function useCursorStyle(params: Params) {
                 setEl(node);
                 return;
             }
-            if (performance.now() - t0 > TIMEOUT) {
-                return;
-            }
+            if (performance.now() - t0 > TIMEOUT) return;
             raf = requestAnimationFrame(tick);
         };
 
@@ -84,17 +83,10 @@ export function useCursorStyle(params: Params) {
             style: params.style,
             text: params.text,
             icon: params.icon ?? false,
+            tone: params.tone ?? "white",
         };
 
-        const onOver = () => setVariant(variant);
-
-        const onOut = (e: PointerEvent) => {
-            const next = e.relatedTarget as Node | null;
-            if (!next || !el.contains(next)) resetVariant();
-        };
-
-        el.addEventListener("pointerover", onOver as EventListener, { capture: true });
-        el.addEventListener("pointerout", onOut, { capture: true });
+        bind(el, variant);
 
         const onClick = (e: MouseEvent) => {
             if (params.style === "link" && params.href) {
@@ -102,27 +94,17 @@ export function useCursorStyle(params: Params) {
                 router.push(params.href);
             }
         };
-        if (params.style === "link" && params.href) {
-            el.addEventListener("click", onClick);
-        }
+        if (params.style === "link" && params.href) el.addEventListener("click", onClick);
 
-        const onDisconnect = () => {
-            if (!el.isConnected) resetVariant();
-        };
-        const mo = new MutationObserver(onDisconnect);
-        try {
-            mo.observe(document, { childList: true, subtree: true });
-        } catch {}
+        const moAttr = new MutationObserver(() => bind(el, variant));
+        moAttr.observe(el, { attributes: true, attributeFilter: ["class", "style", "hidden"] });
 
         return () => {
-            el.removeEventListener("pointerover", onOver as EventListener, true);
-            el.removeEventListener("pointerout", onOut, true);
-            if (params.style === "link" && params.href) {
-                el.removeEventListener("click", onClick);
-            }
-            mo.disconnect();
+            if (params.style === "link" && params.href) el.removeEventListener("click", onClick);
+            moAttr.disconnect();
+            unbind(el);
         };
-    }, [el, params.style, params.text, params.icon, params.href, setVariant, resetVariant, router]);
+    }, [el, params.style, params.text, params.icon, params.href, params.tone, bind, unbind, router]);
 
     if (!("ref" in params) && !("target" in params)) {
         return innerRef as RefObject<HTMLElement | null>;

@@ -17,7 +17,8 @@
   overflow: hidden;
 
   &:last-child {
-    margin-left: 10.5rem;
+    display: flex;
+    gap: 1.5rem;
   }
 }
 
@@ -40,7 +41,15 @@
   .spline {
     display: none;
   }
+
+  .titleRow {
+
+    &:last-child {
+      margin-left: 9rem;
+    }
+  }
 }
+
 
 
 @media (min-width: 768px) {

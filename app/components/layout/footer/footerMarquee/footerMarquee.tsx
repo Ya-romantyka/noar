@@ -1,27 +1,42 @@
+"use client";
+
+import React, {useMemo, useRef} from "react";
 import Marquee from "react-fast-marquee";
-import styles from "./footer-marquee.module.scss";
-import React, {useRef} from "react";
+import {usePathname} from "next/navigation";
 import {useCursorStyle} from "@/app/hooks/useCursorStyle";
+import styles from "./footer-marquee.module.scss";
 
 const MarqueeComponent = () => {
-
-
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
+
+    const tone = useMemo<"white" | "black">(
+        () => (pathname === "/contact" || pathname?.startsWith("/services") ? "black" : "white"),
+        [pathname]
+    );
 
     useCursorStyle({
         ref: wrapperRef,
         style: "link",
-        icon:true,
-        href:'/contact',
+        tone,
+        icon: true,
+        href: "/contact",
         text: "email us",
     });
+
     return (
-        <div className={styles.marquee} ref={wrapperRef}>
+        <div
+            ref={wrapperRef}
+            className={styles.marquee}
+            role="link"
+            tabIndex={0}
+            aria-label="Email us"
+        >
             <Marquee speed={50} gradient={false}>
                 <span className={styles.marqueeText}>LET’S CONNECT</span>
-                <span className={styles.marqueeCircle}></span>
+                <span className={styles.marqueeCircle}/>
                 <span className={styles.marqueeText}>LET’S CONNECT</span>
-                <span className={styles.marqueeCircle}></span>
+                <span className={styles.marqueeCircle}/>
             </Marquee>
         </div>
     );

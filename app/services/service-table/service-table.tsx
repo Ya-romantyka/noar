@@ -482,6 +482,7 @@ const ServiceTable: React.FC = () => {
 
   const tableBodyRef = useRef<HTMLTableSectionElement | null>(null);
 
+
   const activeTable = tablesArray[activeTableIndex];
 
   const changeTable = (index: number) => {
@@ -597,7 +598,7 @@ const ServiceTable: React.FC = () => {
           </ul>
         </div>
 
-        <div className={styles.tableContainer}>
+        <div className={styles.tableContainer} >
           <table className={styles.table}>
             <thead className={styles.tableHeader}>
               <tr>

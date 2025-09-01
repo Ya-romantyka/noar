@@ -110,13 +110,16 @@ p {
   inset: 0;
   pointer-events: none;
   z-index: 99999;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.2s ease;
   mix-blend-mode: difference;
-}
 
-.cursor--shown {
-  opacity: 1;
+
+  &.drag,
+  &.link {
+      mix-blend-mode: normal;
+  }
+
 }
 
 .cursor-ball {
@@ -130,6 +133,8 @@ p {
   background: #fff;
   color: #000;
   z-index: 999;
+  border: 1px solid transparent;
+
   transition:
           width 0.3s ease,
           height 0.3s ease,
@@ -137,6 +142,7 @@ p {
           min-height 0.3s ease,
           padding 0.3s ease,
           border-radius 0.3s ease,
+          border-color 0.3s ease,
           gap 0.3s ease;
 
 
@@ -154,8 +160,8 @@ p {
     border-radius: 50%;
   }
   &.button {
-    min-width: 6rem;
-    min-height: 6rem;
+    min-width: 7rem;
+    min-height: 7rem;
     border-radius: 50%;
   }
 
@@ -173,6 +179,16 @@ p {
     font-weight: 700;
     line-height: 140%;
     letter-spacing: -0.054rem;
+
+    &.black {
+      background: #101010;
+      color: #fff;
+    }
+
+    &.white {
+      background: #fff;
+      color: #101010;
+    }
   }
 
   &.link {
@@ -181,6 +197,18 @@ p {
     display: flex;
     width: max-content;
     height: max-content;
+
+    &.black {
+      background: #101010;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+    &.white {
+      background: #fff;
+      color: #101010;
+      border: 1px solid #101010;
+    }
   }
 }
 
