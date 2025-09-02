@@ -670,7 +670,7 @@ const ServiceTable: React.FC = () => {
                       {Array.from({
                         length: isMobile
                           ? activeTable.week.mobile * 2
-                          : activeTable.week.desktop,
+                          : activeTable.week.desktop * 2,
                       }).map((_, i) => (
                         <li key={i}></li>
                       ))}
