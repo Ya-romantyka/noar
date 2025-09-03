@@ -58,18 +58,22 @@ const ProjectsSection = () => {
     useEffect(() => {
         if (!listRef.current || !headerRef.current) return;
 
+        ScrollTrigger.config({ ignoreMobileResize: true });
+
         const ctx = gsap.context((self) => {
-            const list = listRef.current!;
-            const items = Array.from(list.children) as HTMLElement[];
-            const vh = window.innerHeight;
+            const list   = listRef.current!;
+            const items  = Array.from(list.children) as HTMLElement[];
             const isDesk = !isMobile;
 
             const getHeaderH = () =>
                 headerRef.current?.getBoundingClientRect().height ?? 0;
-            const headerH = getHeaderH();
 
+            const getVh = () => window.visualViewport?.height ?? window.innerHeight;
+            const baseVh = getVh();
+
+            const headerH = getHeaderH();
             items.forEach((item, i) => {
-                const targetH = vh - headerH * Math.min(i, 2);
+                const targetH = baseVh - headerH * Math.min(i, 2);
                 gsap.set(item, {
                     position: "relative",
                     height: targetH,
@@ -90,7 +94,7 @@ const ProjectsSection = () => {
                 const isLast = i === lastIndex;
                 const nextItem = !isLast ? items[i + 1] : null;
 
-                const targetH = vh - headerH * Math.min(i, 2);
+                const targetH = baseVh - headerH * Math.min(i, 2);
                 const pinStart = `top top+=${headerH * i}`;
 
                 ScrollTrigger.create({
@@ -141,30 +145,23 @@ const ProjectsSection = () => {
                             endTrigger: shrinkEndTrigger,
                             end: shrinkEnd,
                             scrub: true,
-                            onEnter: () => gsap.set(picture, { transformOrigin: "left top" }),
-                            onEnterBack: () =>
-                                gsap.set(picture, { transformOrigin: "left top" }),
-                            onLeaveBack: () =>
-                                gsap.set(picture, { transformOrigin: "right top" }),
+                            onEnter:     () => gsap.set(picture, { transformOrigin: "left top" }),
+                            onEnterBack: () => gsap.set(picture, { transformOrigin: "left top" }),
+                            onLeaveBack: () => gsap.set(picture, { transformOrigin: "right top" }),
                         },
                     });
 
-                    tl.fromTo(
-                        picture,
-                        { scaleX: 1, scaleY: 1 },
-                        { scaleX: 0, scaleY: 0 },
-                        0
-                    );
+                    tl.fromTo(picture, { scaleX: 1, scaleY: 1 }, { scaleX: 0, scaleY: 0 }, 0);
                 } else {
                     gsap.set(picture, { clearProps: "transform,willChange" });
                 }
             });
 
+            let prevWidth = window.innerWidth;
             const recalcHeights = () => {
-                const curVh = window.innerHeight;
                 const hH = getHeaderH();
                 items.forEach((item, i) => {
-                    const h = curVh - hH * Math.min(i, 2);
+                    const h = baseVh - hH * Math.min(i, 2);
                     gsap.set(item, { height: h });
                     const picture = item.querySelector<HTMLElement>("picture");
                     if (picture) {
@@ -175,11 +172,15 @@ const ProjectsSection = () => {
             };
 
             const onResize = () => {
+                const curW = window.innerWidth;
+                if (curW === prevWidth) return;
+                prevWidth = curW;
                 recalcHeights();
                 ScrollTrigger.refresh();
             };
 
-            window.addEventListener("resize", onResize);
+            window.addEventListener("resize", onResize, { passive: true });
+
             ScrollTrigger.addEventListener("refreshInit", recalcHeights);
 
             self.add(() => {
