@@ -23,12 +23,15 @@
 
 
 @media (max-width: 767px) {
+  .header {
+    padding-bottom: 19.1rem;
+  }
   .videoWrap {
-    margin-top: -6rem;
-    margin-bottom: -3rem;
+    position: absolute;
+    bottom: -3rem;
+    right: 0;
     display: block;
     width: 80%;
-    margin-left: auto;
 
     .video {
       width: 100%;
