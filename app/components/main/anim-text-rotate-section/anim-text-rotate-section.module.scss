@@ -8,6 +8,14 @@
   text-wrap: nowrap;
   margin-top: calc(var(--locked-vh) * -0.1);
 }
+.cursorTrigger {
+  z-index: -1;
+  position: absolute;
+  top: calc(var(--locked-vh) * 0.12);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .pinnedContent {
   position: relative;
   width: 100%;

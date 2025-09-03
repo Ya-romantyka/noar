@@ -7,7 +7,7 @@ interface CaseFullImage {
 
 const CaseHero: React.FC<CaseFullImage> = ({ image }) => {
   return (
-    <picture className={styles.image}>
+    <picture className={styles.image} data-header-white>
       <Image src={image} alt="cover" fill sizes="100vw" priority />
     </picture>
   );

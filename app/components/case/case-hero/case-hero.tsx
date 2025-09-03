@@ -71,6 +71,7 @@ const CaseHero: React.FC<CaseHeroProps> = ({
         <section
             className={styles.section}
             style={{backgroundColor: background, color}}
+            data-header-transparent
         >
             <Container className={styles.container}>
                 <div className={styles.col}>

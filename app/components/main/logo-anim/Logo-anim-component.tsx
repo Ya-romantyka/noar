@@ -60,12 +60,12 @@ export default function LogoAnimComponent({className}:IProps) {
             >
                 <defs>
                     <linearGradient id="strokeGradient" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="white" stopOpacity="0.015"/>
-                        <stop offset="10%" stopColor="white" stopOpacity="0.05"/>
-                        <stop offset="20%" stopColor="white" stopOpacity="0.1"/>
-                        <stop offset="80%" stopColor="white" stopOpacity="0.1"/>
-                        <stop offset="90%" stopColor="white" stopOpacity="0.05"/>
-                        <stop offset="100%" stopColor="white" stopOpacity="0.015"/>
+                        <stop offset="0%" stopColor="white" stopOpacity="0.15"/>
+                        <stop offset="10%" stopColor="white" stopOpacity="0.1"/>
+                        <stop offset="40%" stopColor="white" stopOpacity="0.015"/>
+                        <stop offset="60%" stopColor="white" stopOpacity="0.015"/>
+                        <stop offset="90%" stopColor="white" stopOpacity="0.1"/>
+                        <stop offset="100%" stopColor="white" stopOpacity="0.15"/>
                         <animateTransform
                             attributeName="gradientTransform"
                             type="translate"

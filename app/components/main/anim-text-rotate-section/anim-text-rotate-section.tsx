@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
 import styles from './anim-text-rotate-section.module.scss';
+import {useCursorStyle} from "@/app/hooks/useCursorStyle";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -12,8 +13,14 @@ export default function AnimTextRotateSection() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const pinnedRef  = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const cursorTriggerRef = useRef<HTMLDivElement>(null);
     const textRef    = useRef<HTMLHeadingElement>(null);
     const buttonRef  = useRef<HTMLAnchorElement>(null);
+
+    useCursorStyle({
+        style:'big',
+        ref:cursorTriggerRef
+    })
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -147,6 +154,7 @@ export default function AnimTextRotateSection() {
 
     return (
         <section ref={sectionRef} className={styles.textWrapper}>
+            <div ref={cursorTriggerRef} className={styles.cursorTrigger}></div>
             <div ref={pinnedRef} className={styles.pinnedContent}>
                 <div ref={wrapperRef} className={styles.textInner}>
                     <h2 ref={textRef} className={styles.text}>
@@ -156,6 +164,7 @@ export default function AnimTextRotateSection() {
                         dive in
                     </a>
                 </div>
+
             </div>
         </section>
     );

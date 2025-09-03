@@ -28,6 +28,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hideHeader, setHideHeader] = useState<boolean>(false);
     const [isWhiteHeader, setIsWhiteHeader] = useState(false);
+    const [isTransparentHeader, setIsTransparentHeader] = useState(false);
 
     const pathname = usePathname();
     const lastScroll = useRef(0);
@@ -38,22 +39,10 @@ export default function Header() {
     const socialRef = useRef<HTMLUListElement>(null);
     const menuRef = useRef<HTMLButtonElement>(null);
 
-    useCursorStyle({
-        ref: connectRef,
-        style: 'button',
-    })
-    useCursorStyle({
-        ref: menuRef,
-        style: 'button',
-    })
-    useCursorStyle({
-        ref: logoRef,
-        style: 'button',
-    })
-    useCursorStyle({
-        ref: socialRef,
-        style: 'button',
-    })
+    useCursorStyle({ ref: connectRef, style: 'button' });
+    useCursorStyle({ ref: menuRef, style: 'button' });
+    useCursorStyle({ ref: logoRef, style: 'button' });
+    useCursorStyle({ ref: socialRef, style: 'button' });
 
     useEffect(() => {
         let ticking = false;
@@ -88,20 +77,23 @@ export default function Header() {
     }, [isMenuOpen]);
 
     useEffect(() => {
+        const isLineInside = (el: Element, lineY: number) => {
+            const rect = (el as HTMLElement).getBoundingClientRect();
+            return rect.top <= lineY && rect.bottom >= lineY;
+        };
+
         const checkHeaderZone = () => {
-            const sections = document.querySelectorAll('[data-header-white]');
             const viewportHeight = window.innerHeight;
-            let isWhite = false;
+            const line = viewportHeight * 0.1;
 
-            sections.forEach((section) => {
-                const rect = (section as HTMLElement).getBoundingClientRect();
-                const line = viewportHeight * 0.1; // 10% зверху
-                const topInZone = rect.top <= line;
-                const bottomInZone = rect.bottom >= line;
-                if (topInZone && bottomInZone) isWhite = true;
-            });
+            const transparentSections = Array.from(document.querySelectorAll('[data-header-transparent]'));
+            const whiteSections = Array.from(document.querySelectorAll('[data-header-white]'));
 
-            setIsWhiteHeader(isWhite);
+            const transparentActive = transparentSections.some(sec => isLineInside(sec, line));
+            const whiteActive = !transparentActive && whiteSections.some(sec => isLineInside(sec, line));
+
+            setIsTransparentHeader(transparentActive);
+            setIsWhiteHeader(whiteActive);
         };
 
         window.addEventListener('scroll', checkHeaderZone);
@@ -149,7 +141,14 @@ export default function Header() {
 
     return (
         <>
-            <header className={clsx(styles.header, isWhiteHeader && styles.white, hideHeader && styles.hide)}>
+            <header
+                className={clsx(
+                    styles.header,
+                    isWhiteHeader && styles.white,
+                    isTransparentHeader && styles.transparent,
+                    hideHeader && styles.hide
+                )}
+            >
                 <Container className={styles.container}>
                     <Link
                         onClick={(e) => {
@@ -204,7 +203,14 @@ export default function Header() {
                 </Container>
             </header>
 
-            <ul className={clsx(clsx(styles.menu, isWhiteHeader && styles.white), {[styles.open]: isMenuOpen})}>
+            <ul
+                className={clsx(
+                    styles.menu,
+                    isWhiteHeader && styles.white,
+                    isTransparentHeader && styles.transparent,
+                    { [styles.open]: isMenuOpen }
+                )}
+            >
                 {menuItems.map((item) => (
                     <li key={item.href}>
                         <StaggerLink

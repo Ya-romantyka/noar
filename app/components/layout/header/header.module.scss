@@ -37,6 +37,15 @@
         &::after {
             border-color: rgba(255, 255, 255, 0.12);
         }
+
+        .menu {
+            color: #FFFFFF;
+        }
+    }
+
+    &.transparent {
+        background: transparent;
+
     }
 }
 
@@ -90,6 +99,7 @@
     width: 30.5rem;
     border-radius: 1.6rem;
     background: var(--black-color, #101010);
+    color: #FFFFFF;
     padding: 2.4rem;
     display: grid;
     gap: 1.6rem;
