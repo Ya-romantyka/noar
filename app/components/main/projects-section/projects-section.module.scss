@@ -32,7 +32,7 @@
 
 
   >li{
-    height: 100vh;
+    height: var(--locked-vh, 100vh);
     display: flex;
     width: 100%;
     overflow: hidden;
