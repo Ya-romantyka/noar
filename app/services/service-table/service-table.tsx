@@ -41,7 +41,11 @@ interface TableData {
       desktop: number;
     };
   }[];
-  week: number;
+  week: {
+    desktop: number;
+    mobile: number;
+  };
+  development_time: string;
   name: string;
   price: string;
 }
@@ -62,7 +66,11 @@ const tablesData: Record<string, TableData> = {
   table_1: {
     name: 'Landing',
     price: '10k',
-    week: 3,
+    week: {
+      desktop: 3,
+      mobile: 2,
+    },
+    development_time: '5 weeks',
     strategies: [
       {
         title: <span style={{ padding: '0 20px' }}>Briefing</span>,
@@ -78,7 +86,7 @@ const tablesData: Record<string, TableData> = {
           'Time and cost estimates can be calculated in several stages if the project is large.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
@@ -89,7 +97,7 @@ const tablesData: Record<string, TableData> = {
           'Here we understand what parts and stages the project consists of. And we are ready to turn theory into practice.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
@@ -100,7 +108,7 @@ const tablesData: Record<string, TableData> = {
           'It is very useful to ensure that you get exactly what you want.',
         distance: {
           desktop: 78,
-          mobile: 10,
+          mobile: 1.6,
         },
       },
       {
@@ -108,7 +116,7 @@ const tablesData: Record<string, TableData> = {
         subtitle: 'We usually agree on two stages: structure and appearance.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
@@ -117,7 +125,7 @@ const tablesData: Record<string, TableData> = {
           'The design will be adapted for mobile, desktop, tablet and widescreen devices.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
@@ -127,7 +135,7 @@ const tablesData: Record<string, TableData> = {
         subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
           desktop: 151,
-          mobile: 30,
+          mobile: 1.6,
         },
       },
       {
@@ -135,18 +143,18 @@ const tablesData: Record<string, TableData> = {
         subtitle: 'The final stage where your project becomes flawless.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
     additions: [
       {
-        title: 'Animations / Graphics',
+        title: <span style={{ padding: '0 20px' }}>Animations / Graphics</span>,
         subtitle:
           'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
           desktop: 99,
-          mobile: 6,
+          mobile: 1.6,
         },
       },
     ],
@@ -154,10 +162,14 @@ const tablesData: Record<string, TableData> = {
   table_2: {
     name: 'Website',
     price: '20k',
-    week: 4,
+    week: {
+      desktop: 4,
+      mobile: 4,
+    },
+    development_time: '10 weeks',
     strategies: [
       {
-        title: 'Briefing',
+        title: <span style={{ padding: '0 20px' }}>Briefing</span>,
         subtitle: 'Every big project starts with a well-thought-out task',
         distance: {
           desktop: 6,
@@ -165,12 +177,12 @@ const tablesData: Record<string, TableData> = {
         },
       },
       {
-        title: 'Pricing',
+        title: <span style={{ padding: '0 20px' }}>Pricing</span>,
         subtitle:
           'Time and cost estimates can be calculated in several stages if the project is large.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
@@ -179,72 +191,76 @@ const tablesData: Record<string, TableData> = {
           'In-depth market research allows you to combine beauty with business goals.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Solutions & Requirements',
+        title: (
+          <span style={{ padding: '0 20px' }}>Solutions & Requirements</span>
+        ),
         subtitle:
           'Here we understand what parts and stages the project consists of. And we are ready to turn theory into practice.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
     designs: [
       {
-        title: 'Mood board',
+        title: <span style={{ padding: '0 20px' }}>Mood board</span>,
         subtitle:
           'It is very useful to ensure that you get exactly what you want.',
         distance: {
           desktop: 80,
-          mobile: 20,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Identity improvement',
+        title: <span style={{ padding: '0 20px' }}>Identity improvement</span>,
         subtitle:
           'To ensure that the brand works seamlessly across the digital space',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'UX/UI Design',
+        title: <span style={{ padding: '0 20px' }}>UX/UI Design</span>,
         subtitle: 'We usually agree on two stages: structure and appearance.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Responsive',
+        title: <span style={{ padding: '0 20px' }}>Responsive</span>,
         subtitle:
           'The design will be adapted for mobile, desktop, tablet and widescreen devices.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
     developments: [
       {
-        title: 'Technical Requirements',
+        title: (
+          <span style={{ padding: '0 20px' }}>Technical Requirements</span>
+        ),
         subtitle:
           'It is important to select additional technologies in advance or avoid unnecessary complications.',
         distance: {
           desktop: 115,
-          mobile: 15,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Frontend ',
+        title: <span style={{ padding: '0 20px' }}>Frontend</span>,
         subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
           desktop: 12.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
@@ -253,7 +269,7 @@ const tablesData: Record<string, TableData> = {
           'Django, Laravel, or custom solutions for optimised and fast product performance.',
         distance: {
           desktop: 2.4,
-          mobile: 8,
+          mobile: 1.6,
         },
       },
       {
@@ -262,26 +278,26 @@ const tablesData: Record<string, TableData> = {
           'WordPress, Directus, Laravel, Django, and custom systems tailored to your needs.',
         distance: {
           desktop: 2.4,
-          mobile: 2,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Quality Analysis',
+        title: <span style={{ padding: '0 20px' }}>Quality Analysis</span>,
         subtitle: 'The final stage where your project becomes flawless.',
         distance: {
           desktop: 2.4,
-          mobile: 5,
+          mobile: 1.6,
         },
       },
     ],
     additions: [
       {
-        title: 'Animations / Graphics',
+        title: <span style={{ padding: '0 20px' }}>Animations / Graphics</span>,
         subtitle:
           'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
           desktop: 120,
-          mobile: 40,
+          mobile: 1.6,
         },
       },
       {
@@ -290,18 +306,19 @@ const tablesData: Record<string, TableData> = {
           'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
           desktop: 28,
-          mobile: 5,
+          mobile: 1.6,
         },
       },
     ],
   },
   table_3: {
-    name: 'Web-App',
+    name: 'Platform',
     price: '20k',
-    week: 4,
+    week: { desktop: 5, mobile: 4 },
+    development_time: '4 months',
     strategies: [
       {
-        title: 'Briefing',
+        title: <span style={{ padding: '0 20px' }}>Briefing</span>,
         subtitle: 'Every big project starts with a well-thought-out task',
         distance: {
           desktop: 6,
@@ -309,59 +326,61 @@ const tablesData: Record<string, TableData> = {
         },
       },
       {
-        title: 'Research',
+        title: <span style={{ padding: '0 20px' }}>Research</span>,
         subtitle:
           'In-depth market research allows you to combine beauty with business goals.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'CJM & Empathy map',
+        title: <span style={{ padding: '0 20px' }}>CJM & Empathy map</span>,
         subtitle:
           'In order to give your customers what they need, we must understand them.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Solutions & Requirements',
+        title: (
+          <span style={{ padding: '0 20px' }}>Solutions & Requirements</span>
+        ),
         subtitle:
           'Here we understand what parts and stages the project consists of. And we are ready to turn theory into practice.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Pricing',
+        title: <span style={{ padding: '0 20px' }}>Pricing</span>,
         subtitle:
           'Time and cost estimates can be calculated in several stages if the project is large.',
         distance: {
           desktop: 30,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
     designs: [
       {
-        title: 'Mood board',
+        title: <span style={{ padding: '0 20px' }}>Mood board</span>,
         subtitle:
           'It is very useful to ensure that you get exactly what you want.',
         distance: {
           desktop: 80,
-          mobile: 20,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Identity improvement',
+        title: <span style={{ padding: '0 20px' }}>Identity improvement</span>,
         subtitle:
           'To ensure that the brand works seamlessly across the digital space',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
@@ -370,33 +389,33 @@ const tablesData: Record<string, TableData> = {
           'It will help you imagine what the product will be like and how it will be in use.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'User flow',
+        title: <span style={{ padding: '0 20px' }}>User flow</span>,
         subtitle:
           'This will highlight all the dark areas and help to avoid mistakes in planning and implementation.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'UI Design',
+        title: <span style={{ padding: '0 20px' }}>UI Design</span>,
         subtitle: 'We usually agree on two stages: structure and appearance.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Responsive',
+        title: <span style={{ padding: '0 20px' }}>Responsive</span>,
         subtitle:
           'The design will be adapted for mobile, desktop, tablet and widescreen devices.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
     ],
@@ -407,33 +426,33 @@ const tablesData: Record<string, TableData> = {
           'It is important to select additional technologies in advance or avoid unnecessary complications.',
         distance: {
           desktop: 153,
-          mobile: 15,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Frontend',
+        title: <span style={{ padding: '0 20px' }}>Frontend</span>,
         subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
           desktop: 2.4,
-          mobile: 0.8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Backend',
+        title: <span style={{ padding: '0 20px' }}>Backend</span>,
         subtitle:
           'Django, Laravel, or custom solutions for optimised and fast product performance.',
         distance: {
           desktop: 2.4,
-          mobile: 8,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Admin Panel Setup',
+        title: <span style={{ padding: '0 20px' }}>Admin Panel Setup</span>,
         subtitle:
           'Django, Laravel or custom solutions built for seamless product control.',
         distance: {
           desktop: 2.4,
-          mobile: 2,
+          mobile: 1.6,
         },
       },
       {
@@ -442,15 +461,15 @@ const tablesData: Record<string, TableData> = {
           'Stress tests, query optimisation, and ensuring fast, uninterrupted operation.',
         distance: {
           desktop: 2.4,
-          mobile: 5,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Quality Analysis',
+        title: <span style={{ padding: '0 20px' }}>Quality Analysis</span>,
         subtitle: 'The final stage where your project becomes flawless.',
         distance: {
           desktop: 2.4,
-          mobile: 40,
+          mobile: 1.6,
         },
       },
     ],
@@ -461,25 +480,25 @@ const tablesData: Record<string, TableData> = {
           'requirements and tasks based on ToV, creative, technical, and business requirements.',
         distance: {
           desktop: 93,
-          mobile: 40,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Animations / Graphics',
+        title: <span style={{ padding: '0 20px' }}>Animations / Graphics</span>,
         subtitle:
           'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
           desktop: 2.4,
-          mobile: 5,
+          mobile: 1.6,
         },
       },
       {
-        title: 'Content Creation',
+        title: <span style={{ padding: '0 20px' }}>Content Creation</span>,
         subtitle:
           'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
           desktop: 41,
-          mobile: 5,
+          mobile: 1.6,
         },
       },
     ],
@@ -500,7 +519,6 @@ const ServiceTable: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const tableBodyRef = useRef<HTMLTableSectionElement | null>(null);
-
 
   const activeTable = tablesArray[activeTableIndex];
 
@@ -570,7 +588,9 @@ const ServiceTable: React.FC = () => {
   }, []);
 
   const getRowWidth = () => {
-    const blocks = activeTable.week * 2;
+    const blocks = isMobile
+      ? activeTable.week.mobile * 2
+      : activeTable.week.desktop * 2;
     const blockWidth = isMobile ? 12.4 : 36.8;
     return `${blocks * blockWidth}rem`;
   };
@@ -617,7 +637,7 @@ const ServiceTable: React.FC = () => {
           </ul>
         </div>
 
-        <div className={styles.tableContainer} >
+        <div className={styles.tableContainer}>
           <table className={styles.table}>
             <thead className={styles.tableHeader}>
               <tr>
@@ -647,11 +667,13 @@ const ServiceTable: React.FC = () => {
                 <tr>
                   <td className={styles.row} style={{ width: getRowWidth() }}>
                     <div className={styles.grid}>
-                      {Array.from({ length: activeTable.week * 2 }).map(
-                        (_, i) => (
-                          <li key={i}></li>
-                        ),
-                      )}
+                      {Array.from({
+                        length: isMobile
+                          ? activeTable.week.mobile * 2
+                          : activeTable.week.desktop * 2,
+                      }).map((_, i) => (
+                        <li key={i}></li>
+                      ))}
                     </div>
 
                     <ul className={styles.list}>
@@ -695,11 +717,13 @@ const ServiceTable: React.FC = () => {
                   </td>
                   <td className={styles.row} style={{ width: getRowWidth() }}>
                     <div className={styles.grid}>
-                      {Array.from({ length: activeTable.week * 2 }).map(
-                        (_, i) => (
-                          <li key={i}></li>
-                        ),
-                      )}
+                      {Array.from({
+                        length: isMobile
+                          ? activeTable.week.mobile * 2
+                          : activeTable.week.desktop * 2,
+                      }).map((_, i) => (
+                        <li key={i}></li>
+                      ))}
                     </div>
 
                     <ul className={styles.list}>
@@ -742,11 +766,13 @@ const ServiceTable: React.FC = () => {
                   </td>
                   <td className={styles.row} style={{ width: getRowWidth() }}>
                     <div className={styles.grid}>
-                      {Array.from({ length: activeTable.week * 2 }).map(
-                        (_, i) => (
-                          <li key={i}></li>
-                        ),
-                      )}
+                      {Array.from({
+                        length: isMobile
+                          ? activeTable.week.mobile * 2
+                          : activeTable.week.desktop * 2,
+                      }).map((_, i) => (
+                        <li key={i}></li>
+                      ))}
                     </div>
                     <ul className={styles.list}>
                       {activeTable.developments.map((item, index) => {
@@ -788,11 +814,13 @@ const ServiceTable: React.FC = () => {
                   </td>
                   <td className={styles.row} style={{ width: getRowWidth() }}>
                     <div className={styles.grid}>
-                      {Array.from({ length: activeTable.week * 2 }).map(
-                        (_, i) => (
-                          <li key={i}></li>
-                        ),
-                      )}
+                      {Array.from({
+                        length: isMobile
+                          ? activeTable.week.mobile * 2
+                          : activeTable.week.desktop * 2,
+                      }).map((_, i) => (
+                        <li key={i}></li>
+                      ))}
                     </div>
 
                     <ul className={styles.list}>
@@ -856,7 +884,7 @@ const ServiceTable: React.FC = () => {
         </div>
 
         <p className={styles.tableFooterText}>
-          Delivery: {activeTable.week} weeks
+          Delivery: {activeTable.development_time}
         </p>
         <h3 className={styles.footerTitle}>Close the Loop with Us</h3>
         <Button href={''} className={styles.footerButton} variant={'white'}>
