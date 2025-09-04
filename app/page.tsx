@@ -13,7 +13,7 @@ export default function Home() {
     <div>
       <HeroSection />
       <FoundSection />
-      {/* <ProjectsSection/> */}
+       <ProjectsSection/>
       <AnimTextRotateSection />
       <PointPinComponent />
       <NoarAbout />

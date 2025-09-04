@@ -27,7 +27,7 @@ export const useLockedVH = () => {
 
         return () => {
             window.removeEventListener('orientationchange', onOrientationChange);
-            window.screen?.orientation?.removeEventListener?.('change', onOrientationChange as any);
+            window.screen?.orientation?.removeEventListener?.('change', onOrientationChange);
             window.removeEventListener('resize', noopResize);
         };
     }, []);
