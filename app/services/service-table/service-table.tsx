@@ -153,7 +153,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
-          desktop: 99,
+          desktop: 96.2,
           mobile: 1.6,
         },
       },
@@ -172,8 +172,8 @@ const tablesData: Record<string, TableData> = {
         title: <span style={{ padding: '0 20px' }}>Briefing</span>,
         subtitle: 'Every big project starts with a well-thought-out task',
         distance: {
-          desktop: 6,
-          mobile: 1.6,
+          desktop: 2.4,
+          mobile: 2,
         },
       },
       {
@@ -259,7 +259,7 @@ const tablesData: Record<string, TableData> = {
         title: <span style={{ padding: '0 20px' }}>Frontend</span>,
         subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
-          desktop: 12.4,
+          desktop: 6,
           mobile: 1.6,
         },
       },
@@ -296,7 +296,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
-          desktop: 120,
+          desktop: 116,
           mobile: 1.6,
         },
       },
@@ -305,7 +305,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
-          desktop: 28,
+          desktop: 26.6,
           mobile: 1.6,
         },
       },
@@ -321,8 +321,8 @@ const tablesData: Record<string, TableData> = {
         title: <span style={{ padding: '0 20px' }}>Briefing</span>,
         subtitle: 'Every big project starts with a well-thought-out task',
         distance: {
-          desktop: 6,
-          mobile: 1.6,
+          desktop: 2.4,
+          mobile: 2,
         },
       },
       {
@@ -359,7 +359,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'Time and cost estimates can be calculated in several stages if the project is large.',
         distance: {
-          desktop: 30,
+          desktop: 25.3,
           mobile: 1.6,
         },
       },
@@ -479,7 +479,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'requirements and tasks based on ToV, creative, technical, and business requirements.',
         distance: {
-          desktop: 93,
+          desktop: 96.5,
           mobile: 1.6,
         },
       },
@@ -497,7 +497,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
-          desktop: 41,
+          desktop: 37.5,
           mobile: 1.6,
         },
       },
