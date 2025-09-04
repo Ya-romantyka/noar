@@ -251,7 +251,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'It is important to select additional technologies in advance or avoid unnecessary complications.',
         distance: {
-          desktop: 115,
+          desktop: 132,
           mobile: 1.6,
         },
       },
@@ -259,7 +259,7 @@ const tablesData: Record<string, TableData> = {
         title: <span style={{ padding: '0 20px' }}>Frontend</span>,
         subtitle: 'From no-code to highly optimised programmable solutions.',
         distance: {
-          desktop: 6,
+          desktop: 20,
           mobile: 1.6,
         },
       },
@@ -296,7 +296,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We create graphics, animations, and 3D models to make your project perfect.',
         distance: {
-          desktop: 116,
+          desktop: 150,
           mobile: 1.6,
         },
       },
@@ -305,7 +305,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'We will help you create content from scratch and adapt it to creative tasks or SEO.',
         distance: {
-          desktop: 26.6,
+          desktop: 14,
           mobile: 1.6,
         },
       },
@@ -370,7 +370,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'It is very useful to ensure that you get exactly what you want.',
         distance: {
-          desktop: 80,
+          desktop: 113,
           mobile: 1.6,
         },
       },
@@ -425,7 +425,7 @@ const tablesData: Record<string, TableData> = {
         subtitle:
           'It is important to select additional technologies in advance or avoid unnecessary complications.',
         distance: {
-          desktop: 153,
+          desktop: 191,
           mobile: 1.6,
         },
       },
