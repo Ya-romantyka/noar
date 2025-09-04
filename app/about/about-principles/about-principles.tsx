@@ -115,7 +115,7 @@ const AboutPrinciples: React.FC = () => {
                         based on the unity of artifacts and user experience, deep reflection
                         of visual and activity perception, analysis of the dynamics of
                         semantic forms in their ability to create a holistic image, as well
-                        as the reflection of the project's integrative meanings in the
+                        as the reflection of the projects integrative meanings in the
                         product.
                     </p>
                     <p>
