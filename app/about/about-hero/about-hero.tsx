@@ -152,9 +152,9 @@ export default function AboutHero() {
                         <p>Kyiv, UA | London, UK</p>
                     </div>
                     <div className={styles.buttonWrap}>
-                        <Button variant="white" className={styles.button}>
+                        <Button variant="outline-white" className={styles.button}>
                             <ButtonIcon/>
-                            Learn more
+                            let’s talk
                         </Button>
                     </div>
                 </div>

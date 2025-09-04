@@ -18,7 +18,6 @@
 
   &:last-child {
     display: flex;
-    gap: 1.5rem;
   }
 }
 
@@ -42,12 +41,7 @@
     display: none;
   }
 
-  .titleRow {
 
-    &:last-child {
-      margin-left: 9rem;
-    }
-  }
 }
 
 
@@ -81,6 +75,13 @@
 
   .splineElement {
     pointer-events: none;
+  }
+
+  .titleRow {
+    &:last-child {
+      display: flex;
+      gap: 1.5rem;
+    }
   }
 
   .title {

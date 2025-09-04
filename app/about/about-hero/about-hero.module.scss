@@ -158,8 +158,16 @@
   }
 }
 
-.button-wrap {
-  text-align: right;
+.buttonWrap {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+
+  .button {
+    svg {
+      width: 2rem ;
+    }
+  }
 }
 
 .circles {
@@ -189,7 +197,7 @@
   }
   .logoMob {
     -webkit-text-stroke-width: 0.26px;
-    -webkit-text-stroke-color: var(--white-stroke, rgba(237, 237, 237, 0.12));
+    -webkit-text-stroke-color: var(--white-stroke, rgba(237, 237, 237, 0.5));
     font-family: Satoshi;
     font-size: 14.3888rem;
     font-style: normal;
@@ -323,6 +331,7 @@
     text-align: left;
 
     .button {
+      margin-left: auto;
       svg {
         width: 2rem ;
       }
