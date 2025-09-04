@@ -3,22 +3,32 @@ import { useEffect } from 'react';
 
 export const useLockedVH = () => {
     useEffect(() => {
-        let prevHeight = window.innerHeight;
+        const root = document.documentElement;
 
-        const updateLockedVH = () => {
-            document.documentElement.style.setProperty('--locked-vh', `${window.innerHeight}px`);
+        const getViewportHeight = () => {
+            const vv = typeof window.visualViewport !== 'undefined' ? window.visualViewport : null;
+            const h = vv?.height ?? window.innerHeight;
+            return Math.round(h);
         };
 
-        updateLockedVH();
-
-        const onResize = () => {
-            if (window.innerHeight !== prevHeight) {
-                prevHeight = window.innerHeight;
-                updateLockedVH();
-            }
+        const setVar = (h: number) => {
+            root.style.setProperty('--locked-vh', `${h}px`);
         };
 
-        window.addEventListener('resize', onResize);
-        return () => window.removeEventListener('resize', onResize);
+        setVar(getViewportHeight());
+
+        const onOrientationChange = () => setVar(getViewportHeight());
+
+        window.addEventListener('orientationchange', onOrientationChange);
+        window.screen?.orientation?.addEventListener?.('change', onOrientationChange);
+
+        const noopResize = () => {};
+        window.addEventListener('resize', noopResize);
+
+        return () => {
+            window.removeEventListener('orientationchange', onOrientationChange);
+            window.screen?.orientation?.removeEventListener?.('change', onOrientationChange as any);
+            window.removeEventListener('resize', noopResize);
+        };
     }, []);
 };
