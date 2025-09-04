@@ -118,6 +118,7 @@ export default function LogoAnimAboutComponent({ className }: IProps) {
                 }}
                 aria-hidden
             >
+
                 <defs>
                     <linearGradient
                         id={strokeGradientId}
