@@ -21,7 +21,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  height: var(--locked-vh);
+  height: var(--locked-vh, 100vh);
 }
 
 .textInner {
@@ -33,6 +33,7 @@
   align-items: center;
   gap: 6.4rem;
   padding-right: 6.6rem;
+  padding-bottom: calc(var(--locked-vh) * 0.1);
 }
 
 .text {
