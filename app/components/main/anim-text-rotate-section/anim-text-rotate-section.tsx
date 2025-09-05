@@ -24,7 +24,7 @@ export default function AnimTextRotateSection() {
 
         const section = sectionRef.current;
         const pinned  = pinnedRef.current;
-        const wrapper = wrapperRef.current;
+        const wrapper = wrapperRef.current as HTMLElement | null;
         const text    = textRef.current;
         const button  = buttonRef.current;
         if (!section || !pinned || !wrapper || !text || !button) return;
@@ -34,29 +34,12 @@ export default function AnimTextRotateSection() {
             const chars = Array.from(text.querySelectorAll<HTMLElement>(".char"));
             const allElems = [...chars, button];
 
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top top",
-                end: "bottom bottom",
-                pin: pinned,
-                pinSpacing: false,
-            });
-
-            const scrollLength = section.offsetHeight - window.innerHeight;
-
             const calcTimingX = () => {
                 const vw = window.innerWidth;
                 const wrapRect = wrapper.getBoundingClientRect();
                 const btnRect  = button.getBoundingClientRect();
                 const btnCenterX = (btnRect.left + btnRect.width / 2) - wrapRect.left;
                 return vw / 2 - btnCenterX;
-            };
-
-            const calcShiftX = () => {
-                const vw = window.innerWidth;
-                const ww = wrapper.scrollWidth || wrapper.offsetWidth || wrapper.getBoundingClientRect().width;
-                const travel = Math.max(0, ww - vw);
-                return -travel;
             };
 
             const finalX = calcTimingX();
@@ -71,38 +54,74 @@ export default function AnimTextRotateSection() {
             const lastCharRect = lastCharEl.getBoundingClientRect();
             const lastCharX = lastCharRect.left;
 
+            const scrollLength = section.offsetHeight - window.innerHeight;
             const lastCharEndScroll =
                 ((window.innerWidth * 0.20 - lastCharX) / finalX) * scrollLength;
 
-            initialPositions.forEach(({ el }, index) => {
-                const isChar = el.classList.contains("char");
+            const charMetrics = chars.map((el, index) => {
+                const finalPx = parseFloat(getComputedStyle(el).fontSize);
+                const reverseIndex = lastIndex - index;
+                const scaleFactor = 0.10 + reverseIndex * 0.10;
+                const initialPx = finalPx * scaleFactor;
+                return { el, finalPx, initialPx };
+            });
 
-                if (isChar) {
-                    const reverseIndex = lastIndex - index;
-                    const computedFontSize = parseFloat(getComputedStyle(el).fontSize);
-                    const scaleFactor = 0.10 + reverseIndex * 0.10;
-                    const initialFontSize = computedFontSize * scaleFactor;
+            let travelFinal = 0;
 
-                    el.style.fontSize = `${initialFontSize}px`;
+            const measureTravelAtFinal = () => {
+                const prevInline = charMetrics.map(m => m.el.style.fontSize);
+                charMetrics.forEach(m => (m.el.style.fontSize = `${m.finalPx}px`));
 
-                    gsap.to(el, {
-                        fontSize: `${computedFontSize}px`,
-                        ease: t => Math.pow(t, 0.7),
-                        scrollTrigger: {
-                            trigger: section,
-                            start: "top top",
-                            end: `${lastCharEndScroll}px top`,
-                            scrub: true,
-                            invalidateOnRefresh: true,
-                        }
-                    });
-                }
+                const prevTransform = wrapper.style.transform;
+                wrapper.style.transform = 'none';
+                void wrapper.getBoundingClientRect();
+                travelFinal = Math.max(0, Math.ceil(wrapper.scrollWidth - window.innerWidth));
 
-                gsap.set(el, {
+                travelFinal = Math.max(0, Math.ceil(travelFinal));
+
+                charMetrics.forEach((m, i) => (m.el.style.fontSize = prevInline[i]));
+                wrapper.style.transform = prevTransform;
+            };
+
+            measureTravelAtFinal();
+
+            charMetrics.forEach(m => {
+                m.el.style.fontSize = `${m.initialPx}px`;
+                gsap.set(m.el, {
                     yPercent: 200,
                     opacity: 0,
                     filter: "blur(10px)",
                     force3D: true,
+                    willChange: "transform, filter"
+                });
+            });
+            gsap.set(button, {
+                yPercent: 200,
+                opacity: 0,
+                filter: "blur(10px)",
+                force3D: true,
+                willChange: "transform, filter"
+            });
+
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top top",
+                end: "bottom bottom",
+                pin: pinned,
+                pinSpacing: false,
+            });
+
+            charMetrics.forEach(m => {
+                gsap.to(m.el, {
+                    fontSize: `${m.finalPx}px`,
+                    ease: (t: number) => Math.pow(t, 0.7),
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top top",
+                        end: `${lastCharEndScroll}px top`,
+                        scrub: true,
+                        invalidateOnRefresh: true,
+                    }
                 });
             });
 
@@ -110,7 +129,7 @@ export default function AnimTextRotateSection() {
                 const startScroll =
                     ((window.innerWidth * 0.99 - initialX) / finalX) * scrollLength;
                 const endScroll =
-                    ((window.innerWidth * 0.30 - initialX) / finalX) * scrollLength;
+                    ((window.innerWidth * 0.25 - initialX) / finalX) * scrollLength;
 
                 gsap.to(el, {
                     yPercent: 0,
@@ -127,11 +146,9 @@ export default function AnimTextRotateSection() {
                 });
             });
 
-            const shiftX = calcShiftX();
-
-            gsap.to(wrapper, {
-                x: shiftX,
-                ease: t => Math.pow(t, 0.7),
+            const wrapperTween = gsap.to(wrapper, {
+                x: () => -travelFinal,
+                ease: (t: number) => Math.pow(t, 0.7),
                 scrollTrigger: {
                     trigger: section,
                     start: "top top",
@@ -141,13 +158,21 @@ export default function AnimTextRotateSection() {
                 }
             });
 
+            const onRefreshInit = () => {
+                measureTravelAtFinal();
+            };
+            ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
+
             return () => {
+                ScrollTrigger.removeEventListener("refreshInit", onRefreshInit);
                 split.revert();
+                wrapperTween.kill();
             };
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
+
 
     return (
         <section ref={sectionRef} className={styles.textWrapper}>
