@@ -45,14 +45,12 @@ const ModuleMission: React.FC<Props> = ({className, onClose, open = false}) => {
         const t = setTimeout(apply, 0);
 
         middle.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
 
         const ro = new ResizeObserver(onScroll);
         ro.observe(middle);
 
         return () => {
             middle.removeEventListener('scroll', onScroll);
-            window.removeEventListener('resize', onScroll);
             ro.disconnect();
             clearTimeout(t);
             if (rafRef.current != null) cancelAnimationFrame(rafRef.current);

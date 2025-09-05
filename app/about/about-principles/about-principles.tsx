@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ExpandableText from "@/app/components/ui/expandable-text/expandable-text";
 import AnimatedText from "@/app/components/ui/animated-text/animated-text";
+import {useIsMobile} from "@/app/hooks/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,8 @@ const AboutPrinciples: React.FC = () => {
     const lineRef = useRef<HTMLDivElement | null>(null);
     const titleRef = useRef<HTMLHeadingElement | null>(null);
 
+    const isMobile = useIsMobile();
+
     useEffect(() => {
         if (!circlesRef.current || !lineRef.current || !titleRef.current) return;
 
@@ -42,7 +45,7 @@ const AboutPrinciples: React.FC = () => {
             scrollTrigger: {
                 trigger: circlesRef.current,
                 start: "top 80%",
-                end: "center 40%",
+                end: isMobile? "center 20%" : "center 40%",
                 scrub: 3,
             },
         });
@@ -83,7 +86,7 @@ const AboutPrinciples: React.FC = () => {
             titleTween.kill();
             titleST.kill();
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <section className={styles.section} data-header-white>

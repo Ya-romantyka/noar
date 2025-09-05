@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
 import styles from './anim-text-rotate-section.module.scss';
-import {useCursorStyle} from "@/app/hooks/useCursorStyle";
+import { useCursorStyle } from '@/app/hooks/useCursorStyle';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -17,11 +17,9 @@ export default function AnimTextRotateSection() {
     const textRef    = useRef<HTMLHeadingElement>(null);
     const buttonRef  = useRef<HTMLAnchorElement>(null);
 
-    useCursorStyle({ style:'big', ref:cursorTriggerRef });
+    useCursorStyle({ style: 'big', ref: cursorTriggerRef });
 
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
-
         const section = sectionRef.current;
         const pinned  = pinnedRef.current;
         const wrapper = wrapperRef.current as HTMLElement | null;
@@ -30,8 +28,8 @@ export default function AnimTextRotateSection() {
         if (!section || !pinned || !wrapper || !text || !button) return;
 
         const ctx = gsap.context(() => {
-            const split = new SplitText(text, { type: "chars", charsClass: "char" });
-            const chars = Array.from(text.querySelectorAll<HTMLElement>(".char"));
+            const split = new SplitText(text, { type: 'chars', charsClass: 'char' });
+            const chars = Array.from(text.querySelectorAll<HTMLElement>('.char'));
             const allElems = [...chars, button];
 
             const calcTimingX = () => {
@@ -77,8 +75,6 @@ export default function AnimTextRotateSection() {
                 void wrapper.getBoundingClientRect();
                 travelFinal = Math.max(0, Math.ceil(wrapper.scrollWidth - window.innerWidth));
 
-                travelFinal = Math.max(0, Math.ceil(travelFinal));
-
                 charMetrics.forEach((m, i) => (m.el.style.fontSize = prevInline[i]));
                 wrapper.style.transform = prevTransform;
             };
@@ -90,23 +86,23 @@ export default function AnimTextRotateSection() {
                 gsap.set(m.el, {
                     yPercent: 200,
                     opacity: 0,
-                    filter: "blur(10px)",
+                    filter: 'blur(10px)',
                     force3D: true,
-                    willChange: "transform, filter"
+                    willChange: 'transform, filter'
                 });
             });
             gsap.set(button, {
                 yPercent: 200,
                 opacity: 0,
-                filter: "blur(10px)",
+                filter: 'blur(10px)',
                 force3D: true,
-                willChange: "transform, filter"
+                willChange: 'transform, filter'
             });
 
             ScrollTrigger.create({
                 trigger: section,
-                start: "top top",
-                end: "bottom bottom",
+                start: 'top top',
+                end: 'bottom bottom',
                 pin: pinned,
                 pinSpacing: false,
             });
@@ -117,31 +113,29 @@ export default function AnimTextRotateSection() {
                     ease: (t: number) => Math.pow(t, 0.7),
                     scrollTrigger: {
                         trigger: section,
-                        start: "top top",
+                        start: 'top top',
                         end: `${lastCharEndScroll}px top`,
                         scrub: true,
-                        invalidateOnRefresh: true,
                     }
                 });
             });
 
             initialPositions.forEach(({ el, initialX }) => {
                 const startScroll =
-                    ((window.innerWidth * 0.99 - initialX) / finalX) * scrollLength;
+                    ((window.innerWidth * 0.99 - initialX) / calcTimingX()) * scrollLength;
                 const endScroll =
-                    ((window.innerWidth * 0.25 - initialX) / finalX) * scrollLength;
+                    ((window.innerWidth * 0.25 - initialX) / calcTimingX()) * scrollLength;
 
                 gsap.to(el, {
                     yPercent: 0,
                     opacity: 1,
-                    filter: "blur(0px)",
-                    ease: "power2.out",
+                    filter: 'blur(0px)',
+                    ease: 'power2.out',
                     scrollTrigger: {
                         trigger: section,
                         start: `${startScroll}px top`,
                         end: `${endScroll}px top`,
                         scrub: true,
-                        invalidateOnRefresh: true,
                     }
                 });
             });
@@ -151,20 +145,13 @@ export default function AnimTextRotateSection() {
                 ease: (t: number) => Math.pow(t, 0.7),
                 scrollTrigger: {
                     trigger: section,
-                    start: "top top",
-                    end: "bottom bottom",
+                    start: 'top top',
+                    end: 'bottom bottom',
                     scrub: true,
-                    invalidateOnRefresh: true,
                 }
             });
 
-            const onRefreshInit = () => {
-                measureTravelAtFinal();
-            };
-            ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
-
             return () => {
-                ScrollTrigger.removeEventListener("refreshInit", onRefreshInit);
                 split.revert();
                 wrapperTween.kill();
             };
@@ -173,10 +160,9 @@ export default function AnimTextRotateSection() {
         return () => ctx.revert();
     }, []);
 
-
     return (
         <section ref={sectionRef} className={styles.textWrapper}>
-            <div ref={cursorTriggerRef} className={styles.cursorTrigger}></div>
+            <div ref={cursorTriggerRef} className={styles.cursorTrigger} />
             <div ref={pinnedRef} className={styles.pinnedContent}>
                 <div ref={wrapperRef} className={styles.textInner}>
                     <h2 ref={textRef} className={styles.text}>

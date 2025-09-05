@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./projects-section.module.scss";
-import React, {useEffect,  useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import Container from "@/app/components/layout/container/container";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -19,7 +19,7 @@ const projects = [
         year: "2023",
         frameworks: ["UX", "Copywrite", "UI", "Photo & Video", "Development"],
         img: "/images/project_img.webp",
-        url: "",
+        url: ""
     },
     {
         id: 1,
@@ -27,7 +27,7 @@ const projects = [
         year: "2023",
         frameworks: ["UX", "Copywrite", "UI", "Photo & Video", "Development"],
         img: "/images/project_img.webp",
-        url: "",
+        url: ""
     },
     {
         id: 2,
@@ -35,34 +35,26 @@ const projects = [
         year: "2023",
         frameworks: ["UX", "Copywrite", "UI", "Photo & Video", "Development"],
         img: "/images/project_img.webp",
-        url: "",
+        url: ""
     },
 ];
 
 const ProjectsSection = () => {
-
     const listRef = useRef<HTMLUListElement | null>(null);
     const headerRef = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const isMobile = useIsMobile();
 
-
-    useCursorStyle({
-        ref:listRef,
-        style:'drag',
-        text:'dive in'
-
-    })
-
+    useCursorStyle({ref: listRef, style: 'drag', text: 'dive in'});
 
     useEffect(() => {
         if (!listRef.current || !headerRef.current) return;
 
-        ScrollTrigger.config({ ignoreMobileResize: true });
+        ScrollTrigger.config({ignoreMobileResize: true});
 
         const ctx = gsap.context((self) => {
-            const list   = listRef.current!;
-            const items  = Array.from(list.children) as HTMLElement[];
+            const list = listRef.current!;
+            const items = Array.from(list.children) as HTMLElement[];
             const isDesk = !isMobile;
 
             const getHeaderH = () =>
@@ -139,24 +131,23 @@ const ProjectsSection = () => {
                         : `top top+=${headerH * (i + 1)}`;
 
                     const tl = gsap.timeline({
-                        defaults: { ease: "none" },
+                        defaults: {ease: "none"},
                         scrollTrigger: {
                             trigger: item,
                             start: pinStart,
                             endTrigger: shrinkEndTrigger,
                             end: shrinkEnd,
                             scrub: true,
-                            onEnter:     () => gsap.set(picture, { transformOrigin: "left top" }),
-                            onEnterBack: () => gsap.set(picture, { transformOrigin: "left top" }),
-                            onLeaveBack: () => gsap.set(picture, { transformOrigin: "right top" }),
+                            onEnter: () => gsap.set(picture, {transformOrigin: "left top"}),
+                            onEnterBack: () => gsap.set(picture, {transformOrigin: "left top"}),
+                            onLeaveBack: () => gsap.set(picture, {transformOrigin: "right top"}),
                         },
                     });
 
-                    tl.fromTo(picture, { scaleX: 1, scaleY: 1 }, { scaleX: 0, scaleY: 0 }, 0);
+                    tl.fromTo(picture, {scaleX: 1, scaleY: 1}, {scaleX: 0, scaleY: 0}, 0);
                 } else {
-                    gsap.set(picture, { clearProps: "transform,willChange" });
+                    gsap.set(picture, {clearProps: "transform,willChange"});
                 }
-
 
                 let prev = Math.round(item.getBoundingClientRect().width);
                 console.log(`ширина li[${i}] ${prev}px`);
@@ -182,11 +173,11 @@ const ProjectsSection = () => {
                 const hH = getHeaderH();
                 items.forEach((item, i) => {
                     const h = baseVh - hH * Math.min(i, 2);
-                    gsap.set(item, { height: h });
+                    gsap.set(item, {height: h});
                     const picture = item.querySelector<HTMLElement>("picture");
                     if (picture) {
-                        gsap.set(picture, { height: h, width: "100%" });
-                        if (isMobile) gsap.set(picture, { clearProps: "transform,willChange" });
+                        gsap.set(picture, {height: h, width: "100%"});
+                        if (isMobile) gsap.set(picture, {clearProps: "transform,willChange"});
                     }
                 });
             };
@@ -196,34 +187,22 @@ const ProjectsSection = () => {
                 if (curW === prevWidth) return;
                 prevWidth = curW;
                 recalcHeights();
-                ScrollTrigger.refresh();
             };
 
-            window.addEventListener("resize", onResize, { passive: true });
-
-            ScrollTrigger.addEventListener("refreshInit", recalcHeights);
+            window.addEventListener("resize", onResize, {passive: true});
 
             self.add(() => {
                 window.removeEventListener("resize", onResize);
-                ScrollTrigger.removeEventListener("refreshInit", recalcHeights);
             });
         }, listRef);
-
-
-
 
         return () => ctx.revert();
     }, [isMobile]);
 
-
-
-
     return (
         <section className={styles.section} ref={sectionRef}>
-            <Container >
-        <span
-            className={clsx(styles.label, "section-label section-label--black")}
-        >
+            <Container>
+        <span className={clsx(styles.label, "section-label section-label--black")}>
           Projects
         </span>
                 <h2 className={styles.title}>
