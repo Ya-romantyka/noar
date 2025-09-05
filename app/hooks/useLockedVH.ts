@@ -1,34 +1,32 @@
-'use client'
+'use client';
+
 import { useEffect } from 'react';
+import {useIsMobile} from "@/app/hooks/useIsMobile";
 
 export const useLockedVH = () => {
-    useEffect(() => {
-        const root = document.documentElement;
+  const isMobile = useIsMobile();
 
-        const getViewportHeight = () => {
-            const vv = typeof window.visualViewport !== 'undefined' ? window.visualViewport : null;
-            const h = vv?.height ?? window.innerHeight;
-            return Math.round(h);
-        };
+  useEffect(() => {
+    let prevWidth = window.innerWidth;
 
-        const setVar = (h: number) => {
-            root.style.setProperty('--locked-vh', `${h}px`);
-        };
+    const updateLockedVH = () => {
+      const vh = isMobile ? screen.height : window.innerHeight;
+      document.documentElement.style.setProperty('--locked-vh', `${vh}px`);
+    };
 
-        setVar(getViewportHeight());
+    updateLockedVH();
 
-        const onOrientationChange = () => setVar(getViewportHeight());
+    const onResize = () => {
+      if (window.innerWidth !== prevWidth) {
+        prevWidth = window.innerWidth;
+        updateLockedVH();
+      }
+    };
 
-        window.addEventListener('orientationchange', onOrientationChange);
-        window.screen?.orientation?.addEventListener?.('change', onOrientationChange);
+    window.addEventListener('resize', onResize);
 
-        const noopResize = () => {};
-        window.addEventListener('resize', noopResize);
-
-        return () => {
-            window.removeEventListener('orientationchange', onOrientationChange);
-            window.screen?.orientation?.removeEventListener?.('change', onOrientationChange);
-            window.removeEventListener('resize', noopResize);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, [isMobile]);
 };
