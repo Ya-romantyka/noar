@@ -17,19 +17,16 @@ export default function AnimTextRotateSection() {
     const textRef    = useRef<HTMLHeadingElement>(null);
     const buttonRef  = useRef<HTMLAnchorElement>(null);
 
-    useCursorStyle({
-        style:'big',
-        ref:cursorTriggerRef
-    })
+    useCursorStyle({ style:'big', ref:cursorTriggerRef });
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
         const section = sectionRef.current;
-        const pinned = pinnedRef.current;
+        const pinned  = pinnedRef.current;
         const wrapper = wrapperRef.current;
-        const text = textRef.current;
-        const button = buttonRef.current;
+        const text    = textRef.current;
+        const button  = buttonRef.current;
         if (!section || !pinned || !wrapper || !text || !button) return;
 
         const ctx = gsap.context(() => {
@@ -47,15 +44,22 @@ export default function AnimTextRotateSection() {
 
             const scrollLength = section.offsetHeight - window.innerHeight;
 
-            const calcFinalX = () => {
+            const calcTimingX = () => {
                 const vw = window.innerWidth;
                 const wrapRect = wrapper.getBoundingClientRect();
-                const btnRect = button.getBoundingClientRect();
+                const btnRect  = button.getBoundingClientRect();
                 const btnCenterX = (btnRect.left + btnRect.width / 2) - wrapRect.left;
                 return vw / 2 - btnCenterX;
             };
 
-            const finalX = calcFinalX();
+            const calcShiftX = () => {
+                const vw = window.innerWidth;
+                const ww = wrapper.scrollWidth || wrapper.offsetWidth || wrapper.getBoundingClientRect().width;
+                const travel = Math.max(0, ww - vw);
+                return -travel;
+            };
+
+            const finalX = calcTimingX();
             const lastIndex = chars.length - 1;
 
             const initialPositions = allElems.map(el => {
@@ -66,6 +70,7 @@ export default function AnimTextRotateSection() {
             const lastCharEl = chars[lastIndex];
             const lastCharRect = lastCharEl.getBoundingClientRect();
             const lastCharX = lastCharRect.left;
+
             const lastCharEndScroll =
                 ((window.innerWidth * 0.20 - lastCharX) / finalX) * scrollLength;
 
@@ -96,8 +101,8 @@ export default function AnimTextRotateSection() {
                 gsap.set(el, {
                     yPercent: 200,
                     opacity: 0,
-                    // filter: "blur(10px)",
-                    // force3D: true,
+                    filter: "blur(10px)",
+                    force3D: true,
                 });
             });
 
@@ -110,7 +115,7 @@ export default function AnimTextRotateSection() {
                 gsap.to(el, {
                     yPercent: 0,
                     opacity: 1,
-                    // filter: "blur(0px)",
+                    filter: "blur(0px)",
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: section,
@@ -122,35 +127,27 @@ export default function AnimTextRotateSection() {
                 });
             });
 
-            const horAnim = gsap.to(wrapper, {
-                x: finalX,
+            const shiftX = calcShiftX();
+
+            gsap.to(wrapper, {
+                x: shiftX,
                 ease: t => Math.pow(t, 0.7),
                 scrollTrigger: {
                     trigger: section,
                     start: "top top",
-                    end: `${lastCharEndScroll}px top`,
+                    end: "bottom bottom",
                     scrub: true,
                     invalidateOnRefresh: true,
                 }
             });
 
-            const onResize = () => {
-                horAnim.vars.x = calcFinalX();
-                ScrollTrigger.refresh();
-            };
-
-            window.addEventListener("resize", onResize);
-
             return () => {
                 split.revert();
-                window.removeEventListener("resize", onResize);
             };
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
-
-
 
     return (
         <section ref={sectionRef} className={styles.textWrapper}>
@@ -164,7 +161,6 @@ export default function AnimTextRotateSection() {
                         dive in
                     </a>
                 </div>
-
             </div>
         </section>
     );

@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   gap: 6.4rem;
+  padding-right: 7.5rem;
 }
 
 .text {
@@ -84,6 +85,11 @@
     margin-left: 50vw;
     font-size: 24.8rem;
     letter-spacing: -1.24rem;
+  }
+
+  .textInner {
+    padding-left: 50rem;
+    padding-right: 69rem;
   }
 
   .button {

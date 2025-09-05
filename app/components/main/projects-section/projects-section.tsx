@@ -103,6 +103,7 @@ const ProjectsSection = () => {
                     endTrigger: isMobile ? lastItem : list,
                     end: isMobile ? lastPinStart : globalEndDesk,
                     pin: item,
+                    pinSpacing: false,
                 });
 
                 gsap.set(picture, {
@@ -155,6 +156,25 @@ const ProjectsSection = () => {
                 } else {
                     gsap.set(picture, { clearProps: "transform,willChange" });
                 }
+
+
+                let prev = Math.round(item.getBoundingClientRect().width);
+                console.log(`ширина li[${i}] ${prev}px`);
+
+                const ro = new ResizeObserver(([entry]) => {
+                    const w = Math.round(
+                        (entry).borderBoxSize?.[0]?.inlineSize ??
+                        (entry).contentBoxSize?.[0]?.inlineSize ??
+                        entry.contentRect.width
+                    );
+                    if (w !== prev) {
+                        prev = w;
+                        console.log(`ширина проекту ${w}px (li[${i}])`);
+                    }
+                });
+
+                ro.observe(item);
+                self.add(() => ro.disconnect());
             });
 
             let prevWidth = window.innerWidth;
@@ -188,6 +208,9 @@ const ProjectsSection = () => {
                 ScrollTrigger.removeEventListener("refreshInit", recalcHeights);
             });
         }, listRef);
+
+
+
 
         return () => ctx.revert();
     }, [isMobile]);
