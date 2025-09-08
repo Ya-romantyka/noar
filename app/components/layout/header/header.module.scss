@@ -158,6 +158,13 @@
 
 @media (min-width: 768px) {
     .header{
+
+        &::after {
+            left: 4rem;
+            width: calc(100% - 8rem);
+        }
+
+
         &.white {
             .socials a {
                 color: #fff;
