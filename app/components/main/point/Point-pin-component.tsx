@@ -34,7 +34,7 @@ export default function PointPinComponent() {
                 trigger: wrapper,
                 start: 'top center',
                 end: 'bottom center',
-                scrub: 2,
+                scrub: 3,
             },
         });
 
