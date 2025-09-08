@@ -64,22 +64,7 @@ export default function AnimTextRotateSection() {
                 return { el, finalPx, initialPx };
             });
 
-            let travelFinal = 0;
 
-            const measureTravelAtFinal = () => {
-                const prevInline = charMetrics.map(m => m.el.style.fontSize);
-                charMetrics.forEach(m => (m.el.style.fontSize = `${m.finalPx}px`));
-
-                const prevTransform = wrapper.style.transform;
-                wrapper.style.transform = 'none';
-                void wrapper.getBoundingClientRect();
-                travelFinal = Math.max(0, Math.ceil(wrapper.scrollWidth - window.innerWidth));
-
-                charMetrics.forEach((m, i) => (m.el.style.fontSize = prevInline[i]));
-                wrapper.style.transform = prevTransform;
-            };
-
-            measureTravelAtFinal();
 
             charMetrics.forEach(m => {
                 m.el.style.fontSize = `${m.initialPx}px`;
@@ -121,10 +106,9 @@ export default function AnimTextRotateSection() {
             });
 
             initialPositions.forEach(({ el, initialX }) => {
-                const startScroll =
-                    ((window.innerWidth * 0.99 - initialX) / calcTimingX()) * scrollLength;
-                const endScroll =
-                    ((window.innerWidth * 0.25 - initialX) / calcTimingX()) * scrollLength;
+                const startScroll = ((window.innerWidth - initialX) / calcTimingX()) * scrollLength;
+
+                const endScroll   = ((0 - initialX) / calcTimingX()) * scrollLength;
 
                 gsap.to(el, {
                     yPercent: 0,
@@ -140,9 +124,11 @@ export default function AnimTextRotateSection() {
                 });
             });
 
-            const wrapperTween = gsap.to(wrapper, {
-                x: () => -travelFinal,
-                ease: (t: number) => Math.pow(t, 0.7),
+            const shift = -(wrapper.offsetWidth - window.innerWidth);
+
+            gsap.to(wrapper, {
+                x: shift,
+                ease: 'none',
                 scrollTrigger: {
                     trigger: section,
                     start: 'top top',
@@ -153,7 +139,6 @@ export default function AnimTextRotateSection() {
 
             return () => {
                 split.revert();
-                wrapperTween.kill();
             };
         }, sectionRef);
 

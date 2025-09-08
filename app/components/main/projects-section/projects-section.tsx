@@ -150,7 +150,6 @@ const ProjectsSection = () => {
                 }
 
                 let prev = Math.round(item.getBoundingClientRect().width);
-                console.log(`ширина li[${i}] ${prev}px`);
 
                 const ro = new ResizeObserver(([entry]) => {
                     const w = Math.round(
@@ -160,7 +159,6 @@ const ProjectsSection = () => {
                     );
                     if (w !== prev) {
                         prev = w;
-                        console.log(`ширина проекту ${w}px (li[${i}])`);
                     }
                 });
 
@@ -168,32 +166,8 @@ const ProjectsSection = () => {
                 self.add(() => ro.disconnect());
             });
 
-            let prevWidth = window.innerWidth;
-            const recalcHeights = () => {
-                const hH = getHeaderH();
-                items.forEach((item, i) => {
-                    const h = baseVh - hH * Math.min(i, 2);
-                    gsap.set(item, {height: h});
-                    const picture = item.querySelector<HTMLElement>("picture");
-                    if (picture) {
-                        gsap.set(picture, {height: h, width: "100%"});
-                        if (isMobile) gsap.set(picture, {clearProps: "transform,willChange"});
-                    }
-                });
-            };
 
-            const onResize = () => {
-                const curW = window.innerWidth;
-                if (curW === prevWidth) return;
-                prevWidth = curW;
-                recalcHeights();
-            };
 
-            window.addEventListener("resize", onResize, {passive: true});
-
-            self.add(() => {
-                window.removeEventListener("resize", onResize);
-            });
         }, listRef);
 
         return () => ctx.revert();
