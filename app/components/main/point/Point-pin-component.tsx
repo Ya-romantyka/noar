@@ -23,19 +23,18 @@ export default function PointPinComponent() {
         let textTl: gsap.core.Timeline | null = null;
 
         gsap.set(line, { height: '', opacity: 1 });
-        const target = parseFloat(getComputedStyle(line).height) || 0;
 
         gsap.set(line, { height: 0 });
         gsap.set(text, { opacity: 0 });
 
         heightTween = gsap.to(line, {
-            height: target,
+            height: '100%',
             ease: 'none',
             scrollTrigger: {
                 trigger: wrapper,
                 start: 'top center',
                 end: 'bottom center',
-                scrub: true,
+                scrub: 2,
             },
         });
 
@@ -46,11 +45,10 @@ export default function PointPinComponent() {
                 end: 'bottom center',
                 scrub: true,
             },
-            defaults: { ease: 'none' },
         })
-            .fromTo(text, { opacity: 0 }, { opacity: 1, duration: 0.2 })
-            .to({}, { duration: 0.6 })
-            .to(text, { opacity: 0, duration: 0.2 });
+            .fromTo(text, { opacity: 0 }, { opacity: 1, duration: 0.1 })
+            .to({}, { duration: 0.8 })
+            .to(text, { opacity: 0, duration: 0.1 });
 
         return () => {
             heightTween?.scrollTrigger?.kill();

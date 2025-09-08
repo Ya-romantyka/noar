@@ -71,16 +71,16 @@ export default function AnimTextRotateSection() {
                 gsap.set(m.el, {
                     yPercent: 200,
                     opacity: 0,
-                    filter: 'blur(10px)',
-                    force3D: true,
+                    // filter: 'blur(10px)',
+                    // force3D: true,
                     willChange: 'transform, filter'
                 });
             });
             gsap.set(button, {
                 yPercent: 200,
                 opacity: 0,
-                filter: 'blur(10px)',
-                force3D: true,
+                // filter: 'blur(10px)',
+                // force3D: true,
                 willChange: 'transform, filter'
             });
 
@@ -113,7 +113,7 @@ export default function AnimTextRotateSection() {
                 gsap.to(el, {
                     yPercent: 0,
                     opacity: 1,
-                    filter: 'blur(0px)',
+                    // filter: 'blur(0px)',
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: section,
