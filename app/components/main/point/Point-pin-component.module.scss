@@ -15,14 +15,22 @@
 }
 
 .line {
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   height: 100%;
   width: 0.1rem;
   background: #000;
   flex-shrink: 0;
   will-change: height;
 }
-
+.textWrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  padding-top: 2rem;
+  height: 100%;
+}
 .text {
   color:  #101010;
   font-size: 1.6rem;
