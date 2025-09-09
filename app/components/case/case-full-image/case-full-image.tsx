@@ -7,6 +7,7 @@ import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 interface video {
     src: string;
     type: string;
+    poster?: string;
 }
 interface CaseFullImage {
     image?: string;
@@ -30,6 +31,7 @@ const CaseHero: FC<CaseFullImage> = ({image, video}) => {
                 <video
                     className={styles.video}
                     autoPlay={false}
+                    poster={video.poster ?? ''}
                     loop={true}
                     muted={true}
                     controls={false}
