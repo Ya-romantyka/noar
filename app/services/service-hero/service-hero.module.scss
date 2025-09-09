@@ -1,5 +1,6 @@
 .section {
   padding-top: 13.2rem;
+  position: relative;
 }
 
 .header {
@@ -34,6 +35,14 @@
 .spacer {
   width: 0;
   display: block;
+}
+
+.video {
+  position: absolute;
+  bottom: -4rem;
+  width: 80%;
+  left: 10%;
+  z-index: -1;
 }
 
 @media (max-width: 767px) {
@@ -86,6 +95,13 @@
 
   .title {
     width: 100%;
+  }
+
+  .video {
+    bottom: 0;
+    width: 60rem;
+    left: 10%;
+    z-index: -1;
   }
 
 

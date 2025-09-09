@@ -10,11 +10,14 @@ import styles from "./contact-hero.module.scss";
 import clsx from "clsx";
 import ContactForm from "../form/contact-form";
 import ContactInfo from "../contact-info/contact-info";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 export default function ContactHero() {
   const container = useRef<HTMLDivElement | null>(null);
   const splineRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
+  useAutoPlayVideo(videoRef)
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
@@ -82,6 +85,10 @@ export default function ContactHero() {
               </span>
             </span>
           </h1>
+          <video className={styles.video} loop muted playsInline autoPlay={true} ref={videoRef}>
+            <source src="/videos/HalfCircle.mp4" type="video/mp4; codecs=hvc1" />
+            <source src="/videos/HalfCircle.webm" type="video/webm" />
+          </video>
           <div className={styles.text}>
             <p>Tell us all about it!</p>
             <p>

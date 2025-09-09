@@ -8,6 +8,7 @@ import Container from "@/app/components/layout/container/container";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +19,10 @@ type ServiceHeroProps = {
 const ServiceHero = ({device}: ServiceHeroProps) => {
     const container = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLElement | null>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
+
+    useAutoPlayVideo(videoRef)
     useGSAP(
         () => {
             const sel = gsap.utils.selector(container);
@@ -109,6 +113,10 @@ const ServiceHero = ({device}: ServiceHeroProps) => {
                         </h1>
                     )}
                 </div>
+                <video className={styles.video} loop muted playsInline autoPlay={true} ref={videoRef}>
+                    <source src="/videos/Sym.mp4" type="video/mp4; codecs=hvc1"/>
+                    <source src="/videos/Sym.webm" type="video/webm"/>
+                </video>
             </Container>
         </section>
     );

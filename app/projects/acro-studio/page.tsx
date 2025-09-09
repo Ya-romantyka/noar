@@ -21,13 +21,13 @@ export default function CasePage() {
                 year="2023"
             />
             <CaseFullImage
-                // image="/images/full-image.webp
-                video={
-                    {
-                        src: '/videos/HORIZONT.mp4',
-                        type: 'video/mp4',
-                    }
-                }
+                image="/images/full-image.webp"
+                // video={
+                //     {
+                //         src: '/videos/HORIZONT.mp4',
+                //         type: 'video/mp4',
+                //     }
+                // }
             />
             <CaseGallery
                 label="Visuals"
