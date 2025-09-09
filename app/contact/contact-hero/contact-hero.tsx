@@ -38,12 +38,12 @@ export default function ContactHero() {
 
                 if (!form || !videoEl) return;
                 const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
-                const offset = 75 * remInPx;
+                const offset = 78 * remInPx;
 
                 ScrollTrigger.create({
                     trigger: section,
                     start: "top top",
-                    endTrigger: 'form',
+                    endTrigger: section,
                     end: `bottom-=${offset} top`,
                     pin: videoEl,
                     pinSpacing: false,
