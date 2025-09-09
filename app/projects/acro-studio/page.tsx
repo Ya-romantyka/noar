@@ -20,16 +20,24 @@ export default function CasePage() {
                 duration="1 months"
                 year="2023"
             />
-            <CaseFullImage image="/images/full-image.webp"/>
+            <CaseFullImage
+                // image="/images/full-image.webp
+                video={
+                    {
+                        src: '/videos/HORIZONT.mp4',
+                        type: 'video/mp4',
+                    }
+                }
+            />
             <CaseGallery
                 label="Visuals"
                 title="Sophisticated and energetic cross-dimensional design."
-                images={[
-                    "/images/case-img-1.webp",
-                    "/images/case-img-2.webp",
-                    "/images/case-img-3.webp",
-                    "/images/case-img-4.webp",
-                    "/images/case-img-5.webp",
+                media={[
+                    {image: "/images/case-img-1.webp"},
+                    { video: { src: '/videos/HORIZONT.mp4', type: "video/mp4"}},
+                    {image: "/images/case-img-3.webp"},
+                    {image: "/images/case-img-4.webp"},
+                    {image: "/images/case-img-5.webp"},
                 ]}
             />
             <CaseGallerySwiper
@@ -63,7 +71,7 @@ export default function CasePage() {
                     },
                     {
                         name: "Helvetica Neue Cyr",
-                        file:'HelveticaNeueCyr',
+                        file: 'HelveticaNeueCyr',
                         author: "Linotype",
                         text: "“AcroStudio is a modern gym for children and their parents”",
                         list: ["Headlines - Bold", "Subtitles - Regular", "Taglines - SemiBold"],

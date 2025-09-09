@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import clsx from "clsx";
-import { useEffect, useRef } from "react";
+import {FC, ReactNode, useEffect, useRef} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,22 +9,37 @@ import styles from "./case-gallery.module.scss";
 import Container from "../../layout/container/container";
 import Image from "next/image";
 import useSplitTextAnimation from "@/app/hooks/useSplitTextAnimation";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
+import AutoVideo from "@/app/components/ui/Auto-video/AutoVideo";
 
 gsap.registerPlugin(ScrollTrigger);
 
+type VideoItem = {
+  src: string;
+  type: string;
+};
+
+type MediaItem = {
+  image?: string;
+  video?: VideoItem;
+};
+
 interface CaseGalleryProps {
   label: string;
-  title: React.ReactNode;
-  images: string[];
+  title: ReactNode;
+  media: MediaItem[];
 }
 
-const CaseGallery: React.FC<CaseGalleryProps> = ({ label, title, images }) => {
+const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
   let galleryClass = '';
 
   const galleryRef = useRef<HTMLUListElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  switch (images.length) {
+  useAutoPlayVideo(videoRef)
+
+  switch (media.length) {
     case 1:
       galleryClass = styles.gallery1;
       break;
@@ -44,22 +59,23 @@ const CaseGallery: React.FC<CaseGalleryProps> = ({ label, title, images }) => {
       galleryClass = styles.galleryDefault;
   }
 
-
-
   useEffect(() => {
     if (!galleryRef.current) return;
-    const img = galleryRef.current.querySelector("li:nth-child(3) img");
-    if (!img) return;
+
+    const mediaEl = galleryRef.current.querySelector<HTMLElement>(
+        "li:nth-child(3) img, li:nth-child(3) video"
+    );
+    if (!mediaEl) return;
 
     gsap.fromTo(
-        img,
+        mediaEl,
         { y: "10%", scale: 1.2 },
         {
           y: "-10%",
           ease: "none",
           immediateRender: false,
           scrollTrigger: {
-            trigger: img,
+            trigger: mediaEl,
             start: "top 80%",
             end: "bottom 20%",
             scrub: true,
@@ -70,7 +86,7 @@ const CaseGallery: React.FC<CaseGalleryProps> = ({ label, title, images }) => {
     ScrollTrigger.refresh();
   }, []);
 
-  useSplitTextAnimation(titleRef, {triggerOnScroll: true})
+  useSplitTextAnimation(titleRef, { triggerOnScroll: true });
 
   return (
       <section className={styles.section} data-header-white>
@@ -81,17 +97,23 @@ const CaseGallery: React.FC<CaseGalleryProps> = ({ label, title, images }) => {
           </span>
             <h2 ref={titleRef} className={styles.title}>{title}</h2>
           </div>
+
           <ul className={clsx(styles.images, galleryClass)} ref={galleryRef}>
-            {images.map((image, index) => (
+            {media.map((item, index) => (
                 <li className={styles.item} key={index}>
-                  <Image
-                      src={image}
-                      alt={`Gallery image ${index + 1}`}
-                      priority={true}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className={styles.image}
-                  />
+                  {item.image && (
+                      <Image
+                          src={item.image}
+                          alt={`Gallery image ${index + 1}`}
+                          priority={true}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className={styles.image}
+                      />
+                  )}
+
+                      {item.video && <AutoVideo video={item.video} className={styles.video} />}
+
                 </li>
             ))}
           </ul>
