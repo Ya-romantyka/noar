@@ -10,9 +10,10 @@ export const useLockedVH = () => {
         let prevWidth = window.innerWidth;
 
         const updateLockedVH = () => {
-            const vh = isMobile ? screen.height : window.innerHeight;
-            document.documentElement.style.setProperty('--locked-vh', `${vh + 1}px`);
+            const vh = isMobile ? screen.height - 10 : window.innerHeight + 2;
+            document.documentElement.style.setProperty('--locked-vh', `${vh}px`);
         };
+
 
         updateLockedVH();
 
