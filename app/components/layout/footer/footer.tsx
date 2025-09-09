@@ -186,6 +186,7 @@ const Footer: React.FC = () => {
               href="#"
               className={styles.upLink}
               onClick={scrollToTop}
+              yPercent={150}
             >
               Back to top
             </StaggerLink>

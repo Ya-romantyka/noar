@@ -11,8 +11,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0;
-        height: 1px;
+        bottom: -1px;
+        height: 2px;
         background: currentColor;
         transform: scaleX(0);
         transform-origin: right;
@@ -25,9 +25,13 @@
             transform-origin: left;
         }
     }
+
+    .char {
+           text-shadow: 0 2em 0 currentColor;
+         }
 }
 
 .text {
-    overflow: hidden;
+
     white-space: nowrap;
 }

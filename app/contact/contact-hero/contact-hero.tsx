@@ -47,7 +47,6 @@ export default function ContactHero() {
                     end: `bottom-=${offset} top`,
                     pin: videoEl,
                     pinSpacing: false,
-                    markers: true,
                 });
             }
         },
