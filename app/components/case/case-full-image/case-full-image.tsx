@@ -17,7 +17,6 @@ interface CaseFullImage {
 const CaseHero: FC<CaseFullImage> = ({image, video}) => {
 
     const videoRef = useRef<HTMLVideoElement>(null);
-
     useAutoPlayVideo(videoRef)
     return (
         <div className={styles.media}>
