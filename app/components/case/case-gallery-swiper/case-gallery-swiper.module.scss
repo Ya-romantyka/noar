@@ -1,79 +1,89 @@
 .section {
-    padding-top: 11.2rem;
-    background: #101010;
-    overflow: hidden;
+  padding-top: 11.2rem;
+  background: #101010;
+  overflow: hidden;
 }
 
 .header {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3.2rem;
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 3.2rem;
 }
 
 .title {
-    color: #fff;
-    font-size: 3.6rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 112%;
-    letter-spacing: -0.108rem;
+  color: #fff;
+  font-size: 3.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 112%;
+  letter-spacing: -0.108rem;
 }
 
 .imageList {
-    display: grid;
-    gap: 0.8rem;
+  display: grid;
+  gap: 0.8rem;
 }
 
 .imageWrapper {
-    aspect-ratio: 300/200;
-    display: block;
-    position: relative;
+  aspect-ratio: 300/200;
+  display: block;
+  position: relative;
 }
 
 .image {
-    object-fit: cover;
+  object-fit: cover;
+}
+
+.video {
+  width: 100%;
 }
 
 @media (min-width: 768px) {
-    .section {
-        padding-top: 15.6rem;
+  .section {
+    padding-top: 15.6rem;
+  }
+
+  .header {
+    position: relative;
+    margin-bottom: 6.4rem;
+    padding-left: 82rem;
+  }
+
+  .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .title {
+    font-size: 7rem;
+    letter-spacing: -0.35rem;
+    max-width: 95rem;
+  }
+
+  .swiperWrapper {
+    width: 100%;
+    height: max-content;
+  }
+  .swiper {
+    overflow: unset !important;
+  }
+
+  .swiper :global(.swiper-slide) {
+    width: 74%;
+  }
+
+  .firstSlide {
+    aspect-ratio: 18 / 12;
+  }
+
+  .image {
+    aspect-ratio: 18 / 12;
+    display: block;
+    position: relative;
+
+    img {
+      object-fit: cover;
     }
-
-    .header {
-        position: relative;
-        margin-bottom: 6.4rem;
-        padding-left: 82rem;
-    }
-
-    .label {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    .title {
-        font-size: 7rem;
-        letter-spacing: -0.35rem;
-        max-width: 95rem;
-    }
-
-    .swiperWrapper {
-        width: 100%;
-        height: max-content;
-    }
-    .swiper {
-        overflow: unset !important;
-    }
-
-
-
-    .image {
-        aspect-ratio: 18 / 12;
-        display: block;
-        position: relative;
-
-        img {
-            object-fit: cover;
-        }
-    }
+  }
 }

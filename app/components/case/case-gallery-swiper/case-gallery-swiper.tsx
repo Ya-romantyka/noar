@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import {useState, useEffect, useRef, FC, ReactNode} from "react";
-import styles from "./case-gallery-swiper.module.scss";
-import Container from "../../layout/container/container";
-import clsx from "clsx";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import useSplitTextAnimation from "@/app/hooks/useSplitTextAnimation";
-import {useCursorStyle} from "@/app/hooks/useCursorStyle";
+import { useState, useEffect, useRef, FC, ReactNode } from 'react';
+import styles from './case-gallery-swiper.module.scss';
+import Container from '../../layout/container/container';
+import clsx from 'clsx';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import useSplitTextAnimation from '@/app/hooks/useSplitTextAnimation';
+import { useCursorStyle } from '@/app/hooks/useCursorStyle';
+import { checkMediaTypeByExtension } from '@/utils/checkMediaTypeByExtension';
 
 interface CaseGallerySwiperProps {
   label: string;
@@ -21,18 +22,17 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
   title,
   images,
 }) => {
-
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const swiperWrapperRef = useRef<HTMLDivElement>(null);
 
   useCursorStyle({
     ref: swiperWrapperRef,
-    style: "drag",
-    text: "drag",
-  })
+    style: 'drag',
+    text: 'drag',
+  });
 
-  useSplitTextAnimation(titleRef, {triggerOnScroll: true})
+  useSplitTextAnimation(titleRef, { triggerOnScroll: true });
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -40,9 +40,9 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
     };
 
     checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
+    window.addEventListener('resize', checkScreenSize);
 
-    return () => window.removeEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
   return (
@@ -50,43 +50,69 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
       <Container className={styles.container}>
         <div className={styles.header}>
           <span
-            className={clsx(styles.label, "section-label section-label--white")}
+            className={clsx(styles.label, 'section-label section-label--white')}
           >
             {label}
           </span>
-          <h2 ref={titleRef} className={styles.title}>{title}</h2>
+          <h2 ref={titleRef} className={styles.title}>
+            {title}
+          </h2>
         </div>
 
         {isDesktop ? (
           <div className={styles.swiperWrapper} ref={swiperWrapperRef}>
             <Swiper
-                spaceBetween={20}
-                slidesPerView={1.3}
-                loop={true}
-                className={styles.swiper}
+              spaceBetween={20}
+              // slidesPerView={1.3}
+              slidesPerView="auto"
+              loop={true}
+              className={styles.swiper}
             >
-              {images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <picture className={styles.image}>
-                      <Image src={image} fill sizes="auto" alt="" />
-                    </picture>
+              {images.map((image, index) => {
+                const isVideo = checkMediaTypeByExtension(image) === 'video';
+                return (
+                  <SwiperSlide
+                    key={index}
+                    className={clsx(index === 0 && styles.firstSlide)}
+                    style={index === 0 ? { maxWidth: '42vw' } : {}}
+                    // style={index === 0 ? { aspectRatio: '18 / 12' } : {}}
+                  >
+                    {isVideo ? (
+                      <video autoPlay muted loop className={styles.video}>
+                        <source src={image} type="video/mp4" />
+                        Ваш браузер не поддерживает видео.
+                      </video>
+                    ) : (
+                      <picture className={styles.image}>
+                        <Image src={image} fill sizes="auto" alt="" />
+                      </picture>
+                    )}
                   </SwiperSlide>
-              ))}
+                );
+              })}
             </Swiper>
           </div>
         ) : (
           <div className={styles.imageList}>
-            {images.map((image, index) => (
-              <picture key={index} className={styles.imageWrapper}>
-                <Image
-                  src={image}
-                  alt=""
-                  className={styles.image}
-                  fill
-                  sizes="100vw"
-                />
-              </picture>
-            ))}
+            {images.map((image, index) => {
+              const isVideo = checkMediaTypeByExtension(image) === 'video';
+              return isVideo ? (
+                <video autoPlay muted loop className={styles.video}>
+                  <source src={image} type="video/mp4" />
+                  Ваш браузер не поддерживает видео.
+                </video>
+              ) : (
+                <picture key={index} className={styles.imageWrapper}>
+                  <Image
+                    src={image}
+                    alt=""
+                    className={styles.image}
+                    fill
+                    sizes="100vw"
+                  />
+                </picture>
+              );
+            })}
           </div>
         )}
       </Container>

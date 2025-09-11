@@ -1,5 +1,5 @@
-import styles from "./case-full-image.module.scss";
-import Image from "next/image";
+import styles from './case-full-image.module.scss';
+import Image from 'next/image';
 
 interface CaseFullImage {
   image: string;
