@@ -10,10 +10,12 @@ import styles from "./contact-hero.module.scss";
 import clsx from "clsx";
 import ContactForm from "../form/contact-form";
 import ContactInfo from "../contact-info/contact-info";
+import Magnetic from "@/app/components/ui/magnetic/magnetic";
 
 export default function ContactHero() {
     const container = useRef<HTMLDivElement | null>(null);
     const formRef = useRef<HTMLDivElement | null>(null);
+    const videoWrapperRef = useRef<HTMLDivElement | null>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useGSAP(
@@ -33,10 +35,10 @@ export default function ContactHero() {
             if (isDesktop) {
                 const form = formRef.current;
                 const section = container.current;
-                const videoEl = videoRef.current;
+                const video = videoWrapperRef.current;
 
 
-                if (!form || !videoEl) return;
+                if (!form || !video) return;
                 const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
                 const offset = 78 * remInPx;
 
@@ -45,7 +47,7 @@ export default function ContactHero() {
                     start: "top top",
                     endTrigger: section,
                     end: `bottom-=${offset} top`,
-                    pin: videoEl,
+                    pin: video,
                     pinSpacing: false,
                 });
             }
@@ -76,10 +78,15 @@ export default function ContactHero() {
               </span>
             </span>
                     </h1>
-                    <video className={styles.video} loop muted playsInline autoPlay ref={videoRef}>
-                        <source src="/videos/HalfCircle.mp4" type="video/mp4; codecs=hvc1"/>
-                        <source src="/videos/HalfCircle.webm" type="video/webm"/>
-                    </video>
+                    <div className={styles.video} ref={videoWrapperRef}>
+                        <Magnetic strength={40} className={styles.video}>
+                            <video  loop muted playsInline autoPlay ref={videoRef}>
+                                <source src="/videos/HalfCircle.mp4" type="video/mp4; codecs=hvc1"/>
+                                <source src="/videos/HalfCircle.webm" type="video/webm"/>
+                            </video>
+                        </Magnetic>
+
+                    </div>
                     <div className={styles.text}>
                         <p>Tell us all about it!</p>
                         <p>

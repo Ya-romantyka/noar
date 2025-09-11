@@ -9,6 +9,7 @@ import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
 import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
+import Magnetic from "@/app/components/ui/magnetic/magnetic";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,10 +114,13 @@ const ServiceHero = ({device}: ServiceHeroProps) => {
                         </h1>
                     )}
                 </div>
-                <video className={styles.video} loop muted playsInline autoPlay={true} ref={videoRef}>
-                    <source src="/videos/Sym.mp4" type="video/mp4; codecs=hvc1"/>
-                    <source src="/videos/Sym.webm" type="video/webm"/>
-                </video>
+                <Magnetic strength={40} className={styles.video}>
+                    <video  loop muted playsInline autoPlay={true} ref={videoRef}>
+                        <source src="/videos/Sym.mp4" type="video/mp4; codecs=hvc1"/>
+                        <source src="/videos/Sym.webm" type="video/webm"/>
+                    </video>
+                </Magnetic>
+
             </Container>
         </section>
     );

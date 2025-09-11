@@ -2,10 +2,18 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
+
+    li {
+        >div{
+            display: block;
+            width: 100%;
+        }
+    }
 }
 
 .item:last-child:nth-child(5) {
-    grid-column: 1 / -1
+    width: 100%;
+    grid-column: 1 / -1;
 }
 
 .radio {

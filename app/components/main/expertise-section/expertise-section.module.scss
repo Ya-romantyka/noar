@@ -64,7 +64,7 @@
 
 .pinBlock {
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   top: 10rem;
   left: 0;
   bottom: 5rem;
@@ -134,22 +134,26 @@
 
   .pinBlock {
     position: absolute;
-    left: 25rem;
+    left: 15rem;
     top: 15.6rem;
-    height: calc(100% - 21rem);
+    height: calc(100% - 25rem);
   }
 
   .videoParallax {
-    height: max-content;
     position: sticky;
     top: 100vh;
+    width: 60rem;
+    height: 60rem;
   }
 
   .video {
     margin-top: -5.6rem;
-    width: 50rem;
-    height: 50rem;
+
     flex-shrink: 0;
+
+    video {
+      width: 100%;
+    }
   }
 }
 

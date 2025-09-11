@@ -13,7 +13,6 @@ const Magnetic = forwardRef<HTMLDivElement, MagneticProps>(
   ({ children, strength = 40, className }, ref) => {
     const innerRef = useRef<HTMLDivElement | null>(null);
 
-    // Use passed ref or fallback to internal ref
     const combinedRef = (node: HTMLDivElement | null) => {
       if (typeof ref === "function") {
         ref(node);

@@ -38,11 +38,15 @@ export default function Header() {
     const connectRef = useRef<HTMLAnchorElement>(null);
     const socialRef = useRef<HTMLUListElement>(null);
     const menuRef = useRef<HTMLButtonElement>(null);
+    const headerRef = useRef<HTMLHeadElement>(null)
+    const menuListRef = useRef<HTMLUListElement>(null)
 
     useCursorStyle({ ref: connectRef, style: 'button' });
     useCursorStyle({ ref: menuRef, style: 'button' });
     useCursorStyle({ ref: logoRef, style: 'button' });
     useCursorStyle({ ref: socialRef, style: 'button' });
+    useCursorStyle({ ref: headerRef, style: 'big' });
+    useCursorStyle({ ref: menuListRef, style: 'big' });
 
     useEffect(() => {
         let ticking = false;
@@ -148,6 +152,7 @@ export default function Header() {
                     isTransparentHeader && styles.transparent,
                     hideHeader && styles.hide
                 )}
+                ref={headerRef}
             >
                 <Container className={styles.container}>
                     <Link
@@ -210,6 +215,7 @@ export default function Header() {
                     isTransparentHeader && styles.transparent,
                     { [styles.open]: isMenuOpen }
                 )}
+                ref={menuListRef}
             >
                 {menuItems.map((item) => (
                     <li key={item.href}>

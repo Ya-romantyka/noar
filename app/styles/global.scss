@@ -111,14 +111,13 @@ p {
   left: 0;
   pointer-events: none;
   z-index: 99999;
+  opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   mix-blend-mode: difference;
-  transform: scale(0);
-  opacity: 0;
+
 
   &.visible {
-    transform: scale(1);
-    opacity: 1;
+      opacity: 1;
   }
 
   &.drag,
@@ -129,6 +128,9 @@ p {
 }
 
 .cursor-ball {
+  --tx: 0px;
+  --ty: 0px;
+  opacity: 1;
   position: absolute;
   left: 0;
   top: 0;
@@ -144,6 +146,7 @@ p {
   transition:
           width 0.3s ease,
           height 0.3s ease,
+          opacity 0.3s ease,
           min-width 0.3s ease,
           min-height 0.3s ease,
           padding 0.3s ease,

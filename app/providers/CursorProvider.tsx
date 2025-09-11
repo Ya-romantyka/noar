@@ -55,6 +55,7 @@ export function CursorProvider({ children }: PropsWithChildren) {
     }, [variant]);
 
     const registryRef = useRef(new WeakMap<HTMLElement, CursorVariant>());
+    const outsideRef = useRef(false);
 
     const isSame = (a: CursorVariant, b: CursorVariant) =>
         a.style === b.style &&
@@ -74,7 +75,7 @@ export function CursorProvider({ children }: PropsWithChildren) {
         const root = rootRef.current!;
         const big = bigRef.current!;
         const small = smallRef.current!;
-        const canHover = window.matchMedia("(hover: hover)").matches;
+        const canHover = typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
         if (!canHover) return;
 
         gsap.set([big, small], { xPercent: -50, yPercent: -50, transformOrigin: "50% 50%" });
@@ -100,18 +101,11 @@ export function CursorProvider({ children }: PropsWithChildren) {
 
         const onPointerMove = (e: PointerEvent) => {
             if (e.pointerType === "mouse" && !e.isPrimary) return;
+            outsideRef.current = false;
             push(e.clientX, e.clientY);
             window.__cursorXY = { x: e.clientX, y: e.clientY };
             if (inViewport(e.clientX, e.clientY)) show();
             else hide();
-        };
-
-        const onMouseLeaveDoc = (e: MouseEvent) => {
-            if (!e.relatedTarget) hide();
-        };
-        const onMouseEnterDoc = () => {
-            const p = window.__cursorXY;
-            if (p && inViewport(p.x, p.y)) show();
         };
 
         const pressIn = () => gsap.to(big, { scale: 0.9, duration: 0.1, overwrite: true });
@@ -136,8 +130,6 @@ export function CursorProvider({ children }: PropsWithChildren) {
         document.addEventListener("pointerup", onPointerUp, { capture: true });
         document.addEventListener("pointercancel", onPointerCancel, { capture: true });
         document.addEventListener("lostpointercapture", onPointerCancel, { capture: true });
-        document.addEventListener("mouseleave", onMouseLeaveDoc, true);
-        document.addEventListener("mouseenter", onMouseEnterDoc, true);
 
         let dragging = false;
         const onDragStart = () => {
@@ -146,6 +138,7 @@ export function CursorProvider({ children }: PropsWithChildren) {
         };
         const onDragOver = (e: DragEvent) => {
             if (!dragging) return;
+            outsideRef.current = false;
             push(e.clientX, e.clientY);
             window.__cursorXY = { x: e.clientX, y: e.clientY };
             if (inViewport(e.clientX, e.clientY)) show();
@@ -161,59 +154,135 @@ export function CursorProvider({ children }: PropsWithChildren) {
         document.addEventListener("dragend", endDrag, true);
         document.addEventListener("drop", endDrag, true);
 
+        const onWindowOut = (e: MouseEvent) => {
+            const rt = e.relatedTarget as Node | null;
+            const outOfBounds =
+                e.clientX <= 0 ||
+                e.clientX >= window.innerWidth ||
+                e.clientY <= 0 ||
+                e.clientY >= window.innerHeight;
+            if (!rt || outOfBounds) {
+                outsideRef.current = true;
+                window.__cursorXY = undefined;
+                hide();
+            }
+        };
+        const onWindowOver = (e: MouseEvent) => {
+            outsideRef.current = false;
+            window.__cursorXY = { x: e.clientX, y: e.clientY };
+            if (inViewport(e.clientX, e.clientY)) show();
+        };
+        window.addEventListener("mouseout", onWindowOut, true);
+        window.addEventListener("mouseover", onWindowOver, true);
+
+        const onVis = () => {
+            if (document.hidden) {
+                outsideRef.current = true;
+                window.__cursorXY = undefined;
+                hide();
+            } else {
+                const p = window.__cursorXY;
+                if (p && inViewport(p.x, p.y)) {
+                    outsideRef.current = false;
+                    show();
+                }
+            }
+        };
+        document.addEventListener("visibilitychange", onVis, true);
+
+        const onBlur = () => {
+            outsideRef.current = true;
+            window.__cursorXY = undefined;
+            hide();
+        };
+        const onFocus = () => {
+            const p = window.__cursorXY;
+            if (p && inViewport(p.x, p.y)) {
+                outsideRef.current = false;
+                show();
+            }
+        };
+        window.addEventListener("blur", onBlur, true);
+        window.addEventListener("focus", onFocus, true);
+
         const pick = (delay: number) => {
             const targetT = performance.now() - delay;
             for (let i = 1; i < trail.length; i++) if (trail[i].t >= targetT) return trail[i - 1];
             return trail[trail.length - 1];
         };
 
-        const resolveVariantUnderCursor = (): CursorVariant => {
-            const p = window.__cursorXY;
-            const fallbackTone = (variantRef.current.tone ?? "white") as CursorTone;
-            const fallback: CursorVariant = { style: "big", tone: fallbackTone };
-
-            if (!p) return fallback;
-            if (!inViewport(p.x, p.y)) return fallback;
-
-            const stack = (document.elementsFromPoint(p.x, p.y) as HTMLElement[]).filter(
-                (el) => !el.closest(".cursor")
-            );
-
-            for (const el of stack) {
-                let node: HTMLElement | null = el;
-                while (node) {
-                    const v = registryRef.current.get(node);
-                    if (v) return v;
-                    const nodeTone = node.getAttribute("data-cursor-tone") as CursorTone | null;
-                    if (nodeTone === "black" || nodeTone === "white") return { style: "big", tone: nodeTone };
-                    node = node.parentElement;
-                }
-            }
-            return fallback;
-        };
-
         let raf = 0;
         const loop = () => {
-            const ps = pick(0);
-            const pb = pick(120);
-            gsap.set(small, { x: ps.x, y: ps.y });
-            gsap.set(big, { x: pb.x, y: pb.y });
+            if (!outsideRef.current) {
+                const ps = pick(0);
+                const pb = pick(120);
+                gsap.set(small, { x: ps.x, y: ps.y });
+                gsap.set(big, { x: pb.x, y: pb.y });
+                const p = window.__cursorXY;
+                if (!p || !inViewport(p.x, p.y)) hide();
+                else show();
 
-            const p = window.__cursorXY;
-            if (!p || !inViewport(p.x, p.y)) hide(); else show();
-
-            const next = resolveVariantUnderCursor();
-            if (!isSame(variantRef.current, next)) setVariant(next);
-
+                if (p && inViewport(p.x, p.y)) {
+                    const stack = (document.elementsFromPoint(p.x, p.y) as HTMLElement[]).filter(
+                        (el) => !el.closest(".cursor")
+                    );
+                    let next: CursorVariant | null = null;
+                    for (const el of stack) {
+                        let node: HTMLElement | null = el;
+                        while (node) {
+                            const v = registryRef.current.get(node);
+                            if (v) {
+                                next = v;
+                                break;
+                            }
+                            const nodeTone = node.getAttribute("data-cursor-tone") as CursorTone | null;
+                            if (nodeTone === "black" || nodeTone === "white") {
+                                next = { style: "big", tone: nodeTone };
+                                break;
+                            }
+                            node = node.parentElement;
+                        }
+                        if (next) break;
+                    }
+                    if (!next) next = { style: "big", tone: variantRef.current.tone ?? "white" };
+                    if (!isSame(variantRef.current, next)) setVariant(next);
+                }
+            } else {
+                hide();
+            }
             raf = requestAnimationFrame(loop);
         };
         raf = requestAnimationFrame(loop);
 
         const onScrollOrResize = () => {
             const p = window.__cursorXY;
-            if (!p || !inViewport(p.x, p.y)) hide(); else show();
-            const next = resolveVariantUnderCursor();
-            if (!isSame(variantRef.current, next)) setVariant(next);
+            if (!p || !inViewport(p.x, p.y)) hide();
+            else show();
+            if (p && inViewport(p.x, p.y)) {
+                const stack = (document.elementsFromPoint(p.x, p.y) as HTMLElement[]).filter(
+                    (el) => !el.closest(".cursor")
+                );
+                let next: CursorVariant | null = null;
+                for (const el of stack) {
+                    let node: HTMLElement | null = el;
+                    while (node) {
+                        const v = registryRef.current.get(node);
+                        if (v) {
+                            next = v;
+                            break;
+                        }
+                        const nodeTone = node.getAttribute("data-cursor-tone") as CursorTone | null;
+                        if (nodeTone === "black" || nodeTone === "white") {
+                            next = { style: "big", tone: nodeTone };
+                            break;
+                        }
+                        node = node.parentElement;
+                    }
+                    if (next) break;
+                }
+                if (!next) next = { style: "big", tone: variantRef.current.tone ?? "white" };
+                if (!isSame(variantRef.current, next)) setVariant(next);
+            }
         };
         window.addEventListener("scroll", onScrollOrResize, true);
         window.addEventListener("resize", onScrollOrResize, true);
@@ -224,12 +293,15 @@ export function CursorProvider({ children }: PropsWithChildren) {
             document.removeEventListener("pointerup", onPointerUp, true);
             document.removeEventListener("pointercancel", onPointerCancel, true);
             document.removeEventListener("lostpointercapture", onPointerCancel, true);
-            document.removeEventListener("mouseleave", onMouseLeaveDoc, true);
-            document.removeEventListener("mouseenter", onMouseEnterDoc, true);
+            window.removeEventListener("mouseout", onWindowOut, true);
+            window.removeEventListener("mouseover", onWindowOver, true);
             document.removeEventListener("dragstart", onDragStart, true);
             document.removeEventListener("dragover", onDragOver, true);
             document.removeEventListener("dragend", endDrag, true);
             document.removeEventListener("drop", endDrag, true);
+            document.removeEventListener("visibilitychange", onVis, true);
+            window.removeEventListener("blur", onBlur, true);
+            window.removeEventListener("focus", onFocus, true);
             window.removeEventListener("scroll", onScrollOrResize, true);
             window.removeEventListener("resize", onScrollOrResize, true);
             cancelAnimationFrame(raf);
