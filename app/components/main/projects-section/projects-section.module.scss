@@ -1,6 +1,7 @@
 .section {
   position: relative;
   z-index: 1;
+  width: 100%;
   overflow: hidden;
   padding-bottom: 1px;
 }
@@ -52,6 +53,7 @@
 
 @media (min-width: 768px) {
   .section {
+    overflow: visible;
   }
   .label {
     float: left;

@@ -17,7 +17,6 @@ const ModuleMission: React.FC<Props> = ({
 }) => {
   const topRef = useRef<HTMLDivElement | null>(null);
   const middleRef = useRef<HTMLDivElement | null>(null);
-  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const top = topRef.current;
@@ -29,37 +28,47 @@ const ModuleMission: React.FC<Props> = ({
       top.style.setProperty('--progress', `${(clamped * 100).toFixed(2)}%`);
     };
 
-    const apply = () => {
-      const { scrollTop, clientHeight, scrollHeight } = middle;
-      if (scrollHeight <= clientHeight) {
-        setProgress(1);
-      } else {
-        const seen = (scrollTop + clientHeight) / scrollHeight;
-        setProgress(seen);
-      }
-      rafRef.current = null;
+    let rafId: number | null = null;
+    const schedule = () => {
+      if (rafId != null) return;
+      rafId = requestAnimationFrame(() => {
+        const { scrollTop, clientHeight, scrollHeight } = middle;
+        if (scrollHeight <= clientHeight) {
+          setProgress(1);
+        } else {
+          const seen = (scrollTop + clientHeight) / scrollHeight;
+          setProgress(seen);
+        }
+        rafId = null;
+      });
     };
 
-    const onScroll = () => {
-      if (rafRef.current != null) return;
-      rafRef.current = requestAnimationFrame(apply);
+    const onScroll = () => schedule();
+
+    const DEBOUNCE_MS = 80;
+    let roTimer: number | null = null;
+    const onResizeObserved = () => {
+      if (roTimer !== null) window.clearTimeout(roTimer);
+      roTimer = window.setTimeout(() => {
+        roTimer = null;
+        schedule();
+      }, DEBOUNCE_MS);
     };
 
-    requestAnimationFrame(apply);
-    const t = setTimeout(apply, 0);
+    schedule();
+    const t = window.setTimeout(schedule, 0);
 
     middle.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
 
-    const ro = new ResizeObserver(onScroll);
+    const ro = new ResizeObserver(onResizeObserved);
     ro.observe(middle);
 
     return () => {
       middle.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
       ro.disconnect();
-      clearTimeout(t);
-      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+      window.clearTimeout(t);
+      if (roTimer !== null) window.clearTimeout(roTimer);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, [open]);
 

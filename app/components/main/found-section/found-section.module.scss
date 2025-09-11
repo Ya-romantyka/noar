@@ -1,5 +1,6 @@
 .section {
   padding: 2rem 0 11.2rem;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -50,9 +51,11 @@
 
 .video {
   width: 100%;
-  aspect-ratio: 39.3/85.2;
+  aspect-ratio: 2/3;
+  object-fit: cover;
   flex-shrink: 0;
   background: var(--tech-grey, #E0E0E0);
+
 }
 
 

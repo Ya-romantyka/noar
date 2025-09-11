@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 import fluidCursor from "@/app/hooks/useFluidCursor";
 import styles from './Logo-anim-about-component.module.scss'
 import clsx from "clsx";
+import useSvgGradientAnimation from "@/app/hooks/useSvgGradientAnimation";
 
 interface IProps {
     className?: string;
@@ -13,6 +14,9 @@ export default function LogoAnimAboutComponent({className}:IProps) {
     useEffect(() => {
         fluidCursor();
     }, []);
+
+    useSvgGradientAnimation('#strokeGradient' );
+
 
     return (
         <div className={clsx(styles.logo, className)}>
@@ -66,21 +70,28 @@ export default function LogoAnimAboutComponent({className}:IProps) {
                 }}
             >
                 <defs>
-                    <linearGradient id="strokeGradient" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="white" stopOpacity="0.15"/>
+                    <linearGradient
+                        id="strokeGradient"
+                        x1="100%"
+                        y1="0%"
+                        x2="0%"
+                        y2="100%"
+                        gradientUnits="objectBoundingBox"
+                    >
+                        <stop offset="0%" stopColor="white" stopOpacity="0.25"/>
                         <stop offset="10%" stopColor="white" stopOpacity="0.1"/>
-                        <stop offset="40%" stopColor="white" stopOpacity="0.015"/>
-                        <stop offset="60%" stopColor="white" stopOpacity="0.015"/>
+                        <stop offset="40%" stopColor="white" stopOpacity="0.02"/>
+                        <stop offset="60%" stopColor="white" stopOpacity="0.02"/>
                         <stop offset="90%" stopColor="white" stopOpacity="0.1"/>
-                        <stop offset="100%" stopColor="white" stopOpacity="0.15"/>
-                        <animateTransform
-                            attributeName="gradientTransform"
-                            type="translate"
-                            from="1 -1"
-                            to="-1 1"
-                            dur="10s"
-                            repeatCount="indefinite"
-                        />
+                        <stop offset="100%" stopColor="white" stopOpacity="0.25"/>
+                        {/*<animateTransform*/}
+                        {/*    attributeName="gradientTransform"*/}
+                        {/*    type="translate"*/}
+                        {/*    from="1 -1"*/}
+                        {/*    to="-1 1"*/}
+                        {/*    dur="10s"*/}
+                        {/*    repeatCount="indefinite"*/}
+                        {/*/>*/}
                     </linearGradient>
                 </defs>
 

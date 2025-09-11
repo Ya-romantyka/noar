@@ -7,11 +7,14 @@ import clsx from "clsx";
 import Button from "@/app/components/ui/button/button";
 import ButtonIcon from "@/public/images/button_icon.svg";
 import useSplitTextAnimation from "@/app/hooks/useSplitTextAnimation";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 const FoundSection = () => {
 
     const titleRef = useRef<HTMLParagraphElement | null>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
+    useAutoPlayVideo(videoRef)
     useSplitTextAnimation(titleRef, {triggerOnScroll: true})
     return (
         <section className={styles.section}>
@@ -34,8 +37,16 @@ const FoundSection = () => {
                     </div>
                 </div>
             </Container>
-            <video className={styles.video}>
-
+            <video
+                className={styles.video}
+                autoPlay={false}
+                loop={true}
+                muted={true}
+                controls={false}
+                ref={videoRef}
+                preload="none"
+            >
+                <source src="/videos/HORIZONT.mp4" type="video/mp4"/>
             </video>
         </section>
     );

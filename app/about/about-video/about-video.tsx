@@ -1,5 +1,7 @@
-import React from "react";
+'use client'
+import React, {useRef} from "react";
 import styles from "./about-video.module.scss";
+import {useAutoPlayVideo} from "@/app/hooks/useAutoPlayVideo";
 
 interface AboutVideoProps {
   src?: string;
@@ -16,10 +18,14 @@ const AboutVideo: React.FC<AboutVideoProps> = ({
   poster,
   autoplay = false,
   loop = false,
-  muted = false,
-  controls = true,
+  muted = true,
+  controls = false,
   className = "",
 }) => {
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useAutoPlayVideo(videoRef)
   return (
     <video
       className={`${styles.video} ${className}`}
@@ -29,7 +35,11 @@ const AboutVideo: React.FC<AboutVideoProps> = ({
       loop={loop}
       muted={muted}
       controls={controls}
-    />
+      ref={videoRef}
+      preload="none"
+    >
+      <source src="/videos/HORIZONT.mp4" type="video/mp4" />
+    </video>
   );
 };
 

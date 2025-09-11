@@ -107,7 +107,8 @@ p {
 
 .cursor {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 99999;
   transition: opacity 0.3s ease, transform 0.3s ease;

@@ -1,9 +1,9 @@
 .video {
     position: relative;
-    aspect-ratio: 39.3 / 85.2;
+    aspect-ratio: 2/3;
     display: block;
+    object-fit: cover;
     width: 100%;
-    background-color: #E0E0E0;
 }
 
 @media (min-width: 768px) {

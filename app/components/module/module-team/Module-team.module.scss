@@ -4,7 +4,7 @@
   inset: 0;
   width: 100%;
   background: rgba(16, 16, 16, 0.42);
-  height: var(--locked-vh, 100vh);
+  height: 100dvh;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -36,7 +36,7 @@
   }
 }
 .inner {
-  height: var(--locked-vh, 100vh);
+  height: 100dvh;
   background: #FFF;
   display: flex;
   flex-direction: column;

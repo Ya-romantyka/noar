@@ -3,6 +3,8 @@
     display: inline-flex;
     align-items: center;
     overflow: hidden;
+    padding-bottom: 4px;
+    margin-bottom: -4px;
     text-decoration: none;
     width: max-content;
     color: currentColor;
@@ -12,7 +14,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        height: 1px;
+        height: 1.5px;
         background: currentColor;
         transform: scaleX(0);
         transform-origin: right;
@@ -25,9 +27,13 @@
             transform-origin: left;
         }
     }
+
+    .char {
+           text-shadow: 0 2em 0 currentColor;
+         }
 }
 
 .text {
-    overflow: hidden;
+
     white-space: nowrap;
 }

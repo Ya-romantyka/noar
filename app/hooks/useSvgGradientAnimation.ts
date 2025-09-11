@@ -10,13 +10,11 @@ export default function useSvgGradientAnimation(
     useEffect(() => {
         const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
         if (reduced) {
-            console.log('анімація не запущена, причина: prefers-reduced-motion');
             return;
         }
 
         const el = document.querySelector<SVGLinearGradientElement>(selector);
         if (!el) {
-            console.log('анімація не запущена, причина: градієнт не знайдено');
             return;
         }
         const grad: SVGLinearGradientElement = el;
@@ -35,7 +33,6 @@ export default function useSvgGradientAnimation(
             rafId = requestAnimationFrame(tick);
         };
 
-        console.log('анімація запущена');
         rafId = requestAnimationFrame(tick);
         return () => cancelAnimationFrame(rafId);
     }, [selector, durationMs, amplitude]);

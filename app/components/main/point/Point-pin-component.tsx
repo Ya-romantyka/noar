@@ -15,61 +15,39 @@ export default function PointPinComponent() {
 
     useEffect(() => {
         const wrapper = wrapperRef.current;
-        const pin = pinRef.current;
         const line = lineRef.current;
         const text = textRef.current;
-        if (!wrapper || !pin || !line || !text) return;
+        if (!wrapper || !line || !text) return;
 
-
-        const trigger = ScrollTrigger.create({
-            trigger: wrapper,
-            start: 'top center',
-            end: 'bottom center',
-            pin: pin,
-            pinSpacing: false,
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: wrapper,
+                start: 'top center',
+                end: 'bottom center',
+                scrub: true,
+                pin: line,
+                pinSpacing: false,
+            },
         });
 
-
-        const lineTween = gsap.fromTo(line,
-            {scaleY: 0},
-            {
-                scaleY: 1,
-                transformOrigin: 'center bottom',
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: wrapper,
-                    start: 'top center',
-                    end: 'bottom center',
-                    scrub: true,
-                }
-            }
-        );
-
-        const textTween = gsap.fromTo(text, {
-           opacity: 0,
-        },
-            {
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: wrapper,
-                    start: 'top center',
-                    end: `top center-=20%`,
-                    scrub:true,
-                }
-            })
+        tl.fromTo(text, { opacity: 0 }, { opacity: 1, duration: 0.1 })
+            .to({}, { duration: 0.8 })
+            .to(text, { opacity: 0, duration: 0.1 });
 
         return () => {
-            trigger?.kill();
-            lineTween?.kill();
-            textTween?.kill();
+            tl.scrollTrigger?.kill();
+            tl.kill();
+            gsap.set(text, { clearProps: 'opacity' });
         };
     }, []);
 
     return (
-        <div ref={wrapperRef} className={styles.pinWrapper} >
+        <div ref={wrapperRef} className={styles.pinWrapper}>
             <div ref={pinRef} className={styles.pin}>
-                <div ref={lineRef} className={styles.line}/>
-                <p className={styles.text} ref={textRef}>To the point</p>
+                <div  className={styles.line}/>
+                <div className={styles.textWrapper} ref={lineRef}>
+                    <p className={styles.text} ref={textRef}>To the point</p>
+                </div>
             </div>
         </div>
     );
