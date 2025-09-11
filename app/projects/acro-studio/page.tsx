@@ -24,12 +24,20 @@ export default function CasePage() {
       <CaseGallery
         label="Visuals"
         title="Sophisticated and energetic cross-dimensional design."
-        images={[
-          '/images/case-img-1.webp',
-          '/images/case-img-2.webp',
-          '/images/case-img-3.webp',
-          '/images/case-img-4.webp',
-          '/images/case-img-5.webp',
+        media={[
+          { image: '/images/case-img-1.webp' },
+          // {
+          //   video: {
+          //     src: '/videos/HORIZONT.mp4',
+          //     type: 'video/mp4',
+          //     poster: '/images/case-img-2.webp',
+          //   },
+          // },
+
+          { image: '/images/case-img-2.webp' },
+          { image: '/images/case-img-3.webp' },
+          { image: '/images/case-img-4.webp' },
+          { image: '/images/case-img-5.webp' },
         ]}
       />
       <CaseGallerySwiper
