@@ -11,10 +11,7 @@
     }
 }
 
-.item:last-child:nth-child(5) {
-    width: 100%;
-    grid-column: 1 / -1;
-}
+
 
 .radio {
     position: relative;
@@ -72,6 +69,12 @@
     transition: 0.3s;
 }
 
+@media (max-width: 767px) {
+    .item:last-child:nth-child(5) {
+        width: 100%;
+        grid-column: 1 / -1;
+    }
+}
 @media (min-width: 768px) {
     .list {
         display: flex;

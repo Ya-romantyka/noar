@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef} from "react";
 import Image from "next/image";
 import styles from "./about-principles.module.scss";
 import Container from "@/app/components/layout/container/container";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 import ExpandableText from "@/app/components/ui/expandable-text/expandable-text";
 import AnimatedText from "@/app/components/ui/animated-text/animated-text";
 import {useIsMobile} from "@/app/hooks/useIsMobile";
@@ -13,15 +13,15 @@ import {useIsMobile} from "@/app/hooks/useIsMobile";
 gsap.registerPlugin(ScrollTrigger);
 
 const circles = [
-    { src: "/images/circle9.svg", rotate: -30 },
-    { src: "/images/circle8.svg", rotate: 20 },
-    { src: "/images/circle7.svg", rotate: -15 },
-    { src: "/images/circle6.svg", rotate: 40 },
-    { src: "/images/circle5.svg", rotate: -20 },
-    { src: "/images/circle4.svg", rotate: 30 },
-    { src: "/images/circle3.svg", rotate: -10 },
-    { src: "/images/circle2.svg", rotate: 25 },
-    { src: "/images/circle1.svg", rotate: -35 },
+    {src: "/images/circle9.svg", rotate: -30},
+    {src: "/images/circle8.svg", rotate: 20},
+    {src: "/images/circle7.svg", rotate: -15},
+    {src: "/images/circle6.svg", rotate: 40},
+    {src: "/images/circle5.svg", rotate: -20},
+    {src: "/images/circle4.svg", rotate: 30},
+    {src: "/images/circle3.svg", rotate: -10},
+    {src: "/images/circle2.svg", rotate: 25},
+    {src: "/images/circle1.svg", rotate: -35},
 ];
 
 const AboutPrinciples: React.FC = () => {
@@ -45,13 +45,13 @@ const AboutPrinciples: React.FC = () => {
             scrollTrigger: {
                 trigger: circlesRef.current,
                 start: "top 80%",
-                end: isMobile? "center 20%" : "center 40%",
+                end: isMobile ? "center 20%" : "center 40%",
                 scrub: 3,
             },
         });
         const circlesST = circlesTween.scrollTrigger!;
 
-        gsap.set(lineRef.current, { height: "0%" });
+        gsap.set(lineRef.current, {height: "0%"});
 
         const lineTween = gsap.to(lineRef.current, {
             height: "100%",
@@ -65,7 +65,7 @@ const AboutPrinciples: React.FC = () => {
         });
         const lineST = lineTween.scrollTrigger!;
 
-        gsap.set(titleRef.current, { y: "10%" });
+        gsap.set(titleRef.current, {y: "10%"});
         const titleTween = gsap.to(titleRef.current, {
             y: "-10%",
             ease: "none",
@@ -93,7 +93,7 @@ const AboutPrinciples: React.FC = () => {
             <Container>
                 <div ref={circlesRef} className={styles.circles}>
                     {circles.map((circle, index) => (
-                        <Image key={index} src={circle.src} alt="" width={100} height={100} />
+                        <Image key={index} src={circle.src} alt="" width={100} height={100}/>
                     ))}
                 </div>
 
@@ -107,11 +107,14 @@ const AboutPrinciples: React.FC = () => {
                 </h2>
 
                 <div className={styles.animWrapper}>
-                    <div ref={lineRef} className={styles.line} />
+                    <div ref={lineRef} className={styles.line}/>
                     <h3 className={styles.subtitle}>Mission</h3>
                 </div>
 
-                <ExpandableText>
+                <ExpandableText popup={{
+                    title: 'About title',
+                    text: 'About text'
+                }}>
                     <p>
                         The noar philosophy stems from the principles of system sciences. We
                         offer more than just design or development, we provide a product

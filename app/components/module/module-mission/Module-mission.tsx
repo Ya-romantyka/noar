@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef } from 'react';
 import styles from './Module-mission.module.scss';
 import clsx from 'clsx';
@@ -8,12 +9,16 @@ interface Props {
   className?: string;
   onClose?: () => void;
   open?: boolean;
+  title: string;
+  text: string;
 }
 
 const ModuleMission: React.FC<Props> = ({
   className,
   onClose,
   open = false,
+    title,
+    text,
 }) => {
   const topRef = useRef<HTMLDivElement | null>(null);
   const middleRef = useRef<HTMLDivElement | null>(null);
@@ -79,18 +84,11 @@ const ModuleMission: React.FC<Props> = ({
         <div className={styles.middle} ref={middleRef} data-lenis-prevent>
           <span className={styles.label}>Mission</span>
           <h3 className={styles.title}>
-            Acro Studio is a small network of gyms.
+            {title}
           </h3>
           <p className={styles.text}>
-            Acrobatics, stretching, fly yoga, fitness for adults and their
-            children. The client&apos;s request was to create an identity for
-            use online and offline. The logo was based on the idea of an
-            acrobatic track - the main attribute of this sport. The minimalistic
-            shape combined with bright green and purple colors create an image
-            associated with sports and energy, but do not burden it, preserving
-            the childlike ease. In addition, a series of icons and graphic
-            decorative elements were developed for social media, which can be
-            used to create banners, flyers and posts.
+            {text}
+
           </p>
         </div>
         <div className={styles.bottom}>

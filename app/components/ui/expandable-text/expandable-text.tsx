@@ -7,11 +7,16 @@ import Button from "@/app/components/ui/button/button";
 import ButtonIcon from "@/app/assets/icons/button-icon.svg";
 import ModuleMission from "@/app/components/module/module-mission/Module-mission";
 
+interface IPopup {
+    title: string;
+    text: string;
+}
 interface ExpandableTextProps {
     children: ReactNode;
+    popup: IPopup
 }
 
-export default function ExpandableText({children}: ExpandableTextProps) {
+export default function ExpandableText({children, popup}: ExpandableTextProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const textRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,7 +51,7 @@ export default function ExpandableText({children}: ExpandableTextProps) {
                 </Button>
             </div>
 
-            <ModuleMission open={isOpen} onClose={close}/>
+            <ModuleMission title={popup.title} text={popup.text} open={isOpen} onClose={close}/>
 
         </div>
     );

@@ -3,12 +3,17 @@ import Container from "../../layout/container/container";
 import clsx from "clsx";
 import ExpandableText from "../../ui/expandable-text/expandable-text";
 
+interface IPopup {
+  title: string;
+  text: string;
+}
 interface CaseExpandTextProps {
   label: string;
   text: React.ReactNode;
+  popup:IPopup
 }
 
-const CaseExpandText: React.FC<CaseExpandTextProps> = ({ label, text }) => {
+const CaseExpandText: React.FC<CaseExpandTextProps> = ({ label, text, popup }) => {
   return (
     <section className={styles.section} data-header-white>
       <Container className={styles.container}>
@@ -20,7 +25,7 @@ const CaseExpandText: React.FC<CaseExpandTextProps> = ({ label, text }) => {
           </span>
         </div>
 
-        <ExpandableText>{text}</ExpandableText>
+        <ExpandableText popup={popup}>{text}</ExpandableText>
       </Container>
     </section>
   );
