@@ -60,6 +60,7 @@ export default function CasePage() {
                 fonts={[
                     {
                         name: 'e-Ukraine',
+                        file:'Fixel',
                         author: 'thedigital.gov.ua',
                         text: '“AcroStudio is a modern gym for children and their parents”',
                         list: ['Headlines - Bold', 'Bodytext - Regular'],
