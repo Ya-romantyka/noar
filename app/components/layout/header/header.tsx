@@ -143,6 +143,24 @@ export default function Header() {
         });
     };
 
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const onPointerDown = (e: PointerEvent) => {
+            const target = e.target as Node | null;
+            if (menuRef.current && target && menuRef.current.contains(target)) return;
+            if (menuListRef.current && target && menuListRef.current.contains(target)) return;
+
+            setIsMenuOpen(false);
+        };
+
+        document.addEventListener('pointerdown', onPointerDown);
+        return () => {
+            document.removeEventListener('pointerdown', onPointerDown);
+        };
+    }, [isMenuOpen]);
+
+
     return (
         <>
             <header

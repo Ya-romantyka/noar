@@ -152,6 +152,7 @@ export default function Cases() {
               loop
               muted
               playsInline
+              preload={'auto'}
               ref={videoRef}
             >
               <source src="/videos/Cube.mp4" type="video/mp4; codecs=hvc1" />

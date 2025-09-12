@@ -25,7 +25,7 @@ const AboutVideo: React.FC<AboutVideoProps> = ({
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useAutoPlayVideo(videoRef)
+  useAutoPlayVideo(videoRef, {priority:'idle', lazySources:true})
   return (
     <video
       className={`${styles.video} ${className}`}
@@ -38,7 +38,7 @@ const AboutVideo: React.FC<AboutVideoProps> = ({
       ref={videoRef}
       preload="none"
     >
-      <source src="/videos/HORIZONT.mp4" type="video/mp4" />
+      <source data-src="/videos/HORIZONT.mp4" type="video/mp4" />
     </video>
   );
 };

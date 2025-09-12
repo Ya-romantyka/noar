@@ -79,8 +79,8 @@ export default function ContactHero() {
             </span>
                     </h1>
                     <div className={styles.video} ref={videoWrapperRef}>
-                        <Magnetic strength={40} className={styles.video}>
-                            <video  loop muted playsInline autoPlay ref={videoRef}>
+                        <Magnetic strength={40} >
+                            <video  loop muted playsInline autoPlay ref={videoRef} preload={'auto'}>
                                 <source src="/videos/HalfCircle.mp4" type="video/mp4; codecs=hvc1"/>
                                 <source src="/videos/HalfCircle.webm" type="video/webm"/>
                             </video>

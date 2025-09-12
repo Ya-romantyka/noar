@@ -14,7 +14,7 @@ const FoundSection = () => {
     const titleRef = useRef<HTMLParagraphElement | null>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    useAutoPlayVideo(videoRef)
+    useAutoPlayVideo(videoRef, {priority: 'idle', lazySources: true})
     useSplitTextAnimation(titleRef, {triggerOnScroll: true})
     return (
         <section className={styles.section}>
@@ -46,7 +46,7 @@ const FoundSection = () => {
                 ref={videoRef}
                 preload="none"
             >
-                <source src="/videos/HORIZONT.mp4" type="video/mp4"/>
+                <source data-src="/videos/HORIZONT.mp4" type="video/mp4"/>
             </video>
         </section>
     );

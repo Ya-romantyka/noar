@@ -115,7 +115,7 @@ const ServiceHero = ({device}: ServiceHeroProps) => {
                     )}
                 </div>
                 <Magnetic strength={40} className={styles.video}>
-                    <video  loop muted playsInline autoPlay={true} ref={videoRef}>
+                    <video  loop muted playsInline autoPlay={true} ref={videoRef} preload={'auto'}>
                         <source src="/videos/Sym.mp4" type="video/mp4; codecs=hvc1"/>
                         <source src="/videos/Sym.webm" type="video/webm"/>
                     </video>

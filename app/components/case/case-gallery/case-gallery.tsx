@@ -9,7 +9,6 @@ import styles from './case-gallery.module.scss';
 import Container from '../../layout/container/container';
 import Image from 'next/image';
 import useSplitTextAnimation from '@/app/hooks/useSplitTextAnimation';
-import { useAutoPlayVideo } from '@/app/hooks/useAutoPlayVideo';
 import AutoVideo from '@/app/components/ui/Auto-video/AutoVideo';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,9 +35,8 @@ const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
 
   const galleryRef = useRef<HTMLUListElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  useAutoPlayVideo(videoRef);
+
 
   switch (media.length) {
     case 1:

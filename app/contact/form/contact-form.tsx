@@ -8,6 +8,7 @@ import Button from "@/app/components/ui/button/button";
 import { RadioGroup } from "@/app/components/ui/radio-group/radio-group";
 import { TextArea } from "@/app/components/ui/textarea/textarea";
 import { Input } from "@/app/components/ui/input/input";
+import { CheckboxGroup } from "@/app/components/ui/checkbox-group/checkbox-group";
 
 const services = ["Web Design","UX/UI Design","Brand Identity","2D/3D Motion","Video Production","Development"];
 const budgets = [">$1k","$3k","$5k","$10k","$15k",">$30k"];
@@ -16,7 +17,7 @@ const types = ["Individual","Company","Organisation","Government"];
 const sources = ["Behance","Dribble","Instagram","LinkedIn","Awwwards","Other"];
 
 interface FormValues {
-    service: string;
+    service: string[]; // ← змінено
     budget: string;
     timeframe: string;
     details: string;
@@ -30,7 +31,10 @@ interface FormValues {
 }
 
 const validationSchema = Yup.object({
-    service: Yup.string().required("(Please select a service)"),
+    service: Yup.array()
+        .of(Yup.string())
+        .min(1, "(Please select at least one service)")
+        .required("(Please select at least one service)"),
     budget: Yup.string().required("(Please select a budget)"),
     timeframe: Yup.string().required("(Please select a timeframe)"),
     details: Yup.string().min(20, "(Minimum 20 characters)").required("(Project details are required)"),
@@ -92,7 +96,9 @@ const ScrollToFirstError: React.FC<{
                 return [wrap || input];
             });
             if (!anchors.length) return;
-            const target = anchors.map((el) => ({ el, top: el.getBoundingClientRect().top })).sort((a, b) => a.top - b.top)[0].el;
+            const target = anchors
+                .map((el) => ({ el, top: el.getBoundingClientRect().top }))
+                .sort((a, b) => a.top - b.top)[0].el;
             const anchor = (target.closest("[data-field]") as HTMLElement) || target;
             const usedMs = smoothCenterScroll(anchor, { durationMs: 700 });
             const focusable = (anchor.matches("[name]") ? anchor : anchor.querySelector<HTMLElement>("[name]")) || anchor;
@@ -117,7 +123,7 @@ const ContactForm: React.FC = () => {
     }, []);
 
     const initialValues: FormValues = {
-        service: "",
+        service: [],
         budget: "",
         timeframe: "",
         details: "",
@@ -148,7 +154,7 @@ const ContactForm: React.FC = () => {
                                 <div className={styles.formGroupTitle}>01 Project Information</div>
                                 <div className={styles.formGroupBody}>
                                     <div className={styles.formGroupBodyRow} data-field="service">
-                                        <RadioGroup label="How we can help you?" name="service" options={services} />
+                                        <CheckboxGroup label="How we can help you?" name="service" options={services} />
                                     </div>
                                     <div className={styles.formGroupBodyRow} data-field="budget">
                                         <RadioGroup label="Budget in USD" name="budget" options={budgets} />
