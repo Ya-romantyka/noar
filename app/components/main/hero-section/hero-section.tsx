@@ -31,8 +31,8 @@ const HeroSection = () => {
 
           <Magnetic strength={40} className={styles.videoWrap}>
             <video className={styles.video} ref={videoRef} muted playsInline loop preload={'auto'}>
-              <source src="/videos/Circle_2.mp4" type="video/mp4; codecs=hvc1" />
-              <source src="/videos/Circle_2.webm" type="video/webm" />
+              <source src="/videos/Circle_1.mp4" type="video/mp4; codecs=hvc1" />
+              <source src="/videos/Circle_1.webm" type="video/webm" />
             </video>
           </Magnetic>
         </div>
