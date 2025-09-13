@@ -29,7 +29,7 @@ const cases = [
     title: 'Acro Studio',
     category: 'Brandbook',
     description: 'Identity, Graphics',
-    image: '/images/case-cover-1.jpg',
+    image: '/images/full-image.webp',
     slug: 'acro-studio',
   },
   {
