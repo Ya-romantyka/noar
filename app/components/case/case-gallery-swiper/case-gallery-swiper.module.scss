@@ -70,15 +70,15 @@
   }
 
   .swiper :global(.swiper-slide) {
-    width: 74%;
+    width: 100%;
   }
 
   .firstSlide {
-    aspect-ratio: 18 / 12;
+    aspect-ratio: 18 / 9;
   }
 
   .image {
-    aspect-ratio: 18 / 12;
+    aspect-ratio: 18 / 9;
     display: block;
     position: relative;
 

@@ -60,56 +60,61 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
         </div>
 
         {isDesktop ? (
-            <div className={styles.swiperWrapper} ref={swiperWrapperRef}>
-              <Swiper
-                  spaceBetween={20}
-                  slidesPerView="auto"
-                  loop
-                  className={styles.swiper}
-              >
-                {images.map((image, i) => {
-                  const isVideo = checkMediaTypeByExtension(image) === 'video';
-                  const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
-                  return (
-                      <SwiperSlide
-                          key={key}
-                          className={clsx(i === 0 && styles.firstSlide)}
-                          style={i === 0 ? { maxWidth: '42vw' } : {}}
-                      >
-                        {isVideo ? (
-                            <video autoPlay muted loop className={styles.video}>
-                              <source src={image} type="video/mp4" />
-                              Ваш браузер не поддерживает видео.
-                            </video>
-                        ) : (
-                            <picture className={styles.image}>
-                              <Image src={image} fill sizes="auto" alt="" />
-                            </picture>
-                        )}
-                      </SwiperSlide>
-                  );
-                })}
-              </Swiper>
-            </div>
-        ) : (
-            <div className={styles.imageList}>
+          <div className={styles.swiperWrapper} ref={swiperWrapperRef}>
+            <Swiper
+              spaceBetween={20}
+              slidesPerView="auto"
+              loop
+              className={styles.swiper}
+            >
               {images.map((image, i) => {
                 const isVideo = checkMediaTypeByExtension(image) === 'video';
                 const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
-                return isVideo ? (
-                    <video key={key} autoPlay muted loop className={styles.video}>
-                      <source src={image} type="video/mp4" />
-                      Ваш браузер не поддерживает видео.
-                    </video>
-                ) : (
-                    <picture key={key} className={styles.imageWrapper}>
-                      <Image src={image} alt="" className={styles.image} fill sizes="100vw" />
-                    </picture>
+                return (
+                  <SwiperSlide
+                    key={key}
+                    className={clsx(i === 0 && styles.firstSlide)}
+                    style={i === 0 ? { maxWidth: '43vw' } : {}}
+                  >
+                    {isVideo ? (
+                      <video autoPlay muted loop className={styles.video}>
+                        <source src={image} type="video/mp4" />
+                        Ваш браузер не поддерживает видео.
+                      </video>
+                    ) : (
+                      <picture className={styles.image}>
+                        <Image src={image} fill sizes="auto" alt="" />
+                      </picture>
+                    )}
+                  </SwiperSlide>
                 );
               })}
-            </div>
+            </Swiper>
+          </div>
+        ) : (
+          <div className={styles.imageList}>
+            {images.map((image, i) => {
+              const isVideo = checkMediaTypeByExtension(image) === 'video';
+              const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
+              return isVideo ? (
+                <video key={key} autoPlay muted loop className={styles.video}>
+                  <source src={image} type="video/mp4" />
+                  Ваш браузер не поддерживает видео.
+                </video>
+              ) : (
+                <picture key={key} className={styles.imageWrapper}>
+                  <Image
+                    src={image}
+                    alt=""
+                    className={styles.image}
+                    fill
+                    sizes="100vw"
+                  />
+                </picture>
+              );
+            })}
+          </div>
         )}
-
       </Container>
     </section>
   );
