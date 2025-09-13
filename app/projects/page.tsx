@@ -61,7 +61,7 @@ const cases = [
     title: 'Acro Studio',
     category: 'Website',
     description: 'UX/UI, Art Direction, Content',
-    image: '/images/case-cover-1.jpg',
+    image: '/images/full-image.webp',
     slug: 'acro-studio',
   },
   {
