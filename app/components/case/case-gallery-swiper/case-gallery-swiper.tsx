@@ -74,7 +74,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
                   <SwiperSlide
                     key={key}
                     className={clsx(i === 0 && styles.firstSlide)}
-                    style={i === 0 ? { maxWidth: '43vw' } : {}}
+                    style={i === 0 ? { maxWidth: '47.2vw' } : {}}
                   >
                     {isVideo ? (
                       <video autoPlay muted loop className={styles.video}>
