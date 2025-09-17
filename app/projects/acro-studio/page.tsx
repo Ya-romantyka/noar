@@ -61,8 +61,9 @@ export default function CasePage() {
         fonts={[
           {
             name: 'e-Ukraine',
-            file: 'Fixel',
-            author: 'thedigital.gov.ua',
+            file: 'e-Ukraine-Regular',
+            author:
+              'The Ministry and the Committee for Digital Transformation of Ukraine',
             text: '“AcroStudio is a modern gym for children and their parents”',
             list: ['Headlines - Bold', 'Bodytext - Regular'],
           },
@@ -84,7 +85,7 @@ export default function CasePage() {
           title: 'Acro Studio is a small network of gyms.',
           text:
             'Acrobatics, stretching, fly yoga, fitness for adults and their\n' +
-            '            children. The client&apos;s request was to create an identity for\n' +
+            "            children. The client's request was to create an identity for\n" +
             '            use online and offline. The logo was based on the idea of an\n' +
             '            acrobatic track - the main attribute of this sport. The minimalistic\n' +
             '            shape combined with bright green and purple colors create an image\n' +
