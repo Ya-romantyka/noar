@@ -77,7 +77,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
                     style={i === 0 ? { maxWidth: '47.2vw' } : {}}
                   >
                     {isVideo ? (
-                      <video autoPlay muted loop className={styles.video}>
+                      <video autoPlay muted loop playsInline className={styles.video}>
                         <source src={image} type="video/mp4" />
                         Ваш браузер не поддерживает видео.
                       </video>
