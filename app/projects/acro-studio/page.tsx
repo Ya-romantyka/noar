@@ -60,7 +60,7 @@ export default function CasePage() {
       <CaseSpecifics
         fonts={[
           {
-            name: 'e-Ukraine',
+            name: 'E-Ukraine Head',
             file: 'e-Ukraine-Regular',
             author:
               'The Ministry and the Committee for Digital Transformation of Ukraine',

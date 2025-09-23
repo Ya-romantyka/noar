@@ -52,19 +52,16 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({ fonts, colors }) => {
           <ul className={styles.list}>
             {fonts.map((font, i) => (
               <li key={i}>
-                <div
-                  className={styles.headerBottom}
-                  style={{ fontFamily: ff(font) }}
-                >
+                <div className={styles.headerBottom}>
                   <div className={styles.col}>
-                    <h3 className={styles.subtitle}>{font.name}</h3>
+                    <h3
+                      className={styles.subtitle}
+                      style={{ fontFamily: ff(font) }}
+                    >
+                      {font.name}
+                    </h3>
                     {font.author && (
-                      <p
-                        className={styles.text}
-                        style={{ fontFamily: ff(font) }}
-                      >
-                        by {font.author}
-                      </p>
+                      <p className={styles.text}>by {font.author}</p>
                     )}
                   </div>
 
@@ -77,10 +74,7 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({ fonts, colors }) => {
                       Tt Uu Vv Ww Xx Yy Zz 0123456789 -&*@?!/+(:;;)
                     </h4>
 
-                    <ul
-                      className={styles.fonts}
-                      style={{ fontFamily: ff(font) }}
-                    >
+                    <ul className={styles.fonts}>
                       {(font.list?.length ? font.list : defaultRoles).map(
                         (item, i) => (
                           <li key={`${font.name}-role-${i}`}>{item}</li>
@@ -93,7 +87,10 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({ fonts, colors }) => {
                     <div className={styles.innerRow}>
                       <div className={styles.innerCol}>
                         <p className={styles.text}>Example:</p>
-                        <h4 className={styles.titleCol}>
+                        <h4
+                          className={styles.titleCol}
+                          style={{ fontFamily: ff(font) }}
+                        >
                           {font.text || defaultSample}
                         </h4>
                       </div>

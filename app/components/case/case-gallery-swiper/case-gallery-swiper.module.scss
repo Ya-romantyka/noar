@@ -25,7 +25,7 @@
 }
 
 .imageWrapper {
-  aspect-ratio: 300/200;
+  aspect-ratio: 362/200;
   display: block;
   position: relative;
 }
@@ -71,6 +71,9 @@
 
   .swiper :global(.swiper-slide) {
     width: 100%;
+  }
+  .imageWrapper {
+    aspect-ratio: 300/200;
   }
 
   .firstSlide {
