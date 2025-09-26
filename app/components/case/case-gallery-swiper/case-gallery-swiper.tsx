@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, FC, ReactNode } from 'react';
-import styles from './case-gallery-swiper.module.scss';
-import Container from '../../layout/container/container';
-import clsx from 'clsx';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import useSplitTextAnimation from '@/app/hooks/useSplitTextAnimation';
-import { useCursorStyle } from '@/app/hooks/useCursorStyle';
-import { checkMediaTypeByExtension } from '@/utils/checkMediaTypeByExtension';
+import { useState, useEffect, useRef, FC, ReactNode } from "react";
+import styles from "./case-gallery-swiper.module.scss";
+import Container from "../../layout/container/container";
+import clsx from "clsx";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import useSplitTextAnimation from "@/app/hooks/useSplitTextAnimation";
+import { useCursorStyle } from "@/app/hooks/useCursorStyle";
+import { checkMediaTypeByExtension } from "@/utils/checkMediaTypeByExtension";
 
 interface CaseGallerySwiperProps {
   label: string;
@@ -28,8 +28,8 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
 
   useCursorStyle({
     ref: swiperWrapperRef,
-    style: 'drag',
-    text: 'drag',
+    style: "drag",
+    text: "drag",
   });
 
   useSplitTextAnimation(titleRef, { triggerOnScroll: true });
@@ -40,9 +40,9 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
     };
 
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
 
-    return () => window.removeEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   return (
@@ -50,7 +50,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
       <Container className={styles.container}>
         <div className={styles.header}>
           <span
-            className={clsx(styles.label, 'section-label section-label--white')}
+            className={clsx(styles.label, "section-label section-label--white")}
           >
             {label}
           </span>
@@ -68,16 +68,22 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
               className={styles.swiper}
             >
               {images.map((image, i) => {
-                const isVideo = checkMediaTypeByExtension(image) === 'video';
-                const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
+                const isVideo = checkMediaTypeByExtension(image) === "video";
+                const key = `${isVideo ? "vid" : "img"}:${image}|${i}`;
                 return (
                   <SwiperSlide
                     key={key}
                     className={clsx(i === 0 && styles.firstSlide)}
-                    style={i === 0 ? { maxWidth: '47.2vw' } : {}}
+                    style={i === 0 ? { maxWidth: "47.2vw" } : {}}
                   >
                     {isVideo ? (
-                      <video autoPlay muted loop playsInline className={styles.video}>
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className={styles.video}
+                      >
                         <source src={image} type="video/mp4" />
                         Ваш браузер не поддерживает видео.
                       </video>
@@ -94,10 +100,17 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
         ) : (
           <div className={styles.imageList}>
             {images.map((image, i) => {
-              const isVideo = checkMediaTypeByExtension(image) === 'video';
-              const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
+              const isVideo = checkMediaTypeByExtension(image) === "video";
+              const key = `${isVideo ? "vid" : "img"}:${image}|${i}`;
               return isVideo ? (
-                <video key={key} autoPlay muted loop className={styles.video}>
+                <video
+                  key={key}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className={styles.video}
+                >
                   <source src={image} type="video/mp4" />
                   Ваш браузер не поддерживает видео.
                 </video>
