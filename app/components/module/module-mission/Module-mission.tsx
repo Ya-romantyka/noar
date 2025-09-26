@@ -1,5 +1,5 @@
-'use client'
-import React, { useEffect, useRef } from 'react';
+'use client';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import styles from './Module-mission.module.scss';
 import clsx from 'clsx';
 import Button from '@/app/components/ui/button/button';
@@ -10,15 +10,15 @@ interface Props {
   onClose?: () => void;
   open?: boolean;
   title: string;
-  text: string;
+  text: string | ReactNode;
 }
 
 const ModuleMission: React.FC<Props> = ({
   className,
   onClose,
   open = false,
-    title,
-    text,
+  title,
+  text,
 }) => {
   const topRef = useRef<HTMLDivElement | null>(null);
   const middleRef = useRef<HTMLDivElement | null>(null);
@@ -83,13 +83,12 @@ const ModuleMission: React.FC<Props> = ({
         <div className={styles.top} ref={topRef}></div>
         <div className={styles.middle} ref={middleRef} data-lenis-prevent>
           <span className={styles.label}>Mission</span>
-          <h3 className={styles.title}>
-            {title}
-          </h3>
-          <p className={styles.text}>
-            {text}
-
-          </p>
+          <h3 className={styles.title}>{title}</h3>
+          {typeof text === 'object' ? (
+            text
+          ) : (
+            <p className={styles.text}>{text}</p>
+          )}
         </div>
         <div className={styles.bottom}>
           <Button variant="black" onClick={onClose} className={styles.button}>

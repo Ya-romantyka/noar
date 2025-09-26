@@ -1,7 +1,7 @@
 .section {
   background: var(--black-color, #101010);
   padding: 11.2rem 0 14rem;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -28,8 +28,12 @@
   justify-content: center;
 }
 
+.container > div {
+  z-index: 9 !important;
+}
+
 .point {
-  background: #FFFFFF;
+  background: #ffffff;
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
@@ -91,7 +95,6 @@
   .textMob {
     display: none;
   }
-
 
   .text {
     font-size: 12.4rem;
