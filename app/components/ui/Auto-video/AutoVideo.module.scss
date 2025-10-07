@@ -1,0 +1,40 @@
+.videoWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .button {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 2;
+    transition: opacity 0.5s;
+    backdrop-filter: blur(10px);
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .videoWrapper {
+    .button {
+      right: 1.6rem;
+      bottom: 1.6rem;
+      height: 4.8rem;
+      padding: 1.2rem 3.2rem;
+      font-size: 1.6rem;
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}

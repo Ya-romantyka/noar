@@ -5,6 +5,7 @@ import CaseGallerySwiper from '@/app/components/case/case-gallery-swiper/case-ga
 import CaseTeam from '@/app/components/case/case-team/case-team';
 import CaseExpandText from '@/app/components/case/case-expand-text/case-expand-text';
 import CaseSpecifics from '@/app/components/case/case-specifics/case-specifics';
+import CaseList from "@/app/components/case/case-list/Case-list";
 
 export default function CasePage() {
     return (
@@ -21,6 +22,43 @@ export default function CasePage() {
                 year="2023"
             />
             <CaseFullImage image="/images/full-image.webp"/>
+            <CaseList  label="Visuals"
+                       title="Sophisticated and energetic cross-dimensional design."
+                       media={[
+
+                           {
+                             video: {
+                               src: '/videos/HORIZONT.mp4',
+                               type: 'video/mp4',
+                               poster: '/images/case-img-2.webp',
+                             },
+                           },
+
+                           {
+                               image: {
+                                   srcMob: '/images/case-img-2.webp',
+                                   srcDesk: '/images/case-img-1.webp'
+                               }
+                           },
+                           {
+                               image: {
+                                   srcMob: '/images/case-img-3.webp',
+                                   srcDesk: '/images/case-img-3.webp'
+                               }
+                           },
+                           {
+                               image: {
+                                   srcMob: '/images/case-img-4.webp',
+                                   srcDesk: '/images/case-img-5.webp'
+                               }
+                           },
+                           {
+                               image: {
+                                   srcMob: '/images/case-img-5.webp',
+                                   srcDesk: '/images/case-img-4.webp'
+                               }
+                           },
+                       ]}/>
             <CaseGallery
                 label="Visuals"
                 title="Sophisticated and energetic cross-dimensional design."

@@ -78,7 +78,6 @@ const CaseGallery: FC<CaseGalleryProps> = ({label, title, media}) => {
             {
                 y: '-10%',
                 ease: 'none',
-                immediateRender: false,
                 scrollTrigger: {
                     trigger: mediaEl,
                     start: 'top 80%',
