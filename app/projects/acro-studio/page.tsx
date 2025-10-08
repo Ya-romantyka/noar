@@ -31,6 +31,8 @@ export default function CasePage() {
                                src: '/videos/HORIZONT.mp4',
                                type: 'video/mp4',
                                poster: '/images/case-img-2.webp',
+                                 fullSrc:'/videos/HORIZONT.mp4',
+                                 fullType: 'video/mp4',
                              },
                            },
 
@@ -69,13 +71,6 @@ export default function CasePage() {
                             srcDesk: '/images/case-img-2.webp'
                         }
                     },
-                    // {
-                    //   video: {
-                    //     src: '/videos/HORIZONT.mp4',
-                    //     type: 'video/mp4',
-                    //     poster: '/images/case-img-2.webp',
-                    //   },
-                    // },
 
                     {
                         image: {

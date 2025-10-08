@@ -18,6 +18,8 @@ type VideoItem = {
     src: string;
     type: string;
     poster?: string;
+    fullSrc?: string;
+    fullType?: string;
 };
 type ImageItem = {
     srcDesk: string;
