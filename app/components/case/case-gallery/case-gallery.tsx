@@ -24,7 +24,6 @@ type VideoItem = {
 type ImageItem = {
   srcDesk: string;
   srcMob: string;
-  classNames?: string;
 };
 
 type MediaItem = {
@@ -119,7 +118,7 @@ const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
                     priority={true}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className={clsx(styles.image, item.image.classNames)}
+                    className={styles.image}
                   />
                 ) : (
                   <Image
@@ -128,7 +127,7 @@ const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
                     priority={true}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className={clsx(styles.image, item.image.classNames)}
+                    className={styles.image}
                   />
                 ))}
 
