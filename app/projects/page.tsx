@@ -13,13 +13,13 @@ import { useAutoPlayVideo } from '@/app/hooks/useAutoPlayVideo';
 
 const categories = [
   'All',
-  'Brandbook',
+  'Full-Circle',
+  'BrandBook',
   'Landing page',
   'Website',
-  'Web-app',
-  '2D/3D motion',
-  'Photo Production',
-  'Video Production',
+  'Platform',
+  '2D/3D Motion',
+  'Production',
   'Development',
 ];
 
@@ -51,7 +51,7 @@ const cases = [
   {
     id: 4,
     title: 'InnovateApp',
-    category: 'Web-app',
+    category: 'Platform',
     description: 'React, Next.js, UI/UX',
     image: '/images/case-img-3.webp',
     slug: 'innovate-app',
@@ -83,7 +83,7 @@ const cases = [
   {
     id: 8,
     title: 'InnovateApp',
-    category: 'Web-app',
+    category: 'Platform',
     description: 'React, Next.js, UI/UX',
     image: '/images/case-img-3.webp',
     slug: 'innovate-app',
