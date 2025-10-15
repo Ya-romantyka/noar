@@ -22,7 +22,7 @@ export default function CasePage() {
         year="2023"
       />
       <CaseFullImage image="/images/full-image.webp" />
-      <CaseList
+      {/* <CaseList
         label="Visuals"
         title="Sophisticated and energetic cross-dimensional design."
         media={[
@@ -61,7 +61,7 @@ export default function CasePage() {
             },
           },
         ]}
-      />
+      /> */}
       <CaseGallery
         label="Visuals"
         title="Sophisticated and energetic cross-dimensional design."

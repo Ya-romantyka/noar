@@ -887,7 +887,11 @@ const ServiceTable: React.FC = () => {
           Delivery: {activeTable.development_time}
         </p>
         <h3 className={styles.footerTitle}>Close the Loop with Us</h3>
-        <Button href={''} className={styles.footerButton} variant={'white'}>
+        <Button
+          href="/contact"
+          className={styles.footerButton}
+          variant={'white'}
+        >
           <ButtonIcon className={styles.icon} />
           let’s talk
         </Button>
