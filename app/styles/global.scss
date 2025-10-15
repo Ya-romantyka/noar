@@ -1,4 +1,4 @@
-@use "reset-css";
+@use 'reset-css';
 @use './utils.scss';
 
 * {
@@ -11,7 +11,8 @@ a {
   text-decoration: none;
   color: inherit;
 }
-html, body {
+html,
+body {
   cursor: none !important;
 }
 * {
@@ -61,6 +62,10 @@ p {
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
+}
+
+.tranform-origin-center-bottom {
+  transform-origin: center bottom;
 }
 
 .section-label {
@@ -116,16 +121,14 @@ p {
   transition: opacity 0.3s ease, transform 0.3s ease;
   mix-blend-mode: difference;
 
-
   &.visible {
-      opacity: 1;
+    opacity: 1;
   }
 
   &.drag,
   &.link {
-      mix-blend-mode: normal;
+    mix-blend-mode: normal;
   }
-
 }
 
 .cursor-ball {
@@ -144,24 +147,15 @@ p {
   z-index: 999;
   border: 1px solid transparent;
 
-  transition:
-          width 0.3s ease,
-          height 0.3s ease,
-          opacity 0.3s ease,
-          min-width 0.3s ease,
-          min-height 0.3s ease,
-          padding 0.3s ease,
-          border-radius 0.3s ease,
-          border-color 0.3s ease,
-          gap 0.3s ease;
-
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease,
+    min-width 0.3s ease, min-height 0.3s ease, padding 0.3s ease,
+    border-radius 0.3s ease, border-color 0.3s ease, gap 0.3s ease;
 
   &.small {
     z-index: 998;
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-
   }
 
   &.big {
@@ -238,8 +232,6 @@ p {
   }
 }
 
-
-
 @media (min-width: 768px) {
   .h1 {
     font-size: 12.4rem;
@@ -259,7 +251,6 @@ p {
   .section-label {
     font-size: 1.6rem;
     letter-spacing: -0.048rem;
-
   }
 }
 
@@ -287,4 +278,3 @@ p {
   z-index: 1;
   animation: none !important;
 }
-

@@ -83,6 +83,7 @@ export default function CasePage() {
             image: {
               srcMob: '/images/case-img-3.webp',
               srcDesk: '/images/case-img-3.webp',
+              classNames: 'tranform-origin-center-bottom',
             },
           },
           {
