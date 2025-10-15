@@ -5,7 +5,7 @@ import CaseGallerySwiper from '@/app/components/case/case-gallery-swiper/case-ga
 import CaseTeam from '@/app/components/case/case-team/case-team';
 import CaseExpandText from '@/app/components/case/case-expand-text/case-expand-text';
 import CaseSpecifics from '@/app/components/case/case-specifics/case-specifics';
-import CaseList from '@/app/components/case/case-list/Case-list';
+// import CaseList from '@/app/components/case/case-list/Case-list';
 
 export default function CasePage() {
   return (
