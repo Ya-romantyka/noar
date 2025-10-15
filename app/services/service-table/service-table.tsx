@@ -313,7 +313,7 @@ const tablesData: Record<string, TableData> = {
   },
   table_3: {
     name: 'Platform',
-    price: '20k',
+    price: '40k',
     week: { desktop: 5, mobile: 4 },
     development_time: '4 months',
     strategies: [
