@@ -33,7 +33,7 @@ const projects = [
     id: 2,
     name: 'Acro Studio',
     year: '2023',
-    frameworks: ['Scriptwriting', 'Set-Design', 'Filming', 'Full-Circle'],
+    frameworks: ['Brandbook', 'Marketing collaterals'],
     img: '/images/acro-studio-project-screen.webp',
     url: '',
   },
