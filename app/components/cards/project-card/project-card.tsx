@@ -64,7 +64,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         router.push(`/projects/${slug}`, { onTransitionReady: slideInOut });
       }}
     >
-      <span className={styles.category}>{categories.join(', ')}</span>
+      {!!categories.length && (
+        <div className={styles.categories}>
+          {categories.map((category, i) => (
+            <span className={styles.category} key={i}>
+              {category}
+            </span>
+          ))}
+        </div>
+      )}
       <div className={styles.image}>
         <DistortedImage imageUrl={image} alt={title} />
       </div>

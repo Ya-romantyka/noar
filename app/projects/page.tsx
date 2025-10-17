@@ -36,7 +36,8 @@ const cases = [
     id: 2,
     title: 'IN LOVE 2026',
     categories: ['Full-Circle', 'Production'],
-    description: 'Full-Circle, Production',
+    description:
+      'Scriptwriting, Set-Design, Filming, Post-production, On-set makeup, Management',
     image: '/images/horizont-video-poster.jpg',
     slug: 'royaldi',
   },
