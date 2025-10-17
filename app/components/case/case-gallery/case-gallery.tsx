@@ -35,9 +35,17 @@ interface CaseGalleryProps {
   label: string;
   title: ReactNode;
   media: MediaItem[];
+  galleryClassNames?: string;
+  parallaxClasses?: string[];
 }
 
-const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
+const CaseGallery: FC<CaseGalleryProps> = ({
+  label,
+  title,
+  media,
+  galleryClassNames,
+  parallaxClasses,
+}) => {
   let galleryClass = '';
 
   const isMobile = useIsMobile();
@@ -66,10 +74,10 @@ const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
   }
 
   useEffect(() => {
-    if (!galleryRef.current) return;
+    if (!galleryRef.current || !parallaxClasses) return;
 
     const mediaEl = galleryRef.current.querySelector<HTMLElement>(
-      'li:nth-child(3) img, li:nth-child(3) video',
+      parallaxClasses.join(','),
     );
     if (!mediaEl) return;
 
@@ -107,7 +115,10 @@ const CaseGallery: FC<CaseGalleryProps> = ({ label, title, media }) => {
           </h2>
         </div>
 
-        <ul className={clsx(styles.images, galleryClass)} ref={galleryRef}>
+        <ul
+          className={clsx(styles.images, galleryClass, galleryClassNames)}
+          ref={galleryRef}
+        >
           {media.map((item, index) => (
             <li className={styles.item} key={index}>
               {item.image &&

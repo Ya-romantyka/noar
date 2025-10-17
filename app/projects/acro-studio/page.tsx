@@ -65,6 +65,7 @@ export default function CasePage() {
       <CaseGallery
         label="Visuals"
         title="Sophisticated and energetic cross-dimensional design."
+        parallaxClasses={['li:nth-child(3) img', 'li:nth-child(3) video']}
         media={[
           {
             image: {

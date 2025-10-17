@@ -27,10 +27,18 @@ const cases = [
   {
     id: 1,
     title: 'Acro Studio',
-    category: 'Brandbook',
+    categories: ['Brandbook'],
     description: 'Identity, Graphics',
     image: '/images/full-image.webp',
     slug: 'acro-studio',
+  },
+  {
+    id: 2,
+    title: 'IN LOVE 2026',
+    categories: ['Full-Circle', 'Production'],
+    description: 'Full-Circle, Production',
+    image: '/images/horizont-video-poster.jpg',
+    slug: 'royaldi',
   },
 ];
 
@@ -45,10 +53,10 @@ export default function Cases() {
   const filteredCases =
     activeCategory === 'All'
       ? cases
-      : cases.filter(
-          (c) =>
-            c.category.toLowerCase().trim() ===
-            activeCategory.toLowerCase().trim(),
+      : cases.filter((c) =>
+          c.categories
+            .map((c) => c.toLowerCase().trim())
+            .includes(activeCategory.toLowerCase().trim()),
         );
 
   useGSAP(
@@ -153,7 +161,7 @@ export default function Cases() {
                 <ProjectCard
                   slug={c.slug}
                   title={c.title}
-                  category={c.category}
+                  categories={c.categories}
                   description={c.description}
                   image={c.image}
                 />

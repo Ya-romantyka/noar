@@ -1,5 +1,4 @@
 .section {
-
   padding-top: 23.2rem;
   padding-bottom: 11.2rem;
   background-color: #101010;
@@ -76,19 +75,26 @@
   border-bottom: 1px solid rgba(237, 237, 237, 0.12);
 }
 
-
 .list {
   display: grid;
   gap: 3.2rem;
 }
 
-@media (max-width: 767px) {
+.autoVideo {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--tech-grey, #e0e0e0);
+  margin-bottom: -1px;
+}
 
+@media (max-width: 767px) {
   .videoWrap {
     overflow: hidden;
     width: 25rem;
     position: absolute;
-    right:2rem;
+    right: 2rem;
     top: 10rem;
 
     .video {
@@ -111,7 +117,6 @@
   }
 
   .categoryItem {
-
     &:last-child {
       grid-column: span 2;
     }
@@ -172,13 +177,15 @@
     }
   }
 
-
   .list {
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem 2rem;
   }
-}
 
+  .autoVideo {
+    aspect-ratio: 192/108;
+  }
+}
 
 .project-item {
   position: relative;
