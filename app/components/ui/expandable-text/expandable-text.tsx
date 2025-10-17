@@ -66,7 +66,7 @@ export default function ExpandableText({
             style={
               animationDuration
                 ? {
-                    animationDirection: isMobile
+                    animationDuration: isMobile
                       ? animationDuration?.mobile
                       : animationDuration?.desktop,
                   }
