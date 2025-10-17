@@ -6,7 +6,7 @@
 .categories {
   position: absolute;
   display: flex;
-  gap: 10px;
+  gap: 5px;
   top: 0.8rem;
   left: 0.8rem;
   z-index: 1;
@@ -50,6 +50,7 @@
   .categories {
     top: 2.4rem;
     left: 2.4rem;
+    gap: 10px;
   }
 
   .category {
