@@ -1,6 +1,5 @@
 'use client';
 import s from '../cases.module.scss';
-import { useIsMobile } from '@/app/hooks/useIsMobile';
 import CaseHero from '@/app/components/case/case-hero/case-hero';
 import AutoVideo from '@/app/components/ui/Auto-video/AutoVideo';
 import CaseTeam from '@/app/components/case/case-team/case-team';
@@ -8,8 +7,6 @@ import CaseExpandText from '@/app/components/case/case-expand-text/case-expand-t
 import CaseList from '@/app/components/case/case-list/Case-list';
 
 export default function CasePage() {
-  const isMobile = useIsMobile();
-
   return (
     <>
       <CaseHero
