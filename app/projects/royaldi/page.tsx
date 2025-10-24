@@ -45,72 +45,85 @@ export default function CasePage() {
         label="Visuals"
         title="Moments of Elegance, Captured Beautifully"
         media={[
-          ...(isMobile
-            ? [
-                {
-                  video: {
-                    src: '/videos/HORIZONT.mp4',
-                    type: 'video/mp4',
-                    poster: '/images/royaldi-cases/case-img-1.webp',
-                    fullSrc: '/videos/HORIZONT.mp4',
-                    fullType: 'video/mp4',
-                  },
-                },
-              ]
-            : [
-                {
-                  image: {
-                    srcMob: '/images/royaldi-cases/case-img-1.webp',
-                    srcDesk: '/images/royaldi-cases/case-img-1.webp',
-                  },
-                },
-              ]),
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-2.webp',
-              srcDesk: '/images/royaldi-cases/case-img-2.webp',
+            video: {
+              src: '/videos/royaldi-1.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-1.webp',
+              fullSrc: '/videos/royaldi-1.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-3.webp',
-              srcDesk: '/images/royaldi-cases/case-img-3.webp',
+            video: {
+              src: '/videos/royaldi-2.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-2.webp',
+              fullSrc: '/videos/royaldi-2.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-4.webp',
-              srcDesk: '/images/royaldi-cases/case-img-4.webp',
+            video: {
+              src: '/videos/royaldi-3.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-3.webp',
+              fullSrc: '/videos/royaldi-3.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-5.webp',
-              srcDesk: '/images/royaldi-cases/case-img-5.webp',
+            video: {
+              src: '/videos/royaldi-4.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-4.webp',
+              fullSrc: '/videos/royaldi-4.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-6.webp',
-              srcDesk: '/images/royaldi-cases/case-img-6.webp',
+            video: {
+              src: '/videos/royaldi-5.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-5.webp',
+              fullSrc: '/videos/royaldi-5.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-7.webp',
-              srcDesk: '/images/royaldi-cases/case-img-7.webp',
+            video: {
+              src: '/videos/royaldi-6.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-6.webp',
+              fullSrc: '/videos/royaldi-6.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-8.webp',
-              srcDesk: '/images/royaldi-cases/case-img-8.webp',
+            video: {
+              src: '/videos/royaldi-7.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-7.webp',
+              fullSrc: '/videos/royaldi-7.mp4',
+              fullType: 'video/mp4',
             },
           },
           {
-            image: {
-              srcMob: '/images/royaldi-cases/case-img-9.webp',
-              srcDesk: '/images/royaldi-cases/case-img-9.webp',
+            video: {
+              src: '/videos/royaldi-8.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-8.webp',
+              fullSrc: '/videos/royaldi-8.mp4',
+              fullType: 'video/mp4',
+            },
+          },
+          {
+            video: {
+              src: '/videos/royaldi-9.mp4',
+              type: 'video/mp4',
+              poster: '/images/royaldi-cases/case-img-9.webp',
+              fullSrc: '/videos/royaldi-9.mp4',
+              fullType: 'video/mp4',
             },
           },
         ]}
