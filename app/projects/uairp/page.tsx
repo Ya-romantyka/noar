@@ -173,12 +173,12 @@ export default function CasePage() {
               in the academic world, and an ear of wheat, an agricultural symbol
               close to both countries. These ideas are also emphasised by the
               dominant deep blue colour in the style of ‘Prussian blue’. \nAt the
-              client&apos;s request, the website had to be built on a strong
+              client's request, the website had to be built on a strong
               metaphor and visual image that would resonate with the values of
               the Western elites and convincingly convey the messages ‘The
               strength of the Western world lies in unity’ and ‘Ukraine is a
-              bastion of democracy.’ Thus, we combined Roosevelt&apos;s quote
-              with the US government&apos;s geopolitical concept of the ‘domino
+              bastion of democracy.’ Thus, we combined Roosevelt's quote
+              with the US government's geopolitical concept of the ‘domino
               theory.’`}
             </p>
           </>
