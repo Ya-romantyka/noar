@@ -41,6 +41,14 @@ const cases = [
     image: '/images/horizont-video-poster.jpg',
     slug: 'royaldi',
   },
+  {
+    id: 3,
+    title: 'UAIRP',
+    categories: ['BrandBook', 'Website'],
+    description: 'Identity, UI/UX Design, Graphics, Copyright, Development',
+    image: '/images/uairp-case-12.webp',
+    slug: 'uairp',
+  },
 ];
 
 export default function Cases() {
