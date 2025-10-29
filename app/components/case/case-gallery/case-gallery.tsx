@@ -120,7 +120,12 @@ const CaseGallery: FC<CaseGalleryProps> = ({
           ref={galleryRef}
         >
           {media.map((item, index) => (
-            <li className={styles.item} key={index}>
+            <li
+              className={clsx(styles.item, {
+                [styles.singleItem]: media.length === 1,
+              })}
+              key={index}
+            >
               {item.image &&
                 (isMobile ? (
                   <Image

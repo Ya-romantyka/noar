@@ -1,0 +1,15 @@
+.caseGallerySwiper {
+  :global(.swiper-slide[data-swiper-slide-index='3']) {
+    max-width: 47.2vw;
+  }
+  :global(.swiper-slide[data-swiper-slide-index='3'] picture) {
+    aspect-ratio: 4.44 / 5;
+  }
+}
+
+.caseGallerySwiper {
+  :global(.swiper-slide[data-swiper-slide-index='4']) {
+    max-width: 47.2vw;
+    aspect-ratio: 9 / 5;
+  }
+}

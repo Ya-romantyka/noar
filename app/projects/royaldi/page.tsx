@@ -131,9 +131,9 @@ export default function CasePage() {
           title: 'Sicilian Street-Style Bridal Campaign',
           text:
             `Royaldi, a bridal fashion house known for its refined aesthetics, approached our team to create a set of video for the launch of its new wedding dress collection. The goal was to present the brand’s craftsmanship and emotional depth through a fresh visual language that stands out in the bridal industry.\n` +
-            '            Street-style filming remains one of the least common formats in bridal production due to its unpredictability and the high level of creative and technical control it requires. Yet precisely because of that, when executed well, it resonates far more deeply with the audience. To distinguish Royaldi’s collection from competitors, we decided to embrace the challenge and focus on capturing genuine emotions — the ones that reflect what the real bride feels and expects to see. These moments create an authentic bond between the viewer and the brand.\n' +
-            '            The shoot was meticulously planned to absorb the essence of Sicilian life. It showcases not only the region’s narrow cobblestone streets but also local markets filled with energy, iconic landmarks, and coastal landscapes with volcanic rocks — all serving as visual metaphors for intimacy, tenderness, and feminine strength.\n' +
-            '            The creative decision to use natural makeup and hairstyling allowed the model’s personality to shine through, emphasizing authenticity over perfection. This approach transformed the campaign into a living story about beauty, confidence, and real emotion — exactly what modern bridal storytelling needs.\n',
+            'Street-style filming remains one of the least common formats in bridal production due to its unpredictability and the high level of creative and technical control it requires. Yet precisely because of that, when executed well, it resonates far more deeply with the audience. To distinguish Royaldi’s collection from competitors, we decided to embrace the challenge and focus on capturing genuine emotions — the ones that reflect what the real bride feels and expects to see. These moments create an authentic bond between the viewer and the brand.\n' +
+            'The shoot was meticulously planned to absorb the essence of Sicilian life. It showcases not only the region’s narrow cobblestone streets but also local markets filled with energy, iconic landmarks, and coastal landscapes with volcanic rocks — all serving as visual metaphors for intimacy, tenderness, and feminine strength.\n' +
+            'The creative decision to use natural makeup and hairstyling allowed the model’s personality to shine through, emphasizing authenticity over perfection. This approach transformed the campaign into a living story about beauty, confidence, and real emotion — exactly what modern bridal storytelling needs.\n',
         }}
         label="Sicilian Street-Style Bridal Campaign"
         animationDuration={{
@@ -143,30 +143,12 @@ export default function CasePage() {
         text={
           <>
             <p>
-              Royaldi, a bridal fashion house known for its refined aesthetics,
-              approached our team to create a set of video for the launch of its
-              new wedding dress collection. The goal was to present the brand’s
-              craftsmanship and emotional depth through a fresh visual language
-              that stands out in the bridal industry. Street-style filming
-              remains one of the least common formats in bridal production due
-              to its unpredictability and the high level of creative and
-              technical control it requires. Yet precisely because of that, when
-              executed well, it resonates far more deeply with the audience. To
-              distinguish Royaldi’s collection from competitors, we decided to
-              embrace the challenge and focus on capturing genuine emotions —
-              the ones that reflect what the real bride feels and expects to
-              see. These moments create an authentic bond between the viewer and
-              the brand. The shoot was meticulously planned to absorb the
-              essence of Sicilian life. It showcases not only the region’s
-              narrow cobblestone streets but also local markets filled with
-              energy, iconic landmarks, and coastal landscapes with volcanic
-              rocks — all serving as visual metaphors for intimacy, tenderness,
-              and feminine strength. The creative decision to use natural makeup
-              and hairstyling allowed the model’s personality to shine through,
-              emphasizing authenticity over perfection. This approach
-              transformed the campaign into a living story about beauty,
-              confidence, and real emotion — exactly what modern bridal
-              storytelling needs.
+              {`
+                Royaldi, a bridal fashion house known for its refined aesthetics, approached our team to create a set of video for the launch of its new wedding dress collection. The goal was to present the brand’s craftsmanship and emotional depth through a fresh visual language that stands out in the bridal industry.\n
+                Street-style filming remains one of the least common formats in bridal production due to its unpredictability and the high level of creative and technical control it requires. Yet precisely because of that, when executed well, it resonates far more deeply with the audience. To distinguish Royaldi’s collection from competitors, we decided to embrace the challenge and focus on capturing genuine emotions — the ones that reflect what the real bride feels and expects to see. These moments create an authentic bond between the viewer and the brand.\n
+                The shoot was meticulously planned to absorb the essence of Sicilian life. It showcases not only the region’s narrow cobblestone streets but also local markets filled with energy, iconic landmarks, and coastal landscapes with volcanic rocks — all serving as visual metaphors for intimacy, tenderness, and feminine strength.\n
+                The creative decision to use natural makeup and hairstyling allowed the model’s personality to shine through, emphasizing authenticity over perfection. This approach transformed the campaign into a living story about beauty, confidence, and real emotion — exactly what modern bridal storytelling needs.\n
+              `}
             </p>
           </>
         }

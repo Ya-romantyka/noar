@@ -36,7 +36,8 @@
     transform: scale(1.008); // remove shite stripe
   }
 
-  &:nth-child(3) {
+  &:nth-child(3),
+  &.singleItem {
     grid-column: span 2;
 
     img,
@@ -73,7 +74,8 @@
   }
 
   .item {
-    &:nth-child(3) {
+    &:nth-child(3),
+    &.singleItem {
       grid-row: span 2;
     }
   }
@@ -109,6 +111,10 @@
 
   .item {
     min-height: 65.9rem;
+
+    &.singleItem {
+      height: 100rem;
+    }
 
     &:nth-child(3) {
       height: 100rem;

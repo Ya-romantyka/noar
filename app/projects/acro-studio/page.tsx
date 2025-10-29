@@ -1,3 +1,4 @@
+import s from './page.module.scss';
 import CaseHero from '@/app/components/case/case-hero/case-hero';
 import CaseFullImage from '@/app/components/case/case-full-image/case-full-image';
 import CaseGallery from '@/app/components/case/case-gallery/case-gallery';
@@ -116,6 +117,7 @@ export default function CasePage() {
           '/images/acro-slide-5.webp',
           '/images/acro-slide-6.webp',
         ]}
+        classNamesSwiper={s.caseGallerySwiper}
       />
       <CaseSpecifics
         fonts={[
@@ -144,30 +146,21 @@ export default function CasePage() {
         popup={{
           title: 'Acro Studio is a small network of gyms.',
           text:
-            'Acrobatics, stretching, fly yoga, fitness for adults and their\n' +
-            "            children. The client's request was to create an identity for\n" +
-            '            use online and offline. The logo was based on the idea of an\n' +
-            '            acrobatic track - the main attribute of this sport. The minimalistic\n' +
-            '            shape combined with bright green and purple colors create an image\n' +
-            '            associated with sports and energy, but do not burden it, preserving\n' +
-            '            the childlike ease. In addition, a series of icons and graphic\n' +
-            '            decorative elements were developed for social media, which can be\n' +
-            '            used to create banners, flyers and posts.',
+            'Acrobatics, stretching, fly yoga, fitness for adults and their children.\n' +
+            "The client's request was to create an identity for use online and offline. The logo was based on the idea of an acrobatic track - the main attribute of this sport.\n" +
+            'The minimalistic shape combined with bright green and purple colors create an image associated with sports and energy, but do not burden it, preserving the childlike ease.\n' +
+            'In addition, a series of icons and graphic decorative elements were developed for social media, which can be used to create banners, flyers and posts.',
         }}
         label="Our approach & Ways of thinking"
         text={
           <>
             <p>
-              Acro Studio is a small network of gyms. Acrobatics, stretching,
-              fly yoga, fitness for adults and their children. The client&apos;s
-              request was to create an identity for use online and offline. The
-              logo was based on the idea of an acrobatic track - the main
-              attribute of this sport. The minimalistic shape combined with
-              bright green and purple colors create an image associated with
-              sports and energy, but do not burden it, preserving the childlike
-              ease. In addition, a series of icons and graphic decorative
-              elements were developed for social media, which can be used to
-              create banners, flyers and posts.
+              {`
+                  Acrobatics, stretching, fly yoga, fitness for adults and their children.\n
+                  The client's request was to create an identity for use online and offline. The logo was based on the idea of an acrobatic track - the main attribute of this sport.\n
+                  The minimalistic shape combined with bright green and purple colors create an image associated with sports and energy, but do not burden it, preserving the childlike ease.\n
+                  In addition, a series of icons and graphic decorative elements were developed for social media, which can be used to create banners, flyers and posts.
+                `}
             </p>
           </>
         }
