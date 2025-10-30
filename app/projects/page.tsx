@@ -46,7 +46,7 @@ const cases = [
     title: 'UAIRP',
     categories: ['BrandBook', 'Website'],
     description: 'Identity, UI/UX Design, Graphics, Copyright, Development',
-    image: '/images/uairp-case-12.webp',
+    image: '/images/uairp-poster.webp',
     slug: 'uairp',
   },
 ];
