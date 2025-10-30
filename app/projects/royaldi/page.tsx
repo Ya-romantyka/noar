@@ -12,7 +12,7 @@ export default function CasePage() {
       <CaseHero
         background="#101010"
         color="#fff"
-        category="Production, Full-Circle"
+        category="Production"
         title="IN LOVE 2026"
         description="Captured through the lens of Sicilian charm, the Royaldi collection radiates refined elegance and effortless allure. Our team skillfully executed the full street-style production, providing every service from concept to final delivery."
         client="Royaldi"
