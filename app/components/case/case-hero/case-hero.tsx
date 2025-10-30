@@ -12,7 +12,7 @@ gsap.registerPlugin(SplitText);
 interface CaseHeroProps {
   background: string;
   color: string;
-  category: string;
+  category: string | string[];
   title: string;
   description: string;
   client: string;
@@ -75,9 +75,19 @@ const CaseHero: React.FC<CaseHeroProps> = ({
     >
       <Container className={styles.container}>
         <div className={styles.col}>
-          <span className={styles.category} style={{ color }}>
-            {category}
-          </span>
+          <div className={styles.categoriesList}>
+            {Array.isArray(category) ? (
+              category.map((category, i) => (
+                <span className={styles.category} style={{ color }} key={i}>
+                  {category}
+                </span>
+              ))
+            ) : (
+              <span className={styles.category} style={{ color }}>
+                {category}
+              </span>
+            )}
+          </div>
           <h1 className={styles.title} ref={titleRef}>
             {title}
           </h1>

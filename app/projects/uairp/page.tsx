@@ -14,7 +14,7 @@ export default function CasePage() {
       <CaseHero
         background="#2F2F83"
         color="#fff"
-        category="Brandbook, Website"
+        category={['Brandbook', 'Website']}
         title="UAIRP"
         description="The Ukrainian-American Institute for Responsible Policy is an official organization. Therefore, we created a design that combines academic style and heraldry with modern trends, and built an easy-to-manage website with storytelling elements."
         client="UAIRP"
