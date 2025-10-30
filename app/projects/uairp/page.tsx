@@ -41,7 +41,6 @@ export default function CasePage() {
               srcDesk: '/images/uairp-case-1.webp',
             },
           },
-
           {
             image: {
               srcMob: '/images/uairp-case-2.webp',
@@ -85,6 +84,7 @@ export default function CasePage() {
           '/images/uairp-case-15.webp',
         ]}
         classNamesSwiper={s.caseGallerySwiper}
+        classNamesImageList={s.caseGalleryImageList}
       />
 
       <CaseGallery

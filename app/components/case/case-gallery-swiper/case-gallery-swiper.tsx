@@ -16,6 +16,7 @@ interface CaseGallerySwiperProps {
   title: ReactNode;
   images: string[];
   classNamesSwiper?: string;
+  classNamesImageList?: string;
 }
 
 const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
@@ -23,6 +24,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
   title,
   images,
   classNamesSwiper,
+  classNamesImageList,
 }) => {
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -96,7 +98,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
             </Swiper>
           </div>
         ) : (
-          <div className={styles.imageList}>
+          <div className={clsx(styles.imageList, classNamesImageList)}>
             {images.map((image, i) => {
               const isVideo = checkMediaTypeByExtension(image) === 'video';
               const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
