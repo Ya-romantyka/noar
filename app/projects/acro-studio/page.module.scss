@@ -1,0 +1,6 @@
+.caseGallerySwiper {
+  :global(.swiper-slide[data-swiper-slide-index='0']) {
+    max-width: 47.2vw;
+    aspect-ratio: 9 / 5;
+  }
+}

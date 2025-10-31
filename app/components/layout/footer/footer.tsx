@@ -1,43 +1,43 @@
-"use client";
+'use client';
 
-import React, {useRef} from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useTransitionRouter } from "next-view-transitions";
-import FooterMarquee from "./footerMarquee/footerMarquee";
-import Container from "@/app/components/layout/container/container";
-import styles from "./footer.module.scss";
-import clsx from "clsx";
+import React, { useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useTransitionRouter } from 'next-view-transitions';
+import FooterMarquee from './footerMarquee/footerMarquee';
+import Container from '@/app/components/layout/container/container';
+import styles from './footer.module.scss';
+import clsx from 'clsx';
 
-import Logo from "@/app/assets/icons/logo.svg";
-import StaggerLink from "../../ui/stagger-link/stagger-link";
+import Logo from '@/app/assets/icons/logo.svg';
+import StaggerLink from '../../ui/stagger-link/stagger-link';
 
 const footerData = {
-  logo: "/assets/logo.svg",
+  logo: '/assets/logo.svg',
   description:
-    "We are an award-winning studio that builds brands through thoughtful design and immersive digital solutions.",
+    'We are an award-winning studio that builds brands through thoughtful design and immersive digital solutions.',
   locations: [
-    { city: "UA, Kyiv", phone: "+38 098 38 22 12" },
-    { city: "UK, London", phone: "+44 7470 597 150" },
+    { city: 'UA, Kyiv', phone: '+38 067 010 01 11' },
+    { city: 'UK, London', phone: '+44 7470 597 150' },
   ],
   socials: [
-    { name: "Facebook", url: "https://www.facebook.com/" },
-    { name: "Instagram", url: "https://www.instagram.com/" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/" },
-    { name: "Dribble", url: "https://dribbble.com/" },
+    { name: 'Facebook', url: 'https://www.facebook.com/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/' },
+    { name: 'Dribble', url: 'https://dribbble.com/' },
   ],
   menu: [
-    { name: "About", url: "/about" },
-    { name: "Projects", url: "/projects" },
-    { name: "Services & Approach", url: "/services" },
-    { name: "Contact", url: "/contact" },
+    { name: 'About', url: '/about' },
+    { name: 'Projects', url: '/projects' },
+    { name: 'Services & Approach', url: '/services' },
+    { name: 'Contact', url: '/contact' },
   ],
   legals: [
-    { name: "Privacy Policy", url: "/privacy-policy" },
-    { name: "Terms of Use", url: "/terms-of-use" },
+    { name: 'Privacy Policy', url: '/privacy-policy' },
+    { name: 'Terms of Use', url: '/terms-of-use' },
   ],
-  tagline: "Global Reach, Local Expertise.",
-  copyright: "All Rights Reserved ⓒ Circa 2022",
+  tagline: 'Global Reach, Local Expertise.',
+  copyright: 'All Rights Reserved ⓒ Circa 2022',
 };
 
 const Footer: React.FC = () => {
@@ -48,40 +48,40 @@ const Footer: React.FC = () => {
 
   const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   function slideInOut() {
     document.documentElement.animate(
       [
-        { opacity: 1, transform: "translateY(0)" },
-        { opacity: 0.2, transform: "translateY(-35%)" },
+        { opacity: 1, transform: 'translateY(0)' },
+        { opacity: 0.2, transform: 'translateY(-35%)' },
       ],
       {
         duration: 1500,
-        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
-        fill: "forwards",
-        pseudoElement: "::view-transition-old(root)",
-      }
+        easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
+        fill: 'forwards',
+        pseudoElement: '::view-transition-old(root)',
+      },
     );
 
     document.documentElement.animate(
       [
-        { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" },
-        { clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)" },
+        { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
+        { clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)' },
       ],
       {
         duration: 1500,
-        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
-        fill: "forwards",
-        pseudoElement: "::view-transition-new(root)",
-      }
+        easing: 'cubic-bezier(0.87, 0, 0.13, 1)',
+        fill: 'forwards',
+        pseudoElement: '::view-transition-new(root)',
+      },
     );
   }
 
   const handleTransition = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
     router.push(href, { onTransitionReady: slideInOut });
@@ -90,9 +90,11 @@ const Footer: React.FC = () => {
   return (
     <footer
       className={clsx(styles.footer, {
-        [styles.black]: pathname === "/contact" || pathname === "/services",
+        [styles.black]: pathname === '/contact' || pathname === '/services',
       })}
-      {...(pathname === "/contact" || pathname === "/services" ? { 'data-header-white': true } : {})}
+      {...(pathname === '/contact' || pathname === '/services'
+        ? { 'data-header-white': true }
+        : {})}
     >
       <Container>
         <div className={styles.top}>
@@ -111,7 +113,7 @@ const Footer: React.FC = () => {
                   <li>{location.city}</li>
                   <li>
                     <StaggerLink
-                      href={`tel: ${location.phone.replace(/\s/g, "")}`}
+                      href={`tel: ${location.phone.replace(/\s/g, '')}`}
                     >
                       {location.phone}
                     </StaggerLink>

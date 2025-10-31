@@ -9,6 +9,7 @@ interface ColorItem {
   name: string;
   hex: string;
   textColor: 'black' | 'white';
+  span?: number;
 }
 
 interface FontEntry {
@@ -20,11 +21,16 @@ interface FontEntry {
 }
 
 interface CaseSpecificsProps {
+  title?: string;
   fonts: FontEntry[];
   colors: ColorItem[];
 }
 
-const CaseSpecifics: React.FC<CaseSpecificsProps> = ({ fonts, colors }) => {
+const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
+  title,
+  fonts,
+  colors,
+}) => {
   useFont(fonts.map((f) => f.file ?? f.name));
 
   const ff = (f: FontEntry) =>
@@ -46,7 +52,9 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({ fonts, colors }) => {
             >
               Specifics
             </span>
-            <h2 className={styles.title}>Fonts and Colors</h2>
+            <h2 className={styles.title}>
+              {title ? title : 'Fonts and Colors'}
+            </h2>
           </div>
 
           <ul className={styles.list}>
@@ -117,6 +125,7 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({ fonts, colors }) => {
                 style={{
                   backgroundColor: `#${color.hex}`,
                   color: color.textColor,
+                  gridColumn: `span ${color.span}`,
                 }}
               >
                 <div className={styles.colorItemTitle}>{color.name}</div>

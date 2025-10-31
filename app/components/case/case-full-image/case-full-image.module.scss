@@ -1,12 +1,24 @@
 .media {
-    position: relative;
-    aspect-ratio: 16/9;
-    display: block;
-    object-fit: cover;
+  position: relative;
+  aspect-ratio: 16/9;
+  display: block;
+  object-fit: cover;
 
-    img, picture, video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+  @media (max-width: 767px) {
+    .image {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
     }
+  }
+
+  img,
+  picture,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

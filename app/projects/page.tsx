@@ -13,13 +13,13 @@ import { useAutoPlayVideo } from '@/app/hooks/useAutoPlayVideo';
 
 const categories = [
   'All',
-  'Brandbook',
+  'Full-Circle',
+  'BrandBook',
   'Landing page',
   'Website',
-  'Web-app',
-  '2D/3D motion',
-  'Photo Production',
-  'Video Production',
+  'Platform',
+  '2D/3D Motion',
+  'Production',
   'Development',
 ];
 
@@ -27,66 +27,27 @@ const cases = [
   {
     id: 1,
     title: 'Acro Studio',
-    category: 'Brandbook',
+    categories: ['Brandbook'],
     description: 'Identity, Graphics',
     image: '/images/full-image.webp',
     slug: 'acro-studio',
   },
   {
     id: 2,
-    title: 'CreativePro',
-    category: 'Brandbook',
-    description: 'Branding, Strategy',
-    image: '/images/case-img-1.webp',
-    slug: 'creative-pro',
+    title: 'IN LOVE 2026',
+    categories: ['Production'],
+    description:
+      'Scriptwriting, Set-Design, Filming, Post-production, On-set makeup, Management',
+    image: '/images/horizont-video-poster.jpg',
+    slug: 'royaldi',
   },
   {
     id: 3,
-    title: 'E-Commerce Hub',
-    category: 'Website',
-    description: 'E-commerce, Web Development',
-    image: '/images/case-img-2.webp',
-    slug: 'ecommerce-hub',
-  },
-  {
-    id: 4,
-    title: 'InnovateApp',
-    category: 'Web-app',
-    description: 'React, Next.js, UI/UX',
-    image: '/images/case-img-3.webp',
-    slug: 'innovate-app',
-  },
-  {
-    id: 5,
-    title: 'Acro Studio',
-    category: 'Website',
-    description: 'UX/UI, Art Direction, Content',
-    image: '/images/full-image.webp',
-    slug: 'acro-studio',
-  },
-  {
-    id: 6,
-    title: 'CreativePro',
-    category: 'Brandbook',
-    description: 'Branding, Strategy',
-    image: '/images/case-img-1.webp',
-    slug: 'creative-pro',
-  },
-  {
-    id: 7,
-    title: 'E-Commerce Hub',
-    category: 'Website',
-    description: 'E-commerce, Web Development',
-    image: '/images/case-img-2.webp',
-    slug: 'ecommerce-hub',
-  },
-  {
-    id: 8,
-    title: 'InnovateApp',
-    category: 'Web-app',
-    description: 'React, Next.js, UI/UX',
-    image: '/images/case-img-3.webp',
-    slug: 'innovate-app',
+    title: 'UAIRP',
+    categories: ['BrandBook', 'Website'],
+    description: 'Identity, UI/UX Design, Graphics, Copyright, Development',
+    image: '/images/uairp-poster.webp',
+    slug: 'uairp',
   },
 ];
 
@@ -101,10 +62,10 @@ export default function Cases() {
   const filteredCases =
     activeCategory === 'All'
       ? cases
-      : cases.filter(
-          (c) =>
-            c.category.toLowerCase().trim() ===
-            activeCategory.toLowerCase().trim(),
+      : cases.filter((c) =>
+          c.categories
+            .map((c) => c.toLowerCase().trim())
+            .includes(activeCategory.toLowerCase().trim()),
         );
 
   useGSAP(
@@ -209,7 +170,7 @@ export default function Cases() {
                 <ProjectCard
                   slug={c.slug}
                   title={c.title}
-                  category={c.category}
+                  categories={c.categories}
                   description={c.description}
                   image={c.image}
                 />

@@ -86,6 +86,12 @@ const ModuleMission: React.FC<Props> = ({
           <h3 className={styles.title}>{title}</h3>
           {typeof text === 'object' ? (
             text
+          ) : typeof text === 'string' && text?.includes('\n') ? (
+            text.split('\n').map((text, i) => (
+              <p className={styles.text} key={i}>
+                {text}
+              </p>
+            ))
           ) : (
             <p className={styles.text}>{text}</p>
           )}

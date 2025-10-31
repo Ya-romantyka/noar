@@ -1,134 +1,138 @@
 .section {
-
-    padding: 13.2rem 0 3.2rem;
+  padding: 13.2rem 0 3.2rem;
 }
 
 .container {
-    display: grid;
-    gap: 4.8rem;
+  display: grid;
+  gap: 4.8rem;
 }
 
 .category {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.2rem 2rem;
-    margin-bottom: 2rem;
-    border: 0.1rem solid currentColor;
-    border-radius: 25rem;
-    color: var(--black-color, #101010);
-    font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 2rem;
+  margin-bottom: 2rem;
+  border: 0.1rem solid currentColor;
+  border-radius: 25rem;
+  color: var(--black-color, #101010);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
 
-    &::after {
-        content: '';
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 50%;
-        background-color: currentColor;
-    }
+  &::after {
+    content: '';
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
 }
 
 .title {
-    font-size: 4.8rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 100%;
-    letter-spacing: -0.144rem;
-    text-transform: uppercase;
-    margin-bottom: 3.2rem;
+  font-size: 4.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.144rem;
+  text-transform: uppercase;
+  margin-bottom: 3.2rem;
 }
 
 .description {
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    max-width: 33.3rem;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  max-width: 33.3rem;
 }
 
 .innerRow {
-    display: grid;
-    grid-template-columns: 15.3rem 1fr auto;
+  display: grid;
+  grid-template-columns: 15.3rem 1fr auto;
 }
 
 .label {
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    margin-bottom: 1.6rem;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  margin-bottom: 1.6rem;
 }
 
 .list {
-    display: grid;
-    gap: 0.4rem;
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
 
-    li {
-        will-change: opacity, transform;
-    }
+  li {
+    will-change: opacity, transform;
+  }
+}
+
+.categoriesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 @media (min-width: 768px) {
-    .section {
-        padding: 24rem 0 4.8rem;
+  .section {
+    padding: 24rem 0 4.8rem;
+  }
+
+  .container {
+    grid-template-columns: 82rem 1fr;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .category {
+    margin-bottom: 1.2rem;
+  }
+
+  .title {
+    font-size: 12.4rem;
+    letter-spacing: -0.62rem;
+    margin-bottom: 4rem;
+  }
+
+  .description {
+    max-width: 49.75rem;
+    font-size: 1.8rem;
+    letter-spacing: -0.054rem;
+  }
+
+  .col {
+    &:nth-child(1) {
+      order: 2;
     }
+  }
 
-    .container {
-        grid-template-columns: 82rem 1fr;
-        gap: 0;
-        align-items: flex-start;
+  .innerRow {
+    display: flex;
+    gap: 4.8rem;
+    align-items: flex-start;
+  }
+
+  .label {
+    font-size: 1.8rem;
+    letter-spacing: -0.054rem;
+    margin-bottom: 4rem;
+
+    &::after {
+      width: 0.6rem;
+      height: 0.6rem;
     }
+  }
 
-    .category {
-        margin-bottom: 1.2rem;
-    }
-
-    .title {
-        font-size: 12.4rem;
-        letter-spacing: -0.62rem;
-        margin-bottom: 4rem;
-    }
-
-    .description {
-        max-width: 49.75rem;
-        font-size: 1.8rem;
-        letter-spacing: -0.054rem;
-    }
-
-    .col {
-        &:nth-child(1) {
-            order: 2;
-        }
-    }
-
-    .innerRow {
-        display: flex;
-        gap: 4.8rem;
-        align-items: flex-start;
-    }
-
-    .label {
-        font-size: 1.8rem;
-        letter-spacing: -0.054rem;
-        margin-bottom: 4rem;
-
-        &::after {
-            width: 0.6rem;
-            height: 0.6rem;
-        }
-    }
-
-    .list {
-        gap: 1.2rem;
-        font-size: 2.4rem;
-        letter-spacing: -0.12rem;
-    }
-
+  .list {
+    gap: 1.2rem;
+    font-size: 2.4rem;
+    letter-spacing: -0.12rem;
+  }
 }

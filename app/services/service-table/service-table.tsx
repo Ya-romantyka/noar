@@ -313,7 +313,7 @@ const tablesData: Record<string, TableData> = {
   },
   table_3: {
     name: 'Platform',
-    price: '20k',
+    price: '40k',
     week: { desktop: 5, mobile: 4 },
     development_time: '4 months',
     strategies: [
@@ -887,7 +887,11 @@ const ServiceTable: React.FC = () => {
           Delivery: {activeTable.development_time}
         </p>
         <h3 className={styles.footerTitle}>Close the Loop with Us</h3>
-        <Button href={''} className={styles.footerButton} variant={'white'}>
+        <Button
+          href="/contact"
+          className={styles.footerButton}
+          variant={'white'}
+        >
           <ButtonIcon className={styles.icon} />
           let’s talk
         </Button>
