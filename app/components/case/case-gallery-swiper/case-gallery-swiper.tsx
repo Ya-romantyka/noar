@@ -89,7 +89,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
                       </video>
                     ) : (
                       <picture className={styles.image}>
-                        <Image src={image} fill sizes="auto" alt="" />
+                        <Image src={image} fill sizes="100vw" alt="" />
                       </picture>
                     )}
                   </SwiperSlide>
