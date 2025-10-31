@@ -133,8 +133,7 @@ const CaseGallery: FC<CaseGalleryProps> = ({
                     alt={`Gallery image ${index + 1}`}
                     priority={true}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className={styles.image}
+                    sizes="100vw"                    className={styles.image}
                   />
                 ) : (
                   <Image
@@ -142,8 +141,7 @@ const CaseGallery: FC<CaseGalleryProps> = ({
                     alt={`Gallery image ${index + 1}`}
                     priority={true}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className={styles.image}
+                    sizes="100vw"                    className={styles.image}
                   />
                 ))}
 
