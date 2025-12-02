@@ -7,7 +7,8 @@ import { useFont } from '@/app/hooks/useFont';
 
 interface ColorItem {
   name: string;
-  hex: string;
+  hex?: string | string[];
+  gradient?: string;
   textColor: 'black' | 'white';
   span?: number;
 }
@@ -123,16 +124,27 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                   [styles.colorItemWhite]: color.textColor === 'white',
                 })}
                 style={{
-                  backgroundColor: `#${color.hex}`,
+                  background: color.gradient ? color.gradient : `#${color.hex}`,
                   color: color.textColor,
                   gridColumn: `span ${color.span}`,
                 }}
               >
                 <div className={styles.colorItemTitle}>{color.name}</div>
-                <div className={styles.colorItemValue}>
-                  <span>HEX:</span>
-                  <span>{color.hex}</span>
-                </div>
+                {!Array.isArray(color.hex) ? (
+                  <div className={styles.colorItemValue}>
+                    <span>HEX:</span>
+                    <span>{color.hex}</span>
+                  </div>
+                ) : (
+                  <ol className={styles.colorsList}>
+                    {color.hex.map((hexItem, i) => (
+                      <li key={hexItem}>
+                        <span>{i + 1} HEX: </span>
+                        <span>{hexItem}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
               </li>
             ))}
           </ul>

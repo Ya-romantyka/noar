@@ -49,6 +49,14 @@ const cases = [
     image: '/images/uairp-poster.webp',
     slug: 'uairp',
   },
+  {
+    id: 4,
+    title: 'Sion events',
+    categories: ['BrandBook'],
+    description: 'Identity, Graphics',
+    image: '/images/sion-events-banner.webp',
+    slug: 'sion-events',
+  },
 ];
 
 export default function Cases() {
