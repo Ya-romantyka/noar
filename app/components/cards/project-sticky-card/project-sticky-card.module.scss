@@ -26,6 +26,7 @@
 }
 .imgWrapper {
     display: flex;
+    width: 100%;
     padding-top: 2px;
 }
 .image {
@@ -46,6 +47,10 @@
 @media (max-width: 767px) {
     .list {
         display: none;
+    }
+    .image {
+        width: 100%;
+        aspect-ratio: 1/1;
     }
 }
 

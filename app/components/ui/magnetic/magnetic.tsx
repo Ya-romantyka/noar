@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, ReactNode, forwardRef } from "react";
 import gsap from "gsap";
+import {useCanHover} from "@/app/hooks/useCanHover";
 
 interface MagneticProps {
   children: ReactNode;
@@ -12,6 +13,7 @@ interface MagneticProps {
 const Magnetic = forwardRef<HTMLDivElement, MagneticProps>(
   ({ children, strength = 40, className }, ref) => {
     const innerRef = useRef<HTMLDivElement | null>(null);
+    const canHover = useCanHover();
 
     const combinedRef = (node: HTMLDivElement | null) => {
       if (typeof ref === "function") {
@@ -23,6 +25,7 @@ const Magnetic = forwardRef<HTMLDivElement, MagneticProps>(
     };
 
     useEffect(() => {
+      if (!canHover) return
       const el = innerRef.current;
       if (!el) return;
 

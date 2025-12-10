@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import styles from './found-section.module.scss';
 import Container from '@/app/components/layout/container/container';
 import clsx from 'clsx';
@@ -8,13 +8,10 @@ import Button from '@/app/components/ui/button/button';
 import AutoVideo from '@/app/components/ui/Auto-video/AutoVideo';
 import ButtonIcon from '@/public/images/button_icon.svg';
 import useSplitTextAnimation from '@/app/hooks/useSplitTextAnimation';
-import { useAutoPlayVideo } from '@/app/hooks/useAutoPlayVideo';
 
 const FoundSection = () => {
   const titleRef = useRef<HTMLParagraphElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  useAutoPlayVideo(videoRef, { priority: 'idle', lazySources: true });
   useSplitTextAnimation(titleRef, { triggerOnScroll: true });
   return (
     <section className={styles.section}>

@@ -64,26 +64,12 @@
   }
 }
 
-.title {
-  -webkit-text-stroke-width: 0.36px;
-  -webkit-text-stroke-color: var(--white-stroke, rgba(237, 237, 237, 0.12));
-  font-size: 20rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 80%;
-  letter-spacing: -1rem;
-  text-transform: lowercase;
-
+.svgMob {
+  display: block;
+  width: 100%;
   margin-bottom: 8.2rem;
 
-  @media (max-width: 768px) {
-    span {
-      display: block;
-      margin-left: 15rem;
-    }
-  }
 }
-
 .inner {
   flex-shrink: 0;
 }
@@ -127,11 +113,10 @@
     }
   }
 
-  .title {
+
+  .svgMob {
     display: none;
-    -webkit-text-stroke-width: 1px;
-    font-size: 38.8rem;
-    letter-spacing: -1.94rem;
+    margin-bottom: 8.2rem;
   }
   .svgTitle {
     position: absolute;

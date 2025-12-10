@@ -58,21 +58,30 @@ const ProjectsSection = () => {
       const isDesk = !isMobile;
 
       const getHeaderH = () =>
-        headerRef.current?.getBoundingClientRect().height ?? 0;
+          headerRef.current?.getBoundingClientRect().height ?? 0;
 
       const getVh = () => window.visualViewport?.height ?? window.innerHeight;
-      const baseVh = getVh();
 
       const headerH = getHeaderH();
-      items.forEach((item, i) => {
-        const targetH = baseVh - headerH * Math.min(i, 2);
-        gsap.set(item, {
-          position: 'relative',
-          height: targetH,
-          overflow: 'hidden',
-          zIndex: i,
+      const baseVh = getVh();
+
+      if (isDesk) {
+        items.forEach((item, i) => {
+          const targetH = baseVh - headerH * Math.min(i, 2);
+          gsap.set(item, {
+            position: 'relative',
+            height: targetH,
+            overflow: 'hidden',
+            zIndex: i,
+          });
         });
-      });
+      } else {
+        items.forEach((item) => {
+          gsap.set(item, {
+            clearProps: 'height,position,overflow,zIndex',
+          });
+        });
+      }
 
       const lastIndex = items.length - 1;
       const lastItem = items[lastIndex];
@@ -86,7 +95,6 @@ const ProjectsSection = () => {
         const isLast = i === lastIndex;
         const nextItem = !isLast ? items[i + 1] : null;
 
-        const targetH = baseVh - headerH * Math.min(i, 2);
         const pinStart = `top top+=${headerH * i}`;
 
         ScrollTrigger.create({
@@ -98,13 +106,15 @@ const ProjectsSection = () => {
           pinSpacing: false,
         });
 
-        gsap.set(picture, {
-          display: 'block',
-          width: '100%',
-          height: targetH,
-        });
-
         if (isDesk) {
+          const targetH = baseVh - headerH * Math.min(i, 2);
+
+          gsap.set(picture, {
+            display: 'block',
+            width: '100%',
+            height: targetH,
+          });
+
           gsap.set(picture, {
             transformOrigin: 'right top',
             willChange: 'transform',
@@ -127,8 +137,8 @@ const ProjectsSection = () => {
 
           const shrinkEndTrigger = isLast ? list : (nextItem as Element);
           const shrinkEnd = isLast
-            ? globalEndDesk
-            : `top top+=${headerH * (i + 1)}`;
+              ? globalEndDesk
+              : `top top+=${headerH * (i + 1)}`;
 
           const tl = gsap.timeline({
             defaults: { ease: 'none' },
@@ -140,27 +150,32 @@ const ProjectsSection = () => {
               scrub: true,
               onEnter: () => gsap.set(picture, { transformOrigin: 'left top' }),
               onEnterBack: () =>
-                gsap.set(picture, { transformOrigin: 'left top' }),
+                  gsap.set(picture, { transformOrigin: 'left top' }),
               onLeaveBack: () =>
-                gsap.set(picture, { transformOrigin: 'right top' }),
+                  gsap.set(picture, { transformOrigin: 'right top' }),
             },
           });
 
           tl.fromTo(
-            picture,
-            { scaleX: 1, scaleY: 1 },
-            { scaleX: 0, scaleY: 0 },
-            0,
+              picture,
+              { scaleX: 1, scaleY: 1 },
+              { scaleX: 0, scaleY: 0 },
+              0,
           );
         } else {
-          gsap.set(picture, { clearProps: 'transform,willChange' });
+          gsap.set(picture, {
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+            clearProps: 'transform,willChange',
+          });
         }
 
         let prev = Math.round(item.getBoundingClientRect().width);
 
         const ro = new ResizeObserver(([entry]) => {
           const w = Math.round(
-            entry.borderBoxSize?.[0]?.inlineSize ??
+              entry.borderBoxSize?.[0]?.inlineSize ??
               entry.contentBoxSize?.[0]?.inlineSize ??
               entry.contentRect.width,
           );
@@ -176,6 +191,7 @@ const ProjectsSection = () => {
 
     return () => ctx.revert();
   }, [isMobile]);
+
 
   return (
     <section className={styles.section} ref={sectionRef}>

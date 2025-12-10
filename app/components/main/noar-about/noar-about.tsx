@@ -7,6 +7,7 @@ import Button from "@/app/components/ui/button/button";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import LogoAnimComponent from "@/app/components/main/logo-anim/Logo-anim-component";
+import NoarIcon from '@/app/assets/icons/noarstudio.svg'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,7 +100,9 @@ const NoarAbout = () => {
                 <div className={styles.circleBlock}>
                     <section className={styles.section}>
                         <Container className={styles.container}>
-                            <h2 className={styles.title}>noar<span>.studio</span></h2>
+                            <div className={styles.svgMob}>
+                                <NoarIcon/>
+                            </div>
 
                             <div className={styles.svgTitle}>
                                <LogoAnimComponent/>
