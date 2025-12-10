@@ -27,7 +27,7 @@ export default function CasePage() {
         ]}
         duration="2 month"
         year="2024"
-        headerColor={'data-header-white'}
+        headerColor={'white'}
       />
       <CaseFullImage image="/images/uairp-poster.webp" />
       <CaseGallery
@@ -106,7 +106,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/uairp-video.mp4',
+              src: '/videos/UAIRP-Desktop.mp4',
               type: 'video/mp4',
               poster: '/images/uairp-case-9.webp',
               fullSrc: '/videos/uairp-video.mp4',

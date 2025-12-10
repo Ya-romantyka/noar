@@ -9,9 +9,11 @@ import { useAutoPlayVideo } from '@/app/hooks/useAutoPlayVideo';
 import Image from "next/image";
 
 type VideoItem = {
-  src: string;
   fullSrc?: string;
+  src: string;
   type: string;
+  srcMob?: string;
+  typeMob?: string;
   poster?: string;
 };
 
@@ -76,7 +78,11 @@ const AutoVideo: FC<{ video: VideoItem; className?: string }> = ({
               preload="none"
               onLoadedData={() => setIsPreviewReady(true)}
           >
-            <source data-src={video.src} type={video.type} />
+            <source
+                data-src={video.srcMob} type={video.typeMob}
+                media="(min-width: 768px)"
+            />
+            <source data-src={video.src} type={video.type}/>
           </video>
 
           <Button className={styles.button} variant="outline-white">
@@ -99,7 +105,7 @@ const AutoVideo: FC<{ video: VideoItem; className?: string }> = ({
                   poster={video.poster}
                   controls
                   playsInline
-                  preload="auto"
+                  preload="none"
               >
                 <source src={video.fullSrc ?? video.src} type={video.type} />
               </video>

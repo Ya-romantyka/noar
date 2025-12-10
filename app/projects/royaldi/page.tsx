@@ -26,7 +26,7 @@ export default function CasePage() {
         ]}
         duration="6 weeks"
         year="2024"
-        headerColor={'data-header-white'}
+        headerColor={'white'}
       />
 
       <AutoVideo

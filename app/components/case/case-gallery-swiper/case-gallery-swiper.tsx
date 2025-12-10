@@ -69,6 +69,9 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
               spaceBetween={20}
               slidesPerView="auto"
               loop
+              slidesOffsetBefore={0}
+              slidesOffsetAfter={0}
+              centeredSlides={false}
               className={clsx(styles.swiper, classNamesSwiper)}
             >
               {images.map((image, i) => {
