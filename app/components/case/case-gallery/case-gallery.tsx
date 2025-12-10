@@ -16,7 +16,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 type VideoItem = {
   src: string;
+  srcMob?: string;
   type: string;
+  typeMob?: string;
   poster?: string;
   fullSrc?: string;
   fullType?: string;
