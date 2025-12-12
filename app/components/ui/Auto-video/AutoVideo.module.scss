@@ -1,4 +1,5 @@
 .videoWrapper {
+  display: flex;
   width: 100%;
   height: 100%;
   position: relative;
@@ -25,7 +26,7 @@
 
   .button {
     position: absolute;
-    right: 25.1rem;
+    right: 91.5rem;
     bottom: 2rem;
     z-index: 2;
     transition: opacity 0.5s;
