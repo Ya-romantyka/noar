@@ -44,7 +44,7 @@ export default function CasePage() {
         media={[
           {
             video: {
-              src: '/videos/royaldi-1-c.mp4',
+              src: '/videos/royaldi-1-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-1.webp',
               fullSrc: '/videos/royaldi-1-c.mp4',
@@ -53,7 +53,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-2-c.mp4',
+              src: '/videos/royaldi-2-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-2.webp',
               fullSrc: '/videos/royaldi-2-c.mp4',
@@ -62,7 +62,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-3-c.mp4',
+              src: '/videos/royaldi-3-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-3.webp',
               fullSrc: '/videos/royaldi-3-c.mp4',
@@ -71,7 +71,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-4-c.mp4',
+              src: '/videos/royaldi-4-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-4.webp',
               fullSrc: '/videos/royaldi-4-c.mp4',
@@ -80,7 +80,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-5-c.mp4',
+              src: '/videos/royaldi-5-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-5.webp',
               fullSrc: '/videos/royaldi-5-c.mp4',
@@ -89,7 +89,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-6-c.mp4',
+              src: '/videos/royaldi-6-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-6.webp',
               fullSrc: '/videos/royaldi-6-c.mp4',
@@ -98,7 +98,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-7-c.mp4',
+              src: '/videos/royaldi-7-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-7.webp',
               fullSrc: '/videos/royaldi-7-c.mp4',
@@ -107,7 +107,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-8-c.mp4',
+              src: '/videos/royaldi-8-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-8.webp',
               fullSrc: '/videos/royaldi-8-c.mp4',
@@ -116,7 +116,7 @@ export default function CasePage() {
           },
           {
             video: {
-              src: '/videos/royaldi-9-c.mp4',
+              src: '/videos/royaldi-9-short.mp4',
               type: 'video/mp4',
               poster: '/images/royaldi-cases/case-img-9-c.webp',
               fullSrc: '/videos/royaldi-9.mp4',
