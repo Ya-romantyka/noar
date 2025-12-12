@@ -12,9 +12,10 @@ interface video {
 interface CaseFullImage {
   image?: string;
   video?: video;
+  headerColor?: 'white' | 'transparent';
 }
 
-const CaseHero: FC<CaseFullImage> = ({ image, video }) => {
+const CaseHero: FC<CaseFullImage> = ({ image, video, headerColor }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -28,7 +29,11 @@ const CaseHero: FC<CaseFullImage> = ({ image, video }) => {
   }, []);
 
   return (
-    <div className={styles.media}>
+    <div
+      className={styles.media}
+      data-header-white={headerColor === 'white' ? true : undefined}
+      data-header-transparent={headerColor === 'transparent' ? true : undefined}
+    >
       {image && (
         <picture className={styles.image} data-header-white>
           {!isMobile ? (

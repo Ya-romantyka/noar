@@ -27,9 +27,9 @@ export default function CasePage() {
         ]}
         duration="2 month"
         year="2024"
-        headerColor={'white'}
+        headerColor={'transparent'}
       />
-      <CaseFullImage image="/images/uairp-poster.webp" />
+      <CaseFullImage image="/images/uairp-poster.webp" headerColor={'white'} />
       <CaseGallery
         label="Concept"
         title="A combination of heraldry and contemporary classics"
