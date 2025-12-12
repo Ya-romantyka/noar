@@ -19,7 +19,7 @@ interface CaseHeroProps {
   services: string[];
   duration: string;
   year: string;
-  headerColor?:"white" | 'transparent' ;
+  headerColor?:"white" | 'transparent-black' | 'transparent-white' ;
 }
 
 const CaseHero: React.FC<CaseHeroProps> = ({
@@ -69,8 +69,11 @@ const CaseHero: React.FC<CaseHeroProps> = ({
       className={styles.section}
       style={{ backgroundColor: background, color }}
       data-header-white={headerColor === 'white' ? true : undefined}
-      data-header-transparent={
-        headerColor === 'transparent' ? true : undefined
+      data-header-transparent-black={
+        headerColor === 'transparent-black' ? true : undefined
+      }
+      data-header-transparent-white={
+        headerColor === 'transparent-white' ? true : undefined
       }
     >
       <Container className={styles.container}>

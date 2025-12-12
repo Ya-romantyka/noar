@@ -43,7 +43,26 @@
         }
     }
 
-    &.transparent {
+    &.transparentWhite {
+        background: transparent;
+        .logo {
+            color: #fff;
+        }
+
+        .menuButton {
+            background-color: #fff;
+            color: #101010;
+        }
+
+        &::after {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .menu {
+            color: #FFFFFF;
+        }
+    }
+    &.transparentBlack {
         background: transparent;
 
     }
@@ -172,6 +191,16 @@
 
 
         &.white {
+            .socials a {
+                color: #fff;
+            }
+
+            .button {
+                color: #fff;
+                border-color: #fff;
+            }
+        }
+        &.transparentWhite {
             .socials a {
                 color: #fff;
             }
