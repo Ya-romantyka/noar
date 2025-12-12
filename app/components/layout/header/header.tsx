@@ -28,7 +28,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hideHeader, setHideHeader] = useState<boolean>(false);
   const [isWhiteHeader, setIsWhiteHeader] = useState(false);
-  const [isTransparentHeader, setIsTransparentHeader] = useState(false);
+  const [isTransparentBlackHeader, setIsTransparentBlackHeader] = useState(false);
+  const [isTransparentWhiteHeader, setIsTransparentWhiteHeader] = useState(false);
 
   const pathname = usePathname();
   const lastScroll = useRef(0);
@@ -90,21 +91,31 @@ export default function Header() {
       const viewportHeight = window.innerHeight;
       const line = viewportHeight * 0.1;
 
-      const transparentSections = Array.from(
-        document.querySelectorAll('[data-header-transparent]'),
+      const transparentBlackSections = Array.from(
+          document.querySelectorAll('[data-header-transparent-black]')
+      );
+      const transparentWhiteSections = Array.from(
+          document.querySelectorAll('[data-header-transparent-white]')
       );
       const whiteSections = Array.from(
-        document.querySelectorAll('[data-header-white]'),
+          document.querySelectorAll('[data-header-white]')
       );
 
-      const transparentActive = transparentSections.some((sec) =>
-        isLineInside(sec, line),
+      const blackActive = transparentBlackSections.some((sec) =>
+          isLineInside(sec, line)
       );
+
+      const whiteTransparentActive = transparentWhiteSections.some((sec) =>
+          isLineInside(sec, line)
+      );
+
       const whiteActive =
-        !transparentActive &&
-        whiteSections.some((sec) => isLineInside(sec, line));
+          !blackActive &&
+          !whiteTransparentActive &&
+          whiteSections.some((sec) => isLineInside(sec, line));
 
-      setIsTransparentHeader(transparentActive);
+      setIsTransparentBlackHeader(blackActive);
+      setIsTransparentWhiteHeader(whiteTransparentActive);
       setIsWhiteHeader(whiteActive);
     };
 
@@ -117,6 +128,7 @@ export default function Header() {
       window.removeEventListener('resize', checkHeaderZone);
     };
   }, [pathname]);
+
 
   function slideInOut() {
     document.documentElement.animate(
@@ -178,7 +190,8 @@ export default function Header() {
         className={clsx(
           styles.header,
           isWhiteHeader && styles.white,
-          isTransparentHeader && styles.transparent,
+          isTransparentBlackHeader && styles.transparentBlack,
+          isTransparentWhiteHeader && styles.transparentWhite,
           hideHeader && styles.hide,
         )}
         ref={headerRef}
@@ -249,7 +262,8 @@ export default function Header() {
         className={clsx(
           styles.menu,
           isWhiteHeader && styles.white,
-          isTransparentHeader && styles.transparent,
+          isTransparentWhiteHeader && styles.transparentWhite,
+          isTransparentBlackHeader && styles.transparentBlack,
           { [styles.open]: isMenuOpen },
         )}
         ref={menuListRef}
