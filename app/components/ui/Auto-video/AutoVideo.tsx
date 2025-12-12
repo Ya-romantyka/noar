@@ -89,7 +89,7 @@ const AutoVideo: FC<{
           <source
             data-src={video.srcMob}
             type={video.typeMob}
-            media="(min-width: 768px)"
+            media="(max-width: 768px)"
           />
           <source data-src={video.src} type={video.type} />
         </video>
