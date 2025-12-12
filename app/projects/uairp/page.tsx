@@ -27,6 +27,7 @@ export default function CasePage() {
         ]}
         duration="2 month"
         year="2024"
+        headerColor={'transparent-black'}
       />
       <CaseFullImage image="/images/uairp-poster.webp" headerColor={'white'} />
       <CaseGallery
