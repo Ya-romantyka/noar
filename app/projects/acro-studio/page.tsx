@@ -21,7 +21,7 @@ export default function CasePage() {
         services={['Identity', 'Graphics']}
         duration="1 months"
         year="2023"
-        headerColor={'transparent-white'}
+        headerColor={'transparent-black'}
       />
       <CaseFullImage image="/images/full-image.webp" />
       {/* <CaseList
