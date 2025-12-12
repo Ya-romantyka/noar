@@ -37,8 +37,10 @@ export default function CasePage() {
           fullSrc: '/videos/HORIZONT-compressed.mp4',
         }}
         className={s.autoVideo}
+        headerColor={'white'}
       />
       <CaseList
+        headerColor={'white'}
         label="Visuals"
         title="Moments of Elegance, Captured Beautifully"
         media={[

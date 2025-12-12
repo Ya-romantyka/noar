@@ -27,9 +27,9 @@ export default function CasePage() {
         ]}
         duration="2 month"
         year="2024"
-        headerColor={'white'}
+        headerColor={'transparent'}
       />
-      <CaseFullImage image="/images/uairp-poster.webp" />
+      <CaseFullImage image="/images/uairp-poster.webp" headerColor={'white'} />
       <CaseGallery
         label="Concept"
         title="A combination of heraldry and contemporary classics"
@@ -107,11 +107,11 @@ export default function CasePage() {
           {
             video: {
               src: '/videos/UAIRP-Desktop.mp4',
-              srcMob: '/videos/UUAIRP-Mobile.mp4',
+              srcMob: '/videos/UAIRP-Mobile.mp4',
               type: 'video/mp4',
               typeMob: 'video/mp4',
               poster: '/images/uairp-case-9.webp',
-              fullSrc: '/videos/uairp-video.mp4',
+              fullSrc: '/videos/UAIRP-Desktop.mp4',
               fullType: 'video/mp4',
             },
           },

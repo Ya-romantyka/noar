@@ -1,12 +1,12 @@
 import React from 'react';
-import {useTransitionRouter} from 'next-view-transitions';
+import { useTransitionRouter } from 'next-view-transitions';
 
 import Link from 'next/link';
 import styles from './project-card.module.scss';
 
 import dynamic from 'next/dynamic';
-import {useIsMobile} from "@/app/hooks/useIsMobile";
-import Image from "next/image";
+import { useIsMobile } from '@/app/hooks/useIsMobile';
+import Image from 'next/image';
 
 const DistortedImage = dynamic(() => import('./distorted-image'), {
   ssr: false,
@@ -60,7 +60,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <Link
-      href="/"
+      href={`/projects/${slug}`}
       className={styles.card}
       onClick={(e) => {
         e.preventDefault();
@@ -77,8 +77,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       )}
       <div className={styles.image}>
-        {isMobile ? (<Image src={image} alt={title} fill sizes={'100vw'}/>) : (
-            <DistortedImage imageUrl={image} alt={title}/>
+        {isMobile ? (
+          <Image src={image} alt={title} fill sizes={'100vw'} />
+        ) : (
+          <DistortedImage imageUrl={image} alt={title} />
         )}
       </div>
       <h3 className={styles.title}>{title}</h3>
