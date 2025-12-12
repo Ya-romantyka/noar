@@ -111,7 +111,7 @@ export default function CasePage() {
               type: 'video/mp4',
               typeMob: 'video/mp4',
               poster: '/images/uairp-case-9.webp',
-              fullSrc: '/videos/uairp-video.mp4',
+              fullSrc: '/videos/UAIRP-Desktop.mp4',
               fullType: 'video/mp4',
             },
           },
