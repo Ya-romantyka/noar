@@ -19,7 +19,7 @@
     "gsap": "npm:@gsap/shockingly@^3.12.7",
     "lenis": "^1.1.20",
     "motion": "^12.12.1",
-    "next": "^15.1.7",
+    "next": "^15.5.9",
     "next-view-transitions": "^0.3.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
