@@ -126,7 +126,7 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                 style={{
                   background: color.gradient ? color.gradient : `#${color.hex}`,
                   color: color.textColor,
-                  gridColumn: `span ${color.span}`,
+                  gridColumn: color.span ? `span ${color.span}` : 'auto',
                 }}
               >
                 <div className={styles.colorItemTitle}>{color.name}</div>
