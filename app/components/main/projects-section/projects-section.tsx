@@ -18,8 +18,8 @@ const projects = [
     name: 'UAIRP',
     year: '2024',
     frameworks: ['Brandbook', 'Website', '2D motion'],
-    img: '/images/uairp-project-screen.webp',
-    url: 'https://uairp.noar.studio',
+    img: '/images/uairp-poster.webp',
+    url: '/projects/uairp',
   },
   {
     id: 1,
@@ -27,7 +27,7 @@ const projects = [
     year: '2024',
     frameworks: ['Scriptwriting', 'Set-Design', 'Filming', 'Full-Circle'],
     img: '/images/royaldi-project-screen.webp',
-    url: '',
+    url: '/projects/royaldi',
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const projects = [
     year: '2023',
     frameworks: ['Brandbook', 'Marketing collaterals'],
     img: '/images/acro-studio-project-screen.webp',
-    url: '',
+    url: '/projects/acro-studio',
   },
 ];
 
@@ -58,7 +58,7 @@ const ProjectsSection = () => {
       const isDesk = !isMobile;
 
       const getHeaderH = () =>
-          headerRef.current?.getBoundingClientRect().height ?? 0;
+        headerRef.current?.getBoundingClientRect().height ?? 0;
 
       const getVh = () => window.visualViewport?.height ?? window.innerHeight;
 
@@ -137,8 +137,8 @@ const ProjectsSection = () => {
 
           const shrinkEndTrigger = isLast ? list : (nextItem as Element);
           const shrinkEnd = isLast
-              ? globalEndDesk
-              : `top top+=${headerH * (i + 1)}`;
+            ? globalEndDesk
+            : `top top+=${headerH * (i + 1)}`;
 
           const tl = gsap.timeline({
             defaults: { ease: 'none' },
@@ -150,17 +150,17 @@ const ProjectsSection = () => {
               scrub: true,
               onEnter: () => gsap.set(picture, { transformOrigin: 'left top' }),
               onEnterBack: () =>
-                  gsap.set(picture, { transformOrigin: 'left top' }),
+                gsap.set(picture, { transformOrigin: 'left top' }),
               onLeaveBack: () =>
-                  gsap.set(picture, { transformOrigin: 'right top' }),
+                gsap.set(picture, { transformOrigin: 'right top' }),
             },
           });
 
           tl.fromTo(
-              picture,
-              { scaleX: 1, scaleY: 1 },
-              { scaleX: 0, scaleY: 0 },
-              0,
+            picture,
+            { scaleX: 1, scaleY: 1 },
+            { scaleX: 0, scaleY: 0 },
+            0,
           );
         } else {
           gsap.set(picture, {
@@ -175,7 +175,7 @@ const ProjectsSection = () => {
 
         const ro = new ResizeObserver(([entry]) => {
           const w = Math.round(
-              entry.borderBoxSize?.[0]?.inlineSize ??
+            entry.borderBoxSize?.[0]?.inlineSize ??
               entry.contentBoxSize?.[0]?.inlineSize ??
               entry.contentRect.width,
           );
@@ -191,7 +191,6 @@ const ProjectsSection = () => {
 
     return () => ctx.revert();
   }, [isMobile]);
-
 
   return (
     <section className={styles.section} ref={sectionRef}>

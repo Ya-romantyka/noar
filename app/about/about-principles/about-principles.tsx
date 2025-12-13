@@ -118,6 +118,7 @@ const AboutPrinciples: React.FC = () => {
         </div>
 
         <ExpandableText
+          animationDuration={{ desktop: '40s', mobile: '80s' }}
           popup={{
             title:
               'The noar philosophy stems from the principles of system sciences.',

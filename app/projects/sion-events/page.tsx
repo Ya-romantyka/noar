@@ -21,8 +21,12 @@ export default function CasePage() {
         services={['Identity', 'Graphics']}
         duration="1 months"
         year="2025"
+        headerColor="transparent-black"
       />
-      <CaseFullImage image="/images/sion-events-banner.webp" />
+      <CaseFullImage
+        image="/images/sion-events-banner.webp"
+        headerColor="transparent-white"
+      />
       {/* <CaseList
         label="Visuals"
         title="Sophisticated and energetic cross-dimensional design."

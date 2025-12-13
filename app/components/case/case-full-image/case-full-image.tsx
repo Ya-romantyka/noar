@@ -12,7 +12,7 @@ interface video {
 interface CaseFullImage {
   image?: string;
   video?: video;
-  headerColor?: 'white' | 'transparent';
+  headerColor?: 'white' | 'transparent-black' | 'transparent-white';
 }
 
 const CaseHero: FC<CaseFullImage> = ({ image, video, headerColor }) => {
@@ -32,7 +32,12 @@ const CaseHero: FC<CaseFullImage> = ({ image, video, headerColor }) => {
     <div
       className={styles.media}
       data-header-white={headerColor === 'white' ? true : undefined}
-      data-header-transparent={headerColor === 'transparent' ? true : undefined}
+      data-header-transparent-black={
+        headerColor === 'transparent-black' ? true : undefined
+      }
+      data-header-transparent-white={
+        headerColor === 'transparent-white' ? true : undefined
+      }
     >
       {image && (
         <picture className={styles.image} data-header-white>

@@ -99,7 +99,7 @@ const BennettCliveScrollAnimation = () => {
               variant={'outline-white'}
             >
               <ButtonIcon className={styles.icon} />
-              about us
+              About Us
             </Button>
           )}
         </div>
@@ -160,7 +160,7 @@ const BennettCliveScrollAnimation = () => {
             variant={'outline-white'}
           >
             <ButtonIcon className={styles.icon} />
-            about us
+            About Us
           </Button>
         )}
       </Container>
