@@ -13,12 +13,12 @@ import { TContactFormData } from '@/types/requestsTypes';
 import { useSubmitContactForm } from '@/api/useSubmitContactForm';
 
 const services = [
-  'Web Design',
-  'UX/UI Design',
-  'Brand Identity',
-  '2D/3D Motion',
-  'Video Production',
-  'Development',
+  'Full-Circle',
+  'Landing',
+  'Website',
+  'Platform',
+  'Brandbook',
+  'Production',
 ];
 const budgets = ['<$10k', '$20k', '$30k', '$50k', '$150k +'];
 const timeframes = [
