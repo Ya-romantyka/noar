@@ -1,15 +1,15 @@
-import StaggerLink from "@/app/components/ui/stagger-link/stagger-link";
-import styles from "./contact-info.module.scss";
-import clsx from "clsx";
+import StaggerLink from '@/app/components/ui/stagger-link/stagger-link';
+import styles from './contact-info.module.scss';
+import clsx from 'clsx';
 
 export default function ContactInfo() {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <div className={clsx("section-label", styles.label)}>
+        <div className={clsx('section-label', styles.label)}>
           Contact information
         </div>
-        <h2 className={clsx("h2", styles.title)}>
+        <h2 className={clsx('h2', styles.title)}>
           Let’s make great things happen!
         </h2>
         <p className={styles.text}>Feel free to contact us at any time</p>
@@ -26,14 +26,14 @@ export default function ContactInfo() {
         </li>
         <li className={styles.item}>
           <span className={styles.itemLabel}>Phone | Kyiv:</span>
-          <StaggerLink href="tel:+380666661488" className={styles.itemLink}>
-            +38 066 666 1488
+          <StaggerLink href="tel:+380670100111" className={styles.itemLink}>
+            +38 067 010 01 11
           </StaggerLink>
         </li>
         <li className={styles.item}>
           <span className={styles.itemLabel}>Phone | London:</span>
-          <StaggerLink href="tel:+447342769960" className={styles.itemLink}>
-            +44 73 4276 9960
+          <StaggerLink href="tel:+447470597150" className={styles.itemLink}>
+            +44 7470 597 150
           </StaggerLink>
         </li>
       </ul>
