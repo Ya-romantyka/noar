@@ -21,7 +21,7 @@ const footerData = {
     { city: 'UK, London', phone: '+44 7470 597 150' },
   ],
   socials: [
-    { name: 'Facebook', url: 'https://www.facebook.com/' },
+    { name: 'Behance', url: 'https://www.behance.net/' },
     { name: 'Instagram', url: 'https://www.instagram.com/' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/' },
     { name: 'Dribble', url: 'https://dribbble.com/' },
