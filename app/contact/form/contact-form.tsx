@@ -20,7 +20,7 @@ const services = [
   'Video Production',
   'Development',
 ];
-const budgets = ['>$1k', '$3k', '$5k', '$10k', '$15k', '>$30k'];
+const budgets = ['<$10k', '$20k', '$30k', '$50k', '$150k +'];
 const timeframes = [
   '1 month',
   '2-3 months',
