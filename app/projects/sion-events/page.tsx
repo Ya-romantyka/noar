@@ -145,6 +145,7 @@ export default function CasePage() {
         ]}
       />
       <CaseExpandText
+        animationDuration={{ desktop: '40s', mobile: '80s' }}
         popup={{
           title: 'The space of melodic house music',
           text:

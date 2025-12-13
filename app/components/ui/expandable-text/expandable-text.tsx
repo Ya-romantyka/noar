@@ -85,7 +85,7 @@ export default function ExpandableText({
           className={styles.button}
         >
           <ButtonIcon />
-          Learn more
+          learn more
         </Button>
       </div>
 

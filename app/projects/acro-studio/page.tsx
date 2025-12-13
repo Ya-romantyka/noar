@@ -144,6 +144,7 @@ export default function CasePage() {
         ]}
       />
       <CaseExpandText
+        animationDuration={{ desktop: '40s', mobile: '80s' }}
         popup={{
           title: 'Acro Studio is a small network of gyms.',
           text:
