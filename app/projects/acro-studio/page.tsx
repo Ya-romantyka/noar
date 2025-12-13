@@ -23,7 +23,7 @@ export default function CasePage() {
         year="2023"
         headerColor={'transparent-black'}
       />
-      <CaseFullImage image="/images/full-image.webp" />
+      <CaseFullImage image="/images/full-image.webp" headerColor={'white'} />
       {/* <CaseList
         label="Visuals"
         title="Sophisticated and energetic cross-dimensional design."

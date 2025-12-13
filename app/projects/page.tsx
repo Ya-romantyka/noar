@@ -26,14 +26,22 @@ const categories = [
 const cases = [
   {
     id: 1,
-    title: 'Acro Studio',
-    categories: ['Brandbook'],
+    title: 'Sion events',
+    categories: ['BrandBook'],
     description: 'Identity, Graphics',
-    image: '/images/full-image.webp',
-    slug: 'acro-studio',
+    image: '/images/sion-events-banner.webp',
+    slug: 'sion-events',
   },
   {
     id: 2,
+    title: 'UAIRP',
+    categories: ['BrandBook', 'Website'],
+    description: 'Identity, UI/UX Design, Graphics, Copyright, Development',
+    image: '/images/uairp-poster.webp',
+    slug: 'uairp',
+  },
+  {
+    id: 3,
     title: 'IN LOVE 2026',
     categories: ['Production'],
     description:
@@ -42,20 +50,12 @@ const cases = [
     slug: 'royaldi',
   },
   {
-    id: 3,
-    title: 'UAIRP',
-    categories: ['BrandBook', 'Website'],
-    description: 'Identity, UI/UX Design, Graphics, Copyright, Development',
-    image: '/images/uairp-poster.webp',
-    slug: 'uairp',
-  },
-  {
     id: 4,
-    title: 'Sion events',
-    categories: ['BrandBook'],
+    title: 'Acro Studio',
+    categories: ['Brandbook'],
     description: 'Identity, Graphics',
-    image: '/images/sion-events-banner.webp',
-    slug: 'sion-events',
+    image: '/images/full-image.webp',
+    slug: 'acro-studio',
   },
 ];
 
