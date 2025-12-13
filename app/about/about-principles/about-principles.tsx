@@ -114,7 +114,7 @@ const AboutPrinciples: React.FC = () => {
 
         <div className={styles.animWrapper}>
           <div ref={lineRef} className={styles.line} />
-          <h3 className={styles.subtitle}>Mission</h3>
+          <h3 className={styles.subtitle}>Approach</h3>
         </div>
 
         <ExpandableText

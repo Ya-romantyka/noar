@@ -82,7 +82,7 @@ const ModuleMission: React.FC<Props> = ({
       <div className={styles.inner}>
         <div className={styles.top} ref={topRef}></div>
         <div className={styles.middle} ref={middleRef} data-lenis-prevent>
-          <span className={styles.label}>Mission</span>
+          <span className={styles.label}>Approach</span>
           <h3 className={styles.title}>{title}</h3>
           {typeof text === 'object' ? (
             text
