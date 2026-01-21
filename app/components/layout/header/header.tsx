@@ -28,8 +28,10 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hideHeader, setHideHeader] = useState<boolean>(false);
   const [isWhiteHeader, setIsWhiteHeader] = useState(false);
-  const [isTransparentBlackHeader, setIsTransparentBlackHeader] = useState(false);
-  const [isTransparentWhiteHeader, setIsTransparentWhiteHeader] = useState(false);
+  const [isTransparentBlackHeader, setIsTransparentBlackHeader] =
+    useState(false);
+  const [isTransparentWhiteHeader, setIsTransparentWhiteHeader] =
+    useState(false);
 
   const pathname = usePathname();
   const lastScroll = useRef(0);
@@ -92,27 +94,27 @@ export default function Header() {
       const line = viewportHeight * 0.1;
 
       const transparentBlackSections = Array.from(
-          document.querySelectorAll('[data-header-transparent-black]')
+        document.querySelectorAll('[data-header-transparent-black]'),
       );
       const transparentWhiteSections = Array.from(
-          document.querySelectorAll('[data-header-transparent-white]')
+        document.querySelectorAll('[data-header-transparent-white]'),
       );
       const whiteSections = Array.from(
-          document.querySelectorAll('[data-header-white]')
+        document.querySelectorAll('[data-header-white]'),
       );
 
       const blackActive = transparentBlackSections.some((sec) =>
-          isLineInside(sec, line)
+        isLineInside(sec, line),
       );
 
       const whiteTransparentActive = transparentWhiteSections.some((sec) =>
-          isLineInside(sec, line)
+        isLineInside(sec, line),
       );
 
       const whiteActive =
-          !blackActive &&
-          !whiteTransparentActive &&
-          whiteSections.some((sec) => isLineInside(sec, line));
+        !blackActive &&
+        !whiteTransparentActive &&
+        whiteSections.some((sec) => isLineInside(sec, line));
 
       setIsTransparentBlackHeader(blackActive);
       setIsTransparentWhiteHeader(whiteTransparentActive);
@@ -128,7 +130,6 @@ export default function Header() {
       window.removeEventListener('resize', checkHeaderZone);
     };
   }, [pathname]);
-
 
   function slideInOut() {
     document.documentElement.animate(
@@ -211,18 +212,22 @@ export default function Header() {
 
           <ul className={styles.socials} ref={socialRef}>
             <li>
-              <StaggerLink href="https://www.instagram.com/">
+              <StaggerLink href="https://www.instagram.com/noar.std">
                 Instagram
               </StaggerLink>
             </li>
             <li>
-              <StaggerLink href="https://www.behance.net/">Behance</StaggerLink>
+              <StaggerLink href="https://www.behance.net/noarstuido/">
+                Behance
+              </StaggerLink>
             </li>
             <li>
-              <StaggerLink href="https://www.dribble.com/">Dribble</StaggerLink>
+              <StaggerLink href="https://dribbble.com/noar-studio">
+                Dribble
+              </StaggerLink>
             </li>
             <li>
-              <StaggerLink href="https://www.linkedin.com/">
+              <StaggerLink href="https://www.linkedin.com/company/noar-studio/">
                 LinkedIn
               </StaggerLink>
             </li>

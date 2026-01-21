@@ -21,10 +21,10 @@ const footerData = {
     { city: 'UK, London', phone: '+44 7351 921 253' },
   ],
   socials: [
-    { name: 'Behance', url: 'https://www.behance.net/' },
-    { name: 'Instagram', url: 'https://www.instagram.com/' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/' },
-    { name: 'Dribble', url: 'https://dribbble.com/' },
+    { name: 'Behance', url: 'https://www.behance.net/noarstuido/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/noar.std' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/noar-studio/' },
+    { name: 'Dribble', url: 'https://dribbble.com/noar-studio' },
   ],
   menu: [
     { name: 'About', url: '/about' },
