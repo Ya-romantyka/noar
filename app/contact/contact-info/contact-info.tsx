@@ -32,8 +32,8 @@ export default function ContactInfo() {
         </li>
         <li className={styles.item}>
           <span className={styles.itemLabel}>Phone | London:</span>
-          <StaggerLink href="tel:+447470597150" className={styles.itemLink}>
-            +44 7470 597 150
+          <StaggerLink href="tel:+447351921253" className={styles.itemLink}>
+            +44 7351 921 253
           </StaggerLink>
         </li>
       </ul>

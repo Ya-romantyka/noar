@@ -18,7 +18,7 @@ const footerData = {
     'We are an award-winning studio that builds brands through thoughtful design and immersive digital solutions.',
   locations: [
     { city: 'UA, Kyiv', phone: '+38 067 010 01 11' },
-    { city: 'UK, London', phone: '+44 7470 597 150' },
+    { city: 'UK, London', phone: '+44 7351 921 253' },
   ],
   socials: [
     { name: 'Behance', url: 'https://www.behance.net/' },
