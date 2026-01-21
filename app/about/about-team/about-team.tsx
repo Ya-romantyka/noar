@@ -90,7 +90,7 @@ const teamMembers = [
     moduleImg: '/images/team/team-card-img-2.webp',
   },
   {
-    name: 'Andriy Solodkyi',
+    name: 'Andre Solodkyi',
     role: 'Brand Strategist',
     description: 'Data & Insight strategist',
     description2: '',
