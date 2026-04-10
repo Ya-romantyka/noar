@@ -42,6 +42,7 @@ export default function RootLayout({
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         </head>
         <body className={`${satoshi.variable}`}>
           <LenisProvider>
