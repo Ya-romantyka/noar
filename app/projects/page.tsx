@@ -57,6 +57,14 @@ const cases = [
     image: '/images/full-image.webp',
     slug: 'acro-studio',
   },
+  {
+    id: 5,
+    title: 'Shpalta',
+    categories: ['BrandBook', '2D/3D Motion'],
+    description: 'Identity, Graphics, 2D Motion',
+    image: '/images/shpalta/1.webp',
+    slug: 'shpalta',
+  },
 ];
 
 export default function Cases() {

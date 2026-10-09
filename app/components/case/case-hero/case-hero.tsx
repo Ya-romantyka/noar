@@ -17,8 +17,8 @@ interface CaseHeroProps {
   description: string;
   client: string;
   services: string[];
-  duration: string;
-  year: string;
+  duration?: string;
+  year?: string;
   headerColor?:"white" | 'transparent-black' | 'transparent-white' ;
 }
 
@@ -114,13 +114,21 @@ const CaseHero: React.FC<CaseHeroProps> = ({
                 ))}
               </ul>
             </div>
-            <div className={styles.innerCol}>
-              <p className={styles.label}>Duration, Year</p>
-              <ul className={styles.list}>
-                <li>{duration}</li>
-                <li>{year}</li>
-              </ul>
-            </div>
+            {(duration || year) && (
+              <div className={styles.innerCol}>
+                <p className={styles.label}>
+                  {duration && year
+                    ? 'Duration, Year'
+                    : duration
+                      ? 'Duration'
+                      : 'Year'}
+                </p>
+                <ul className={styles.list}>
+                  {duration && <li>{duration}</li>}
+                  {year && <li>{year}</li>}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </Container>

@@ -37,6 +37,14 @@ const projects = [
     img: '/images/acro-studio-project-screen.webp',
     url: '/projects/acro-studio',
   },
+  {
+    id: 3,
+    name: 'Shpalta',
+    year: '',
+    frameworks: ['Brandbook', '2D motion'],
+    img: '/images/shpalta/1.webp',
+    url: '/projects/shpalta',
+  },
 ];
 
 const ProjectsSection = () => {
@@ -67,7 +75,7 @@ const ProjectsSection = () => {
 
       if (isDesk) {
         items.forEach((item, i) => {
-          const targetH = baseVh - headerH * Math.min(i, 2);
+          const targetH = baseVh - headerH * i;
           gsap.set(item, {
             position: 'relative',
             height: targetH,
@@ -86,7 +94,7 @@ const ProjectsSection = () => {
       const lastIndex = items.length - 1;
       const lastItem = items[lastIndex];
       const lastPinStart = `top top+=${headerH * lastIndex}`;
-      const globalEndDesk = `bottom top+=${headerH * 3}`;
+      const globalEndDesk = `bottom top+=${headerH * items.length}`;
 
       items.forEach((item, i) => {
         const picture = item.querySelector<HTMLElement>('picture');
@@ -107,7 +115,7 @@ const ProjectsSection = () => {
         });
 
         if (isDesk) {
-          const targetH = baseVh - headerH * Math.min(i, 2);
+          const targetH = baseVh - headerH * i;
 
           gsap.set(picture, {
             display: 'block',
