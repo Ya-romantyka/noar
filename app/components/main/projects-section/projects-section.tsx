@@ -37,14 +37,6 @@ const projects = [
     img: '/images/acro-studio-project-screen.webp',
     url: '/projects/acro-studio',
   },
-  {
-    id: 3,
-    name: 'Shpalta',
-    year: '',
-    frameworks: ['Brandbook', '2D motion'],
-    img: '/images/shpalta/1.webp',
-    url: '/projects/shpalta',
-  },
 ];
 
 const ProjectsSection = () => {
