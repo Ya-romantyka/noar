@@ -1,5 +1,6 @@
 'use client';
 
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 import Container from '../../layout/container/container';
 import styles from './case-specifics.module.scss';
@@ -11,24 +12,31 @@ interface ColorItem {
   gradient?: string;
   textColor: 'black' | 'white';
   span?: number;
+  rgb?: string;
+  cmyk?: string;
 }
 
 interface FontEntry {
   name: string;
   file?: string;
-  author?: string;
+  author?: ReactNode;
+  alphabet?: ReactNode;
   text?: string;
   list?: string[];
 }
 
 interface CaseSpecificsProps {
-  title?: string;
+  title?: ReactNode;
+  label?: string;
+  variant?: 'default' | 'compact';
   fonts: FontEntry[];
   colors: ColorItem[];
 }
 
 const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
   title,
+  label = 'Specifics',
+  variant = 'default',
   fonts,
   colors,
 }) => {
@@ -42,8 +50,11 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
     '“AcroStudio is a modern gym for children and their parents”';
 
   return (
-    <section className={styles.section} data-header-white>
-      <Container>
+    <section
+      className={clsx(styles.section, { [styles.compact]: variant === 'compact' })}
+      data-header-white
+    >
+      <Container className={styles.container}>
         <div className={styles.header}>
           <div className={styles.headerTop}>
             <span
@@ -51,7 +62,7 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                 'section-label section-label--white',
               ])}
             >
-              Specifics
+              {label}
             </span>
             <h2 className={styles.title}>
               {title ? title : 'Fonts and Colors'}
@@ -65,12 +76,14 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                   <div className={styles.col}>
                     <h3
                       className={styles.subtitle}
-                      style={{ fontFamily: ff(font) }}
+                      style={variant === 'compact' ? undefined : { fontFamily: ff(font) }}
                     >
                       {font.name}
                     </h3>
                     {font.author && (
-                      <p className={styles.text}>by {font.author}</p>
+                      <p className={styles.text}>
+                        {variant === 'compact' ? 'Designed by' : 'by'} {font.author}
+                      </p>
                     )}
                   </div>
 
@@ -79,8 +92,7 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                       className={styles.titleCol}
                       style={{ fontFamily: ff(font) }}
                     >
-                      Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss
-                      Tt Uu Vv Ww Xx Yy Zz 0123456789 -&*@?!/+(:;;)
+                      {font.alphabet || 'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 -&*@?!/+(:;;)'}
                     </h4>
 
                     <ul className={styles.fonts}>
@@ -92,24 +104,26 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                     </ul>
                   </div>
 
-                  <div className={styles.col}>
-                    <div className={styles.innerRow}>
-                      <div className={styles.innerCol}>
-                        <p className={styles.text}>Example:</p>
-                        <h4
-                          className={styles.titleCol}
-                          style={{ fontFamily: ff(font) }}
-                        >
-                          {font.text || defaultSample}
-                        </h4>
-                      </div>
-                      <div className={styles.innerCol}>
-                        <ul className={styles.symbols}>
-                          <li></li>
-                        </ul>
+                  {variant !== 'compact' && (
+                    <div className={styles.col}>
+                      <div className={styles.innerRow}>
+                        <div className={styles.innerCol}>
+                          <p className={styles.text}>Example:</p>
+                          <h4
+                            className={styles.titleCol}
+                            style={{ fontFamily: ff(font) }}
+                          >
+                            {font.text || defaultSample}
+                          </h4>
+                        </div>
+                        <div className={styles.innerCol}>
+                          <ul className={styles.symbols}>
+                            <li></li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </li>
             ))}
@@ -122,6 +136,7 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
                 className={clsx(styles.colorItem, {
                   [styles.colorItemBlack]: color.textColor === 'black',
                   [styles.colorItemWhite]: color.textColor === 'white',
+                  [styles.outlined]: variant === 'compact' && color.hex === '000000',
                 })}
                 style={{
                   background: color.gradient ? color.gradient : `#${color.hex}`,
@@ -131,9 +146,15 @@ const CaseSpecifics: React.FC<CaseSpecificsProps> = ({
               >
                 <div className={styles.colorItemTitle}>{color.name}</div>
                 {!Array.isArray(color.hex) ? (
-                  <div className={styles.colorItemValue}>
-                    <span>HEX:</span>
-                    <span>{color.hex}</span>
+                  <div>
+                    {Object.entries({ HEX: color.hex, RGB: color.rgb, CMYK: color.cmyk }).map(
+                      ([label, value]) => value && (
+                        <div className={styles.colorItemValue} key={label}>
+                          <span>{label}:</span>
+                          <span>{value}</span>
+                        </div>
+                      ),
+                    )}
                   </div>
                 ) : (
                   <ol className={styles.colorsList}>

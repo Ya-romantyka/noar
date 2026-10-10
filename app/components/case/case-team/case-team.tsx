@@ -12,11 +12,18 @@ interface TeamMember {
 interface CaseTeamProps {
   label: string;
   team: TeamMember[];
+  backLabel?: string;
+  className?: string;
 }
 
-const CaseTeam: React.FC<CaseTeamProps> = ({ label, team }) => {
+const CaseTeam: React.FC<CaseTeamProps> = ({
+  label,
+  team,
+  backLabel = "return",
+  className,
+}) => {
   return (
-    <section className={styles.section} data-header-white>
+    <section className={clsx(styles.section, className)} data-header-white>
       <Container className={styles.container}>
         <span
           className={clsx(styles.label, "section-label section-label--white")}
@@ -37,7 +44,7 @@ const CaseTeam: React.FC<CaseTeamProps> = ({ label, team }) => {
           <div className={styles.buttons}>
             <Button href="/projects" variant="white" className={styles.button}>
               <BackIcon />
-              return
+              {backLabel}
             </Button>
             <Button
               href="/contact"

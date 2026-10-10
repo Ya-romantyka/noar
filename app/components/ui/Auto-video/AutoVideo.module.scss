@@ -42,7 +42,7 @@
 .popup {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 10001;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,5 +88,18 @@
 @media (min-width: 768px) {
   .popup {
     padding: 2rem 22rem;
+  }
+}
+
+.compact {
+  aspect-ratio: 9 / 5;
+  height: auto;
+
+  .button {
+    right: 2rem;
+  }
+
+  video {
+    object-fit: contain;
   }
 }

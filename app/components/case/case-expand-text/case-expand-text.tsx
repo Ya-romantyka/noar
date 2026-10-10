@@ -9,6 +9,7 @@ type TAnimationDuration = {
 };
 interface IPopup {
   title: string;
+  label?: string;
   text: string;
 }
 interface CaseExpandTextProps {
@@ -16,6 +17,7 @@ interface CaseExpandTextProps {
   text: React.ReactNode;
   popup: IPopup;
   animationDuration?: TAnimationDuration;
+  staticPreview?: boolean;
 }
 
 const CaseExpandText: React.FC<CaseExpandTextProps> = ({
@@ -23,6 +25,7 @@ const CaseExpandText: React.FC<CaseExpandTextProps> = ({
   text,
   popup,
   animationDuration,
+  staticPreview,
 }) => {
   return (
     <section className={styles.section} data-header-white>
@@ -35,7 +38,11 @@ const CaseExpandText: React.FC<CaseExpandTextProps> = ({
           </span>
         </div>
 
-        <ExpandableText popup={popup} animationDuration={animationDuration}>
+        <ExpandableText
+          popup={popup}
+          animationDuration={animationDuration}
+          staticPreview={staticPreview}
+        >
           {text}
         </ExpandableText>
       </Container>

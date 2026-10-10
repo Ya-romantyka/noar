@@ -5,6 +5,7 @@ import styles from './case-gallery-swiper.module.scss';
 import Container from '../../layout/container/container';
 import clsx from 'clsx';
 import Image from 'next/image';
+import AutoVideo from '../../ui/Auto-video/AutoVideo';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import useSplitTextAnimation from '@/app/hooks/useSplitTextAnimation';
@@ -17,6 +18,9 @@ interface CaseGallerySwiperProps {
   images: string[];
   classNamesSwiper?: string;
   classNamesImageList?: string;
+  mobileSlider?: boolean;
+  videoPlayer?: boolean;
+  children?: ReactNode;
 }
 
 const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
@@ -25,6 +29,9 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
   images,
   classNamesSwiper,
   classNamesImageList,
+  mobileSlider = false,
+  videoPlayer = false,
+  children,
 }) => {
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -52,7 +59,7 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
   return (
     <section className={styles.section} data-header-white>
       <Container className={styles.container}>
-        <div className={styles.header}>
+        <div className={clsx(styles.header, { [styles.withAction]: children })}>
           <span
             className={clsx(styles.label, 'section-label section-label--white')}
           >
@@ -61,9 +68,10 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
           <h2 ref={titleRef} className={styles.title}>
             {title}
           </h2>
+          {children}
         </div>
 
-        {isDesktop ? (
+        {isDesktop || mobileSlider ? (
           <div className={styles.swiperWrapper} ref={swiperWrapperRef}>
             <Swiper
               spaceBetween={20}
@@ -79,7 +87,12 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
                 const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
                 return (
                   <SwiperSlide key={key}>
-                    {isVideo ? (
+                    {isVideo && videoPlayer ? (
+                      <AutoVideo
+                        video={{ src: image, type: 'video/mp4' }}
+                        compact
+                      />
+                    ) : isVideo ? (
                       <video
                         autoPlay
                         muted
@@ -105,7 +118,13 @@ const CaseGallerySwiper: FC<CaseGallerySwiperProps> = ({
             {images.map((image, i) => {
               const isVideo = checkMediaTypeByExtension(image) === 'video';
               const key = `${isVideo ? 'vid' : 'img'}:${image}|${i}`;
-              return isVideo ? (
+              return isVideo && videoPlayer ? (
+                <AutoVideo
+                  key={key}
+                  video={{ src: image, type: 'video/mp4' }}
+                  compact
+                />
+              ) : isVideo ? (
                 <video
                   key={key}
                   autoPlay

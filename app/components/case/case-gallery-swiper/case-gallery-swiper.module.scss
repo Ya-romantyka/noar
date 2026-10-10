@@ -55,6 +55,11 @@
     left: 0;
   }
 
+  .withAction {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
   .title {
     font-size: 7rem;
     letter-spacing: -0.35rem;

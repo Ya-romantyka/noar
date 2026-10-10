@@ -117,3 +117,39 @@
 
   }
 }
+
+.staticPreview {
+  max-width: 158rem;
+
+  .body {
+    margin-top: 3.2rem;
+    mask-image: linear-gradient(#000, transparent);
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .text {
+    padding: 0;
+
+    span {
+      animation: none;
+    }
+  }
+
+  .footer {
+    margin-top: 8rem;
+  }
+
+  @media (min-width: 768px) {
+    .body {
+      max-height: 38rem;
+    }
+
+    .footer {
+      margin-top: 12rem;
+    }
+  }
+}

@@ -80,6 +80,25 @@
   gap: 15px;
 }
 
+.wide {
+  .innerRow {
+    grid-template-columns: auto 1fr;
+    gap: 3.2rem;
+  }
+
+  .list li {
+    white-space: pre-line;
+  }
+
+  .innerCol:nth-child(2) .list {
+    line-height: 112%;
+
+    li:first-child {
+      margin-bottom: 2.8rem;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .section {
     padding: 24rem 0 4.8rem;
@@ -134,5 +153,33 @@
     gap: 1.2rem;
     font-size: 2.4rem;
     letter-spacing: -0.12rem;
+  }
+
+  .wide {
+    padding-top: 14.2rem;
+
+    .container {
+      padding-inline: 3.2rem;
+      grid-template-columns: 82.5rem 1fr;
+    }
+
+    .description {
+      max-width: 75rem;
+    }
+
+    .categoriesList {
+      gap: 1.2rem;
+    }
+
+    .category {
+      gap: 1rem;
+      padding: 1.1rem 1.8rem;
+    }
+
+    .innerRow {
+      display: grid;
+      grid-template-columns: 16rem 18.8rem auto;
+      gap: 0;
+    }
   }
 }

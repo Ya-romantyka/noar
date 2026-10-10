@@ -94,3 +94,28 @@
 
     }
 }
+.wide {
+    .buttons {
+        flex-wrap: wrap;
+    }
+
+    @media (min-width: 768px) {
+        padding-bottom: 12rem;
+
+        .container {
+            padding-left: 86.6rem;
+        }
+
+        .label {
+            left: 3rem;
+        }
+
+        .item {
+            gap: 2rem;
+        }
+
+        .list {
+            gap: 5.2rem;
+        }
+    }
+}

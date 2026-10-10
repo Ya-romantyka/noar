@@ -1,5 +1,6 @@
 'use client';
 import { FC, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './AutoVideo.module.scss';
 import Button from '@/app/components/ui/button/button';
 import PlayIcon from '@/app/assets/icons/play_icon.svg';
@@ -20,8 +21,9 @@ type VideoItem = {
 const AutoVideo: FC<{
   video: VideoItem;
   className?: string;
+  compact?: boolean;
   headerColor?: 'white' | 'transparent';
-}> = ({ video, className, headerColor }) => {
+}> = ({ video, className, headerColor, compact = false }) => {
   const previewRef = useRef<HTMLVideoElement>(null);
   const fullRef = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
@@ -42,20 +44,27 @@ const AutoVideo: FC<{
 
   useEffect(() => {
     if (!open) return;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', handleKeyDown);
     const id = setTimeout(() => {
       fullRef.current?.play().catch(() => {});
     }, 30);
     return () => {
       clearTimeout(id);
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      window.__lenis?.start();
     };
   }, [open]);
 
   return (
     <>
       <div
-        className={styles.videoWrapper}
+        className={clsx(styles.videoWrapper, { [styles.compact]: compact })}
         onClick={openFull}
         data-header-transparent={
           headerColor === 'transparent' ? true : undefined
@@ -99,11 +108,12 @@ const AutoVideo: FC<{
         </Button>
       </div>
 
-      {open && (
+      {open && createPortal(
         <div
           className={clsx(styles.popup, styles.open)}
           role="dialog"
           aria-modal="true"
+          aria-label="Video player"
         >
           <Button className={styles.close} variant="black" onClick={closeFull}>
             <CloseIcon /> close
@@ -118,7 +128,8 @@ const AutoVideo: FC<{
           >
             <source src={video.fullSrc ?? video.src} type={video.type} />
           </video>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

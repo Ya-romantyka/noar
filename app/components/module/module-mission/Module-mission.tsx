@@ -1,5 +1,6 @@
 'use client';
-import React, { ReactNode, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './Module-mission.module.scss';
 import clsx from 'clsx';
 import Button from '@/app/components/ui/button/button';
@@ -10,6 +11,7 @@ interface Props {
   onClose?: () => void;
   open?: boolean;
   title: string;
+  label?: string;
   text: string | ReactNode;
 }
 
@@ -18,8 +20,22 @@ const ModuleMission: React.FC<Props> = ({
   onClose,
   open = false,
   title,
+  label = 'Approach',
   text,
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose?.();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open, onClose]);
+
   const topRef = useRef<HTMLDivElement | null>(null);
   const middleRef = useRef<HTMLDivElement | null>(null);
 
@@ -77,12 +93,25 @@ const ModuleMission: React.FC<Props> = ({
     };
   }, [open]);
 
-  return (
-    <div className={clsx(styles.module, className, { [styles.active]: open })}>
+  if (!mounted) return null;
+
+  return createPortal(
+    <div
+      className={clsx(styles.module, className, {
+        [styles.active]: open,
+      })}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+      aria-hidden={!open}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose?.();
+      }}
+    >
       <div className={styles.inner}>
         <div className={styles.top} ref={topRef}></div>
         <div className={styles.middle} ref={middleRef} data-lenis-prevent>
-          <span className={styles.label}>Approach</span>
+          <span className={styles.label}>{label}</span>
           <h3 className={styles.title}>{title}</h3>
           {typeof text === 'object' ? (
             text
@@ -103,7 +132,8 @@ const ModuleMission: React.FC<Props> = ({
           </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

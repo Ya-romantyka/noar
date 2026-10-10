@@ -1,34 +1,20 @@
-.identitySwiper {
+.identitySwiper:global(.swiper) {
+  overflow: hidden !important;
+
   :global(.swiper-slide) {
-    width: 75%;
+    width: 100%;
   }
 
   picture,
   video {
+    display: block;
+    position: relative;
+    width: 100%;
     aspect-ratio: 9 / 5;
   }
 
   picture img,
   video {
     object-fit: contain;
-  }
-}
-
-.imageList {
-  picture {
-    aspect-ratio: 9 / 5;
-  }
-
-  img {
-    object-fit: contain;
-  }
-}
-
-.motion {
-  padding-top: 11.2rem;
-  background: #101010;
-
-  @media (min-width: 768px) {
-    padding-top: 15.6rem;
   }
 }

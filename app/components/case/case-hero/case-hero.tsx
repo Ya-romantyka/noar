@@ -1,6 +1,7 @@
 'use client';
 
 import styles from './case-hero.module.scss';
+import clsx from 'clsx';
 import Container from '../../layout/container/container';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
@@ -19,6 +20,7 @@ interface CaseHeroProps {
   services: string[];
   duration?: string;
   year?: string;
+  className?: string;
   headerColor?:"white" | 'transparent-black' | 'transparent-white' ;
 }
 
@@ -32,6 +34,7 @@ const CaseHero: React.FC<CaseHeroProps> = ({
   services,
   duration,
   year,
+  className,
   headerColor,
 }) => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -66,7 +69,7 @@ const CaseHero: React.FC<CaseHeroProps> = ({
 
   return (
     <section
-      className={styles.section}
+      className={clsx(styles.section, className)}
       style={{ backgroundColor: background, color }}
       data-header-white={headerColor === 'white' ? true : undefined}
       data-header-transparent-black={

@@ -1,6 +1,6 @@
 .module {
   position: fixed;
-  z-index: 10000;
+  z-index: 10001;
   inset: 0;
   background: rgba(16, 16, 16, 0.86);
   height: 100dvh;
@@ -168,5 +168,24 @@
     margin: 0;
     border-top: none;
     border-left: 1px solid rgba(16, 16, 16, 0.12);
+  }
+}
+
+.plain {
+  color: #101010;
+
+  .top {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .inner {
+      width: 120rem;
+      height: 80vh;
+      grid-template-columns: 1fr 23rem;
+      padding: 5rem 6.4rem;
+      gap: 6.4rem;
+      border-radius: 0.4rem;
+    }
   }
 }
