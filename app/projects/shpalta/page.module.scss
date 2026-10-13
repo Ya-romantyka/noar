@@ -3,6 +3,10 @@
 
   :global(.swiper-slide) {
     width: 100%;
+
+    button {
+      display: none;
+    }
   }
 
   picture,

@@ -98,7 +98,7 @@ export default function ShpaltaPage() {
         fonts={[
           {
             name: 'Shpalta - Barlow',
-            file: 'BarlowCondensed-Medium',
+            file: 'SHPALTA-BARLOW',
             author: 'Noar Studio',
             alphabet: 'А Б В Г Ґ Д Е Є Ж З И І Ї Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ь Ю Я',
             list: ['Headlines - Bold'],
