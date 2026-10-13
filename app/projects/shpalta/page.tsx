@@ -5,8 +5,6 @@ import CaseGallery from '@/app/components/case/case-gallery/case-gallery';
 import CaseGallerySwiper from '@/app/components/case/case-gallery-swiper/case-gallery-swiper';
 import CaseTeam from '@/app/components/case/case-team/case-team';
 import CaseExpandText from '@/app/components/case/case-expand-text/case-expand-text';
-import Button from '@/app/components/ui/button/button';
-import BackIcon from '@/app/assets/icons/back-icon.svg';
 import styles from './page.module.scss';
 import textStyles from '@/app/components/ui/expandable-text/expandable-text.module.scss';
 import missionStyles from '@/app/components/module/module-mission/Module-mission.module.scss';
@@ -88,12 +86,7 @@ export default function ShpaltaPage() {
         classNamesSwiper={styles.identitySwiper}
         mobileSlider
         videoPlayer
-      >
-        <Button href="#" variant="outline-white">
-          <BackIcon />
-          live website
-        </Button>
-      </CaseGallerySwiper>
+      />
       <CaseSpecifics
         label="Colors/Fonts"
         variant="compact"
@@ -105,14 +98,9 @@ export default function ShpaltaPage() {
         fonts={[
           {
             name: 'Shpalta - Barlow',
-            file: 'BarlowCondensed-Black',
+            file: 'BarlowCondensed-Medium',
             author: 'Noar Studio',
-            alphabet: (
-              <>
-                Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr<br />
-                Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 -&amp;*@?!/+(:;;)
-              </>
-            ),
+            alphabet: 'А Б В Г Ґ Д Е Є Ж З И І Ї Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ь Ю Я',
             list: ['Headlines - Bold'],
           },
           {
