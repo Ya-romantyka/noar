@@ -8,6 +8,8 @@ import CaseExpandText from '@/app/components/case/case-expand-text/case-expand-t
 import Button from '@/app/components/ui/button/button';
 import BackIcon from '@/app/assets/icons/back-icon.svg';
 import styles from './page.module.scss';
+import textStyles from '@/app/components/ui/expandable-text/expandable-text.module.scss';
+import missionStyles from '@/app/components/module/module-mission/Module-mission.module.scss';
 import heroStyles from '@/app/components/case/case-hero/case-hero.module.scss';
 import teamStyles from '@/app/components/case/case-team/case-team.module.scss';
 import CaseSpecifics from '@/app/components/case/case-specifics/case-specifics';
@@ -54,6 +56,7 @@ export default function ShpaltaPage() {
             A brand narrative built <br /> on local lore.
           </>
         }
+        parallaxClasses={['li:nth-child(3) img']}
         media={[2, 3, 4, 5, 6].map((number) => ({
           image: {
             srcMob: `/images/shpalta/${number}.webp`,
@@ -185,8 +188,14 @@ export default function ShpaltaPage() {
       />
       <CaseExpandText
         label="Our approach & Ways of thinking"
-        staticPreview
-        popup={{ title: 'Shpalta', label: 'Mission', text: approach.join('\n') }}
+        classNamesText={textStyles.preview}
+        animationDuration={{ desktop: '40s', mobile: '80s' }}
+        popup={{
+          title: 'Shpalta',
+          label: 'Mission',
+          text: approach.join('\n'),
+          className: missionStyles.plain,
+        }}
         text={<p>{approach[0]}</p>}
       />
       <CaseTeam

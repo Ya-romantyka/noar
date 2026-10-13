@@ -81,11 +81,6 @@
 }
 
 .wide {
-  .innerRow {
-    grid-template-columns: auto 1fr;
-    gap: 3.2rem;
-  }
-
   .list li {
     white-space: pre-line;
   }

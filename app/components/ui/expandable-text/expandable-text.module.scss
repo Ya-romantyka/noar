@@ -118,25 +118,15 @@
   }
 }
 
-.staticPreview {
+.preview {
   max-width: 158rem;
 
   .body {
     margin-top: 3.2rem;
-    mask-image: linear-gradient(#000, transparent);
-
-    &::before,
-    &::after {
-      display: none;
-    }
   }
 
   .text {
     padding: 0;
-
-    span {
-      animation: none;
-    }
   }
 
   .footer {

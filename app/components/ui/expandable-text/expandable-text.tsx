@@ -7,7 +7,6 @@ import styles from './expandable-text.module.scss';
 import Button from '@/app/components/ui/button/button';
 import ButtonIcon from '@/app/assets/icons/button-icon.svg';
 import ModuleMission from '@/app/components/module/module-mission/Module-mission';
-import missionStyles from '@/app/components/module/module-mission/Module-mission.module.scss';
 
 type TAnimationDuration = {
   mobile: string;
@@ -16,20 +15,21 @@ type TAnimationDuration = {
 interface IPopup {
   title: string;
   label?: string;
+  className?: string;
   text: string | ReactNode;
 }
 interface ExpandableTextProps {
   children: ReactNode;
   popup: IPopup;
   animationDuration?: TAnimationDuration;
-  staticPreview?: boolean;
+  className?: string;
 }
 
 export default function ExpandableText({
   children,
   popup,
   animationDuration,
-  staticPreview = false,
+  className,
 }: ExpandableTextProps) {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -50,11 +50,7 @@ export default function ExpandableText({
   };
 
   return (
-    <div
-      className={clsx(styles.expandable, {
-        [styles.staticPreview]: staticPreview,
-      })}
-    >
+    <div className={clsx(styles.expandable, className)}>
       <div className={styles.body}>
         <div ref={textRef} className={styles.text}>
           <span
@@ -70,21 +66,19 @@ export default function ExpandableText({
           >
             {children}
           </span>
-          {!staticPreview && (
-            <span
-              style={
-                animationDuration
-                  ? {
-                      animationDuration: isMobile
-                        ? animationDuration?.mobile
-                        : animationDuration?.desktop,
-                    }
-                  : {}
-              }
-            >
-              {children}
-            </span>
-          )}
+          <span
+            style={
+              animationDuration
+                ? {
+                    animationDuration: isMobile
+                      ? animationDuration?.mobile
+                      : animationDuration?.desktop,
+                  }
+                : {}
+            }
+          >
+            {children}
+          </span>
         </div>
       </div>
 
@@ -102,7 +96,7 @@ export default function ExpandableText({
       <ModuleMission
         title={popup.title}
         label={popup.label}
-        className={staticPreview ? missionStyles.plain : undefined}
+        className={popup.className}
         text={popup.text}
         open={isOpen}
         onClose={close}

@@ -279,27 +279,15 @@
   }
 
   .colors {
-    gap: 1.6rem;
     margin-top: 3.2rem;
     padding-bottom: 0;
     border: 0;
   }
 
-  .colorItem {
-    height: 28rem;
-    padding: 2.4rem;
-  }
-
   .colorItemValue {
     display: grid;
-    grid-template-columns: 12.3rem 1fr;
+    grid-template-columns: 6rem 1fr;
     gap: 0;
-    font-size: 1.8rem;
-    line-height: 140%;
-
-    &:not(:last-child) {
-      margin-bottom: 0.4rem;
-    }
   }
 
   .outlined {
@@ -339,6 +327,14 @@
     .colorItem {
       height: 37rem;
       padding-top: 3rem;
+    }
+
+    .colorItemValue {
+      grid-template-columns: 12.3rem 1fr;
+
+      &:not(:last-child) {
+        margin-bottom: 0.4rem;
+      }
     }
   }
 }
